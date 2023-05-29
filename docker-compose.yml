@@ -1,0 +1,78 @@
+version: '3'
+
+services:
+
+  app:
+    image: kodear/php7.4-fpm
+    tty: true
+    container_name: ndg-crm-app
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    volumes:
+      - ./:/var/www
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - /home/kodear/.ssh:/home/www/.ssh
+    networks:
+      - ndg-crm-network
+    links:
+      - db
+
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: ndg-crm-server
+    #restart: unless-stopped
+    tty: true
+    ports:
+      - "8080:80"
+      - "4430:443"
+    networks:
+      - ndg-crm-network
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+    links:
+      - app
+      - db
+
+  #MySQL Service
+  db:
+    image: mysql:8
+    container_name: ndg-crm-db
+    #restart: unless-stopped
+    tty: true
+    ports:
+      - 33061:3306
+    environment:
+      MYSQL_DATABASE: ndg
+      MYSQL_ROOT_PASSWORD: root
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - ndg-crm-network
+    volumes:
+      - ndg-crm-dbdata:/var/lib/mysql
+      - ./docker/mysql/shared:/root/shared
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+
+  swagger:
+    image: swaggerapi/swagger-ui
+    tty: true
+    ports:
+      - 8088:8080
+    environment:
+      SWAGGER_JSON: /tmp/swagger.yaml
+    volumes:
+      - ./swagger:/tmp
+
+volumes:
+  ndg-crm-dbdata:
+    driver: local
+
+#Docker Networks
+networks:
+  ndg-crm-network:
+    driver: bridge
+  ndg-crm-testing-network:
+    driver: bridge

@@ -1,0 +1,18 @@
+post:
+  tags:
+    - "usuarios"
+  summary: "Crear usuario"
+  description: ""
+  operationId: "createUser"
+  produces:
+    - "application/json"
+  parameters:
+    - in: "body"
+      name: "body"
+      description: "Created user object"
+      required: true
+      schema:
+        $ref: "#/definitions/User"
+  responses:
+    default:
+      description: "successful operation"

@@ -47,12 +47,12 @@ class HttpController extends Controller {
 
         $user = UserService::actualizarDatosPorAdministrador($id,
             $request->get('rol_id'),
-            $request->get('oficina_id', null),
-			$request->get('aprobacion_cbu'),
+            //$request->get('oficina_id', null)
+			/*$request->get('aprobacion_cbu'),
 			$request->get('aprobacion_gerencia_comercial'),
 			$request->get('aprobacion_dpto_creditos'),
 			$request->get('aprobacion_dpto_finanzas'),
-			$request->get('confirmacion_pagos')
+			$request->get('confirmacion_pagos')*/
         );
 
         return new UserResource($user);

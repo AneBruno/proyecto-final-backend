@@ -66,4 +66,6 @@ class CondicionesPagoService
     {
         CondicionPago::getById($id)->borrar();
     }
+
+
 }

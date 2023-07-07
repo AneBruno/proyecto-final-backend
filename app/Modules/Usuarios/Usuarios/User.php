@@ -46,7 +46,7 @@ class User extends ModelRepository implements
         'telefono',
         'avatar',
         'rol_id',
-        'oficina_id',
+        //'oficina_id',
         'habilitado',
     ];
 
@@ -83,10 +83,10 @@ class User extends ModelRepository implements
     /**
      * @return BelongsTo
      */
-    public function oficina()
+    /*public function oficina()
     {
         return $this->belongsTo(\App\Modules\Oficinas\Oficina::class);
-    }
+    }*/
 
     /**
      * @return string
@@ -123,13 +123,13 @@ class User extends ModelRepository implements
         return $this;
     }
 
-    public function actualizarOficina(?int $oficina_id) {
+    /*public function actualizarOficina(?int $oficina_id) {
         $this->oficina_id = $oficina_id;
         $this->guardar();
         return $this;
-    }
+    }*/
 
-	public function actualizarPermisosGestionSaldos (
+	/*public function actualizarPermisosGestionSaldos (
 		int $aprobacionCbu,
 		int $aprobacionGerenciaComercial,
 		int $aprobacionDptoCreditos,
@@ -143,7 +143,7 @@ class User extends ModelRepository implements
 		$this->confirmacion_pagos = $confirmacionPagos;
 
 		$this->guardar();
-	}
+	}*/
 
     public function habilitar(): self {
         $this->habilitado = true;
@@ -170,15 +170,15 @@ class User extends ModelRepository implements
                 $valor = is_array($valor) ? $valor : [$valor];
                 $query->whereIn('id', $valor);
             }
-            if (in_array($nombre, ['rol_id', 'oficina_id'])) {
+            if (in_array($nombre, ['rol_id'/*, 'oficina_id'*/])) {
                 $query->whereIn($nombre, is_array($valor)?$valor:[$valor]);
             }
             if (in_array($nombre, [
             	'email',
 				'habilitado',
-				'aprobacion_cbu',
-				'aprobacion_gerencia_comercial',
-				'confirmacion_pagos'
+				//'aprobacion_cbu',
+				//'aprobacion_gerencia_comercial',
+				//'confirmacion_pagos'
 			]) && strlen("{$valor}")>0) {
                 $query->where($nombre, $valor);
             }

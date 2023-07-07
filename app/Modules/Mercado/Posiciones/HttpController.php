@@ -64,24 +64,24 @@ class HttpController extends Controller
         $row = PosicionesService::crear(
             $usuario_carga->getKey(),
             $request->input('producto_id'),
-            $request->input('calidad_id'),
-            $request->input('fecha_entrega_inicio'),
-            $request->input('fecha_entrega_fin'),
+            //$request->input('calidad_id'),
+            /*$request->input('fecha_entrega_inicio'),
+            $request->input('fecha_entrega_fin'),*/
             $request->input('empresa_id'),
-            $request->input('opcion_destino'),
+            //$request->input('opcion_destino'),
             $request->input('moneda'),
             $request->input('precio'),
             $request->input('condicion_pago_id'),
-            $request->input('posicion_excepcional'),
+            /*$request->input('posicion_excepcional'),
             $request->input('volumen_limitado'),
-            $request->input('a_trabajar'),
+            $request->input('a_trabajar'),*/
             $request->input('cosecha_id'),
-            $request->input('establecimiento_id'),
+            //$request->input('establecimiento_id'),
             $request->input('puerto_id'),
             $request->input('observaciones'),
-            $request->input('calidad_observaciones'),
+            //$request->input('calidad_observaciones'),
             $request->input('entrega'),
-            $request->input('a_fijar'),
+            //$request->input('a_fijar'),
             $request->input('placeId'),
             $request->input('id'),
         );
@@ -100,22 +100,22 @@ class HttpController extends Controller
         $row = PosicionesService::actualizar(
             $id,
             $request->input('producto_id'),
-            $request->input('calidad_id'),
-            $request->input('fecha_entrega_inicio'),
-            $request->input('fecha_entrega_fin'),
+            //$request->input('calidad_id'),
+            /*$request->input('fecha_entrega_inicio'),
+            $request->input('fecha_entrega_fin'),*/
             $request->input('empresa_id'),
             $request->input('moneda'),
             $request->input('precio'),
             $request->input('condicion_pago_id'),
-            $request->input('establecimiento_id'),
+            //$request->input('establecimiento_id'),
             $request->input('puerto_id'),
-            $request->input('posicion_excepcional'),
+            /*$request->input('posicion_excepcional'),
             $request->input('volumen_limitado'),
-            $request->input('a_trabajar'),
+            $request->input('a_trabajar'),*/
             $request->input('cosecha_id'),
             $request->input('observaciones'),
-            $request->input('calidad_observaciones'),
-            $request->input('entrega')
+            //$request->input('calidad_observaciones'),
+            //$request->input('entrega')
         );
 
         return new PosicionResource($row);

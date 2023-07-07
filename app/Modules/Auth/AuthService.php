@@ -11,7 +11,7 @@ use Kodear\Laravel\Repository\Exceptions\RepositoryException;
 
 class AuthService
 {
-
+    
     static public function createToken(User $user, $rememberMe)
     {
         $tokenResult = $user->createToken('Personal Access Token');

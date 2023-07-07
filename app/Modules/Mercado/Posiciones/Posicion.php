@@ -55,9 +55,9 @@ class Posicion extends ModelRepository
     /**
      * @return HasOne
      */
-    public function calidad() {
+    /*public function calidad() {
         return $this->hasOne(Calidad::class, 'id', 'calidad_id');
-    }
+    }*/
 
     /**
      * @return HasOne
@@ -69,9 +69,9 @@ class Posicion extends ModelRepository
     /**
      * @return HasOne
      */
-    public function establecimiento() {
+    /*public function establecimiento() {
         return $this->hasOne(Establecimiento::class, 'id', 'establecimiento_id');
-    }
+    }*/
 
     /**
      * @return HasOne
@@ -99,18 +99,18 @@ class Posicion extends ModelRepository
     /**
      * @return mixed
      */
-    public function getFechaEntregaInicio()
+    /*public function getFechaEntregaInicio()
     {
         return $this->fecha_entrega_inicio;
-    }
+    }*/
 
     /**
      * @return mixed
      */
-    public function getFechaEntregaFin()
+    /*public function getFechaEntregaFin()
     {
         return $this->fecha_entrega_fin;
-    }
+    }*/
 
     /**
      * @return mixed
@@ -139,10 +139,10 @@ class Posicion extends ModelRepository
     /**
      * @return mixed
      */
-    public function getEntrega()
+    /*public function getEntrega()
     {
         return $this->entrega;
-    }
+    }*/
 
     /**
      * @return mixed
@@ -152,7 +152,7 @@ class Posicion extends ModelRepository
         if (!is_null($this->puerto_id)) {
             return $this->puerto;
         } else {
-            return $this->establecimiento;
+            //return $this->establecimiento;
         }
     }
 
@@ -161,25 +161,25 @@ class Posicion extends ModelRepository
         return $this->localidad_destino;
     }
 
-    public function getDepartamentoDestino()
+    /*public function getDepartamentoDestino()
     {
         return $this->departamento_destino;
-    }
+    }*/
 
     public function getProvinciaDestino()
     {
         return $this->provincia_destino;
     }
 
-    public function getLatitudDestino()
+    /*public function getLatitudDestino()
     {
         return $this->latitud_destino;
-    }
+    }*/
 
-    public function getLongitudDestino()
+    /*public function getLongitudDestino()
     {
         return $this->longitud_destino;
-    }
+    }*/
 
     /**
      * @return bool
@@ -194,19 +194,19 @@ class Posicion extends ModelRepository
 
         foreach($filtros as $columna => $valor) {
             if (in_array($columna, [
-                'establecimiento_id',
-                'fecha_entrega_inicio',
-                'fecha_entrega_fin',
-                'moneda',
+                //'establecimiento_id',
+                //'fecha_entrega_inicio',
+                //'fecha_entrega_fin',
+                'moneda'
             ])) {
                 $query->where("mercado_posiciones.{$columna}", $valor);
             }
 
             if (in_array($columna, [
-                'posicion_excepcional',
-                'volumen_limitado',
-                'a_trabajar',
-                'a_fijar'
+                //'posicion_excepcional',
+                //'volumen_limitado',
+                //'a_trabajar'
+                //'a_fijar'
             ])) {
                 $valores = is_array($valor) ? $valor : [$valor];
                 $valorsFiltro = array_map(function($valor) {
@@ -216,7 +216,7 @@ class Posicion extends ModelRepository
                 $query->whereIn("mercado_posiciones.{$columna}", $valorsFiltro);
             }
 
-            if (in_array($columna, ['empresa_id', 'entrega', 'condicion_pago_id'])) {
+            if (in_array($columna, ['empresa_id'/*, 'entrega'*/, 'condicion_pago_id'])) {
 				$valores = is_array($valor) ? $valor : [$valor];
 
 				$query->whereIn("mercado_posiciones.{$columna}", $valores);
@@ -244,11 +244,11 @@ class Posicion extends ModelRepository
             }
 
             if ($columna === 'tipo') {
-                if ($valor === 'exportacion') {
-                    $query->whereNotNull('mercado_posiciones.puerto_id');
-                } else if ($valor === 'consumos') {
+                //if ($valor === 'exportacion') {
+                $query->whereNotNull('mercado_posiciones.puerto_id');
+                /*} else if ($valor === 'consumos') {
                     $query->whereNotNull('mercado_posiciones.establecimiento_id');
-                }
+                }*/
             }
 
             if ($columna == 'puerto_id') {
@@ -256,10 +256,10 @@ class Posicion extends ModelRepository
                 $query->whereIn('mercado_posiciones.puerto_id', $valor);
             }
 
-            if ($columna == 'calidad_id') {
+            /*if ($columna == 'calidad_id') {
                 $valor = is_array($valor) ? $valor : array_filter([$valor]);
                 $query->whereIn('mercado_posiciones.calidad_id', $valor);
-            }
+            }*/
 
             if ($columna == 'cosecha_id') {
                 $valor = is_array($valor) ? $valor : array_filter([$valor]);
@@ -271,7 +271,7 @@ class Posicion extends ModelRepository
                 $query->whereIn('mercado_posiciones.producto_id', $valor);
             }
             
-            if ($columna === 'tipo_posicion') {
+            /*if ($columna === 'tipo_posicion') {
                 $valor = is_array($valor) ? $valor : [$valor]; // Forzamos a un array
                 if (array_intersect($valor, ['posicion_excepcional','a_trabajar','volumen_limitado'])) {
                     $query->where(function(Builder $query) use($valor) {
@@ -280,7 +280,7 @@ class Posicion extends ModelRepository
                         }, $valor);
                     });
                 }
-            }
+            }*/
         }
     }
 
@@ -298,7 +298,7 @@ class Posicion extends ModelRepository
             }
             if ($columna == 'destino_nombre') {
                 $query->orderByLeftPowerJoins('puerto.nombre', $sentido);
-                $query->orderByLeftPowerJoins('establecimiento.nombre', $sentido);
+               // $query->orderByLeftPowerJoins('establecimiento.nombre', $sentido);
             }
             if (in_array($columna, ['id', 'precio', 'cosecha_id'])) {
                 $query->orderBy("mercado_posiciones.{$columna}", $direction);

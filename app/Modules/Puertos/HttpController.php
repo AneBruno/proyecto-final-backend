@@ -32,9 +32,11 @@ class HttpController extends Controller
     {
         $row = PuertosService::crear(
             $request->input('nombre'  ),
-            $request->input('terminal'),
-            $request->input('placeId' ),
-            $request->input('descripcion_ubicacion')
+            $request->input('localidad'  ),
+            $request->input('provincia'  )
+            //$request->input('terminal'),
+            /*$request->input('placeId' ),
+            $request->input('descripcion_ubicacion')*/
         );
 
         return $this->json($row);
@@ -45,18 +47,20 @@ class HttpController extends Controller
         $row = PuertosService::actualizar(
             $id,
             $request->input('nombre'  ),
-            $request->input('terminal'),
-            $request->input('placeId' ),
-            $request->input('descripcion_ubicacion')
+            $request->input('localidad'  ),
+            $request->input('provincia'  )
+            //$request->input('terminal'),
+            /*$request->input('placeId' ),
+            $request->input('descripcion_ubicacion')*/
         );
 
         return $this->json($row);
     }
 
-    public function destroy(int $id)
+    /*public function destroy(int $id)
     {
         return PuertosService::borrar($id);
-    }
+    }*/
 
     /**
      * @param CambiarEstadoPuertoRequest $request
@@ -73,9 +77,9 @@ class HttpController extends Controller
         return $this->json($puerto);
     }
 
-    public function buscarUbicacion(Request $request) {
+    /*public function buscarUbicacion(Request $request) {
         return PlacesRepository::buscarUbicacion($request->get('text'));
-    }
+    }*/
 
     public function obtenerDetalles(string $id) {
         return new JsonResource(PlacesRepository::obtenerDetalles($id));

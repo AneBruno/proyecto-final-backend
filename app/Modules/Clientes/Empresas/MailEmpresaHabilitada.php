@@ -18,7 +18,7 @@ class MailEmpresaHabilitada extends Mailable
      */
     public function __construct($empresa)
     {
-        $this->subject = 'Bienvenido a Negocios de Granos';
+        $this->subject = 'Bienvenido!';
         $this->empresa = $empresa;
     }
 

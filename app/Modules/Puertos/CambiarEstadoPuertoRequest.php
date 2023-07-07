@@ -24,7 +24,7 @@ class CambiarEstadoPuertoRequest extends FormRequest
     public function rules()
     {
         return [
-            'estado'   => 'required|string|in:HABILITADO,DESHABILITADO',
+            'estado'   => 'required|string|in:HABILITADO,DESHABILITADO'
         ];
     }
 }

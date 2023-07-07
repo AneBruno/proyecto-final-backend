@@ -12,6 +12,7 @@ class CondicionPago extends ModelRepository
 
     protected $table = 'condiciones_pago';
 
+
     public $timestamps = true;
 
     static public function crear(string $descripcion): self {

@@ -90,16 +90,16 @@ class OrdenesService
 
         $orden->empresa_id = $crearOrdenDto->empresa_id;
         $orden->producto_id = $crearOrdenDto->producto_id;
-        $orden->calidad_id = $crearOrdenDto->calidad_id;
+        //$orden->calidad_id = $crearOrdenDto->calidad_id;
         $orden->condicion_pago_id = $crearOrdenDto->condicion_pago_id;
         $orden->moneda = $crearOrdenDto->moneda;
         $orden->precio = $crearOrdenDto->precio;
         $orden->volumen = $crearOrdenDto->volumen;
-        $orden->estado_id = $crearOrdenDto->estado_id;
-        $orden->fecha_entrega_inicio = $crearOrdenDto->fecha_entrega_inicio;
-        $orden->fecha_entrega_fin = $crearOrdenDto->fecha_entrega_fin;
+        $orden->estado_id = 2;
+        /*$orden->fecha_entrega_inicio = $crearOrdenDto->fecha_entrega_inicio;
+        $orden->fecha_entrega_fin = $crearOrdenDto->fecha_entrega_fin;*/
         $orden->observaciones = $crearOrdenDto->observaciones;
-        $orden->entrega = $crearOrdenDto->entrega;
+        //$orden->entrega = $crearOrdenDto->entrega;
         $orden->usuario_carga_id = $user->getKey();
 
         $idOrdenCopia = $crearOrdenDto->id;
@@ -111,9 +111,9 @@ class OrdenesService
         //Si hay establecimiento_id se copia esa geolocalización. Si no hay, pero existe placeIdProcedencia, se copia esa.
         //Si no hay ninguna entonces quiere decir que se está copiando desde otra orden (ver validaciones de OrdenesRequest.php), entonces
         //se copia esa geolocalización
-        if (!is_null($crearOrdenDto->establecimiento_id)) {
+        /*if (!is_null($crearOrdenDto->establecimiento_id)) {
 
-            /** @var Establecimiento $establecimiento */
+            /** @var Establecimiento $establecimiento 
             $establecimiento = EstablecimientoHelper::obtenerEstablecimientoById($crearOrdenDto->establecimiento_id);
 
             $orden->establecimiento_id = $crearOrdenDto ->establecimiento_id;
@@ -131,41 +131,43 @@ class OrdenesService
             $orden->latitud_procedencia = $detalles->latitud;
             $orden->longitud_procedencia = $detalles->longitud;
 
-        } else {
-            $orden->localidad_procedencia = $ordenCopia->localidad_procedencia;
+        } */
+        //else {
+            /*$orden->localidad_procedencia = $ordenCopia->localidad_procedencia;
             $orden->departamento_procedencia = $ordenCopia->departamento_procedencia;
             $orden->provincia_procedencia = $ordenCopia->provincia_procedencia;
             $orden->latitud_procedencia = $ordenCopia->latitud_procedencia;
-            $orden->longitud_procedencia = $ordenCopia->longitud_procedencia;
-        }
+            $orden->longitud_procedencia = $ordenCopia->longitud_procedencia;*/
+        //}
 
         //Se completa la ubicación de DESTINO
         //Si hay puerto_id se copia esa geolocalización. Si no hay, pero existe placeIdDestino, se copia la geolocalización del placeIdDestino.
         //Si no hay ninguna entonces quiere decir que se está copiando desde otra orden (ver validaciones de OrdenesRequest.php), entonces
         //se copia la geolocalización de esa orden.
-        if ($crearOrdenDto->opcion_destino === 'exportacion') {
-            /** @var Puerto $puerto */
-            $puerto = PuertoHelper::obtenerPuertoById($crearOrdenDto->puerto_id);
-
+        //if ($crearOrdenDto->opcion_destino === 'exportacion') {
+        /** @var Puerto $puerto */
+        $puerto = PuertoHelper::obtenerPuertoById($crearOrdenDto->puerto_id);
+        if (!is_null($puerto)){
             $orden->puerto_id = $crearOrdenDto->puerto_id;
             $orden->localidad_destino = $puerto->getLocalidad();
-            $orden->departamento_destino = $puerto->getDepartamento();
+            //$orden->departamento_destino = $puerto->getDepartamento();
             $orden->provincia_destino = $puerto->getProvincia();
-            $orden->latitud_destino = $puerto->getLatitud();
-            $orden->longitud_destino = $puerto->getLongitud();
-        } else if (!is_null($crearOrdenDto->placeIdDestino)) {
+            //$orden->latitud_destino = $puerto->getLatitud();
+            //$orden->longitud_destino = $puerto->getLongitud();
+        } /*else if (!is_null($crearOrdenDto->placeIdDestino)) {
             $detalles = PlacesService::obtenerDetalles($crearOrdenDto->placeIdDestino);
             $orden->localidad_destino = $detalles->localidad;
-            $orden->departamento_destino = $detalles->departamento;
+            //$orden->departamento_destino = $detalles->departamento;
             $orden->provincia_destino = $detalles->provincia;
-            $orden->latitud_destino = $detalles->latitud;
-            $orden->longitud_destino = $detalles->longitud;
-        } else {
+            //$orden->latitud_destino = $detalles->latitud;
+            //$orden->longitud_destino = $detalles->longitud;
+        } */
+        else {
             $orden->localidad_destino = $ordenCopia->localidad_destino;
-            $orden->departamento_destino = $ordenCopia->departamento_destino;
+            //$orden->departamento_destino = $ordenCopia->departamento_destino;
             $orden->provincia_destino = $ordenCopia->provincia_destino;
-            $orden->latitud_destino = $ordenCopia->latitud_destino;
-            $orden->longitud_destino = $ordenCopia->longitud_destino;
+            //$orden->latitud_destino = $ordenCopia->latitud_destino;
+           // $orden->longitud_destino = $ordenCopia->longitud_destino;
         }
 
         $orden->insertar();

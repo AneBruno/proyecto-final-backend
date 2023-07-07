@@ -68,25 +68,25 @@ class UserService
      */
     static public function actualizarDatosPorAdministrador(
     	int $usuario_id,
-		int $rol_id,
-		?int $oficina_id,
-		int $aprobacionCbu,
+		int $rol_id
+		//?int $oficina_id
+		/*int $aprobacionCbu,
 		int $aprobacionGerenciaComercial,
 		int $aprobacionDptoCreditos,
 		int $aprobacionDptoFinanzas,
-		int $confirmacionPagos
+		int $confirmacionPagos*/
 	): User
     {
         $usuario = User::getById($usuario_id);
         $usuario->actualizarRol($rol_id);
-        $usuario->actualizarOficina($oficina_id);
-		$usuario->actualizarPermisosGestionSaldos(
+        //$usuario->actualizarOficina($oficina_id);
+		/*$usuario->actualizarPermisosGestionSaldos(
 			$aprobacionCbu,
 			$aprobacionGerenciaComercial,
 			$aprobacionDptoCreditos,
 			$aprobacionDptoFinanzas,
 			$confirmacionPagos
-		);
+		);*/
 
         return $usuario;
     }

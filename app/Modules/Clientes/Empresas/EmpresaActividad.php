@@ -15,11 +15,11 @@ class EmpresaActividad extends ModelRepository
     
     protected $fillable = [
         'empresa_id',
-        'actividad_id',
-        'deleted_at',
+        'actividad_id'
+        //'deleted_at',
     ];
     
-    static public function filtrosEq(): array {
+    /*static public function filtrosEq(): array {
         return ['id', 'empresa_id'];
     }
     
@@ -28,5 +28,5 @@ class EmpresaActividad extends ModelRepository
         $row->empresa_id   = $empresa_id;
         $row->actividad_id = $actividad_id;
         return $row->insertar();
-    }
+    }*/
 }

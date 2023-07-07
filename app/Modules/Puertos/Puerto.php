@@ -18,10 +18,10 @@ class Puerto extends ModeloConLocalizacion
         'estado'
     ];
 
-    protected $appends = [
+    /*protected $appends = [
         'urlImagenMapa',
         'direccionCompleta',
-    ];
+    ];*/
 
     /**
      * @return string
@@ -31,17 +31,21 @@ class Puerto extends ModeloConLocalizacion
         return $this->nombre;
     }
 
-    static public function crear(string $nombre, string $terminal): self {
+    static public function crear(string $nombre, string $localidad, string $provincia/*, string $terminal*/): self {
         $row           = new static;
         $row->nombre   = $nombre;
-        $row->terminal = $terminal;
+        $row->localidad = $localidad;
+        $row->provincia = $provincia;
+        //$row->terminal = $terminal;
         $row->estado   = 'HABILITADO';
         return $row->insertar();
     }
 
-    public function actualizar(string $nombre, string $terminal): self {
+    public function actualizar(string $nombre, string $localidad, string $provincia/*, string $terminal*/): self {
         $this->nombre   = $nombre;
-        $this->terminal = $terminal;
+        $this->localidad = $localidad;
+        $this->provincia = $provincia;
+        //$this->terminal = $terminal;
         return $this->guardar();
     }
 
@@ -54,9 +58,10 @@ class Puerto extends ModeloConLocalizacion
                 $query->where(function(Builder $query) use ($valor) {
                     $query
                         ->orWhere('nombre',       'like', "%{$valor}%")
-                        ->orWhere('terminal',     'like', "%{$valor}%")
-                        ->orWhere('direccion',    'like', "%{$valor}%")
-                        ->orWhere('departamento', 'like', "%{$valor}%")
+                        ->orWhere('localidad', 'like', "%{$valor}%")
+                        //->orWhere('terminal',     'like', "%{$valor}%")
+                        //->orWhere('direccion',    'like', "%{$valor}%")
+                        //->orWhere('departamento', 'like', "%{$valor}%")
                         ->orWhere('provincia',    'like', "%{$valor}%");
                 });
             }
@@ -74,17 +79,17 @@ class Puerto extends ModeloConLocalizacion
         return $this->localidad;
     }
 
-    public function getDepartamento()
+    /*public function getDepartamento()
     {
         return $this->departamento;
-    }
+    }*/
 
     public function getProvincia()
     {
         return $this->provincia;
     }
 
-    public function getLatitud()
+    /*public function getLatitud()
     {
         return $this->latitud;
     }
@@ -92,5 +97,5 @@ class Puerto extends ModeloConLocalizacion
     public function getLongitud()
     {
         return $this->longitud;
-    }
+    }*/
 }

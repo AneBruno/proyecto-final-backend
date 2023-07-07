@@ -26,8 +26,8 @@ class ProductosRequest extends FormRequest
         return [
             'nombre'           => 'required|string',
             'tipo_producto_id' => 'required|integer',
-            'unidad'           => 'required|string|in:UNIDADES,TONELADAS',
-            'uso_frecuente'    => 'required|bool',
+            //'unidad'           => 'required|string|in:UNIDADES,TONELADAS',
+            //'uso_frecuente'    => 'required|bool',
         ];
     }
 }

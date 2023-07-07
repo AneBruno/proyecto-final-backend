@@ -138,8 +138,8 @@ class HttpController extends Controller
         $data = $request->only([
             'precio',
             'volumen',
-            'fecha_entrega_inicio',
-            'fecha_entrega_fin',
+            /*'fecha_entrega_inicio',
+            'fecha_entrega_fin',*/
             'posicion_id',
             'precio_cierre_slip'
         ]);
@@ -164,21 +164,21 @@ class HttpController extends Controller
         return $request->only([
             'empresa_id',
             'producto_id',
-            'calidad_id',
+            //'calidad_id',
             'puerto_id',
-            'establecimiento_id',
+            //'establecimiento_id',
             'condicion_pago_id',
             'moneda',
             'precio',
             'volumen',
             'estado_id',
-            'fecha_entrega_inicio',
-            'fecha_entrega_fin',
+            /*'fecha_entrega_inicio',
+            'fecha_entrega_fin',*/
             'observaciones',
-            'entrega',
-            'placeIdProcedencia',
-            'placeIdDestino',
-            'opcion_destino'
+            //'entrega',
+            //'placeIdProcedencia',
+            //'placeIdDestino',
+            //'opcion_destino'
         ]);
     }
 }

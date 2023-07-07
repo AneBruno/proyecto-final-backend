@@ -29,15 +29,16 @@ class PuertosService
      */
     static public function crear(
         string $nombre,
-        string $terminal,
-        string $placeId,
-        ?string $descripcionUbicacion = null
+        string $localidad,
+        string $provincia
+        //string $terminal,
+        /*string $placeId,
+        ?string $descripcionUbicacion = null*/
     ): Puerto {
 
-        $row = Puerto::crear($nombre, $terminal);
-        Direcciones::actualizarUbicacionPorPlaceId($row, $placeId);
-
-        $row->actualizarDescripcionUbicacion($descripcionUbicacion);
+    $row = Puerto::crear($nombre,$localidad,$provincia/*, $terminal*/);
+        //Direcciones::actualizarUbicacionPorPlaceId($row, $placeId);
+        //$row->actualizarDescripcionUbicacion($descripcionUbicacion);
 
         return $row;
     }
@@ -52,18 +53,20 @@ class PuertosService
     static public function actualizar(
         int     $id,
         string  $nombre,
-        string  $terminal,
-        ?string $placeId = null,
-        ?string $descripcionUbicacion = null
+        string $localidad,
+        string $provincia
+        //string  $terminal,
+        //?string $placeId = null,
+        //?string $descripcionUbicacion = null
     ): Puerto {
         $row = Puerto::getById($id);
-        $row->actualizar($nombre, $terminal);
+        $row->actualizar($nombre,$localidad,$provincia/*, $terminal*/);
 
-        $row->actualizarDescripcionUbicacion($descripcionUbicacion);
+        //$row->actualizarDescripcionUbicacion($descripcionUbicacion);
 
-        if ($placeId) {
+        /*if ($placeId) {
             Direcciones::actualizarUbicacionPorPlaceId($row, $placeId);
-        }
+        }*/
 
         return $row;
     }
@@ -73,14 +76,14 @@ class PuertosService
      * @param int $id
      * @return void
      */
-    static public function borrar(int $id): void
+    /*static public function borrar(int $id): void
     {
         Puerto::getById($id)->borrar();
-    }
+    }*/
 
-    static public function getUrlImagen(int $id): string {
+    /*static public function getUrlImagen(int $id): string {
         return Direcciones::getUrlImagen(Puerto::getById($id));
-    }
+    }*/
 
     /**
      * @param Puerto $puerto

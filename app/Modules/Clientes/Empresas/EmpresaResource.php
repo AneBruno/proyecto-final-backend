@@ -3,6 +3,8 @@
 namespace App\Modules\Clientes\Empresas;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Modules\Usuarios\Usuarios\UserResource;
+
 
 class EmpresaResource extends JsonResource
 {
@@ -17,9 +19,10 @@ class EmpresaResource extends JsonResource
         return [
             'id'         => $this->id,
             'razon_social' => $this->razon_social,
+          //  'comercial_asignado' => new UserResource($this->resource->comercial_asignado),
             'perfil'     => $this->perfil,
-            'habilitado' => (bool) $this->resource->deleted_at == null,
-            'abreviacion' => $this->abreviacion
+            'habilitado' => (bool) $this->resource->habilitada == null,
+            //'abreviacion' => $this->abreviacion
         ];
     }
 }

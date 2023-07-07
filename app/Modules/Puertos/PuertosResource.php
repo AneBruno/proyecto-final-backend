@@ -17,15 +17,15 @@ class PuertosResource extends JsonResource
         return [
             'id'            => $this->resource->id,
             'nombre'        => $this->resource->nombre,
-            'terminal'      => $this->resource->terminal,
-            'latitud'       => $this->resource->latitud,
-            'longitud'      => $this->resource->longitud,
+            //'terminal'      => $this->resource->terminal,
+            /*'latitud'       => $this->resource->latitud,
+            'longitud'      => $this->resource->longitud,*/
             'localidad'     => $this->resource->localidad,
-            'departamento'  => $this->resource->departamento,
-            'provincia'     => $this->resource->provincia,
-            'placeId'       => null,
-            'descripcionUbicacion' => $this->resource->descripcionUbicacion,
-            'urlImagenMapa' => PuertosService::getUrlImagen($this->resource->id)
+            //'departamento'  => $this->resource->departamento,
+            'provincia'     => $this->resource->provincia
+            //'placeId'       => null,
+            //'descripcionUbicacion' => $this->resource->descripcionUbicacion,
+            //'urlImagenMapa' => PuertosService::getUrlImagen($this->resource->id)
         ];
     }
 }

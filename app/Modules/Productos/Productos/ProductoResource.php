@@ -19,8 +19,8 @@ class ProductoResource extends JsonResource
             'id'            => $this->resource->id,
             'nombre'        => $this->resource->nombre,
             'tipo_producto' => new TipoProductoResource($this->resource->tipoProducto),
-            'unidad'        => $this->resource->unidad,
-            'uso_frecuente' => (bool) $this->resource->uso_frecuente,
+            //'unidad'        => $this->resource->unidad,
+            //'uso_frecuente' => (bool) $this->resource->uso_frecuente,
             'habilitado'    => (bool) $this->resource->habilitado
         ];
     }

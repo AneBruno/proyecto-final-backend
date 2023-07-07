@@ -26,11 +26,11 @@ class PuertosRequest extends FormRequest
         
         $rules = [
             'nombre'   => 'required|string',
-            'terminal' => 'required|string',
+            //'terminal' => 'required|string',
         ];
         
         if ($this->getMethod() == 'POST') {
-            $rules['placeId'] = 'required|string';
+            //$rules['placeId'] = 'required|string';
             
         }
         

@@ -15,7 +15,7 @@ class EmpresasService {
 
 
     static public function getById(int $id): Empresa {
-        return Empresa::getById($id, [], ['expandir' => ['actividades_id','categorias_id','urlImagenMapa','direccionCompleta']]);
+        return Empresa::getById($id, [], ['expandir' => [/*'actividades_id','categorias_id',*/'urlImagenMapa','direccionCompleta']]);
     }
 
     static public function crear(
@@ -24,16 +24,19 @@ class EmpresasService {
         ?int    $telefono,
         ?string $email,
         ?string $perfil,
-        ?float $comisionComprador,
+       /* ?float $comisionComprador,
         ?float $comisionVendedor,
         ?string $categoriaCrediticia,
-        ?string $afinidad,
+        ?string $afinidad,*/
         ?int   $usuarioComercial,
-        ?string $placeId,
-        ?string $descripcionUbicacion,
-        ?array  $actividades_id,
+        ?string $direccion,
+        ?string $localidad,
+        ?string $provincia
+        //?string $placeId,
+        //?string $descripcionUbicacion
+        /*?array  $actividades_id,
         ?array  $categorias_id,
-        ?string $abreviacion
+        ?string $abreviacion*/
     ): Empresa {
 
         DB::beginTransaction();
@@ -45,26 +48,29 @@ class EmpresasService {
             $telefono,
             $email,
             $perfil,
-            $comisionComprador,
+            /*$comisionComprador,
             $comisionVendedor,
             $categoriaCrediticia,
-            $afinidad,
+            $afinidad,*/
             $usuarioComercial,
-            $abreviacion
+            $direccion,
+            $localidad,
+            $provincia            
+            //$abreviacion
         );
 
-        if ($placeId) {
+        /*if ($placeId) {
             Direcciones::actualizarUbicacionPorPlaceId($empresa, $placeId);
             $empresa->actualizarDescripcionUbicacion($descripcionUbicacion);
-        }
+        }*/
 
-        if ($actividades_id) {
+        /*if ($actividades_id) {
             static::actualizarActividades($empresa->id, $actividades_id);
         }
 
         if ($categorias_id) {
             static::actualizarCategorias($empresa->id, $categorias_id);
-        }
+        }*/
         DB::commit();
 
         static::notificarNuevaEmpresa($empresa);
@@ -79,16 +85,19 @@ class EmpresasService {
         ?int     $telefono,
         ?string  $email,
         ?string  $perfil,
-        ?float  $comisionComprador,
+        /*?float  $comisionComprador,
         ?float  $comisionVendedor,
         ?string  $categoriaCrediticia,
-        ?string  $afinidad,
+        ?string  $afinidad,*/
         ?int    $usuarioComercial,
-        ?string $placeId,
-        ?string $descripcionUbicacion,
-        ?array  $actividades_id,
+        ?string $direccion,
+        ?string $localidad,
+        ?string $provincia
+        //?string $placeId,
+        //?string $descripcionUbicacion
+        /*?array  $actividades_id,
         ?array  $categorias_id,
-        ?string $abreviacion
+        ?string $abreviacion*/
     ): Empresa {
 
         DB::beginTransaction();
@@ -100,34 +109,37 @@ class EmpresasService {
             $telefono,
             $email,
             $perfil,
-            $comisionComprador,
+            /*$comisionComprador,
             $comisionVendedor,
             $categoriaCrediticia,
-            $afinidad,
+            $afinidad,*/
             $usuarioComercial,
-            $abreviacion
+            $direccion,
+            $localidad,
+            $provincia
+            //$abreviacion
         );
 
-        $empresa->actualizarDescripcionUbicacion($descripcionUbicacion);
+        //$empresa->actualizarDescripcionUbicacion($descripcionUbicacion);
 
-        if ($placeId) {
+        /*if ($placeId) {
             Direcciones::actualizarUbicacionPorPlaceId($empresa, $placeId);
-        }
+        }*/
 
-        if ($actividades_id) {
+        /*if ($actividades_id) {
             static::actualizarActividades($empresa->id, $actividades_id);
         }
 
         if ($categorias_id) {
             static::actualizarCategorias($empresa->id, $categorias_id);
-        }
+        }*/
 
         DB::commit();
 
         return $empresa;
     }
 
-    static public function actualizarActividades(int $empresa_id, array $ids) {
+    /*static public function actualizarActividades(int $empresa_id, array $ids) {
         $actuales = [];
 
         // Borrar los excedentes
@@ -145,9 +157,9 @@ class EmpresasService {
                 EmpresaActividad::crear($empresa_id, $id);
             }
         }
-    }
+    }*/
 
-    static public function actualizarCategorias(int $empresa_id, array $ids) {
+    /*static public function actualizarCategorias(int $empresa_id, array $ids) {
         $actuales = [];
 
         // Borrar los excedentes
@@ -165,7 +177,7 @@ class EmpresasService {
                 EmpresaCategoria::crear($empresa_id, $id);
             }
         }
-    }
+    }*/
 
     static public function habilitar(int $id): Empresa {
         $empresa = Empresa::getById($id);
@@ -182,9 +194,9 @@ class EmpresasService {
         return $empresa;
     }
 
-    static public function borrar(int $id): void {
+    /*static public function borrar(int $id): void {
         Empresa::getById($id)->borrar();
-    }
+    }*/
 
     static public function puedeUsarCuit($cuit, ?int $empresaId = null) {
         return Empresa::contar([

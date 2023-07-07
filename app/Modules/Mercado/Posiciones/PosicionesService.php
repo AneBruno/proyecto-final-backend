@@ -30,8 +30,8 @@ class PosicionesService
         }
         $opciones['with_relation'] = array_merge([
             'producto',
-            'calidad',
-            'establecimiento',
+            //'calidad',
+            //'establecimiento',
             'puerto',
             'condicionPago',
         ], $opciones['with_relation']);
@@ -48,8 +48,8 @@ class PosicionesService
     {
         $opciones['with_relation'] = array_merge($opciones['with_relation'], [
             'producto',
-            'calidad',
-            'establecimiento',
+            //'calidad',
+            //'establecimiento',
             'puerto',
             'condicionPago',
             'empresa'
@@ -61,106 +61,109 @@ class PosicionesService
     static public function crear(
         int     $usuarioCargaId,
         int     $productoId,
-        int     $calidadId,
-        string  $fechaEntregaInicio,
-        string  $fechaEntregaFin,
+        //int     $calidadId,
+        /*string  $fechaEntregaInicio,
+        string  $fechaEntregaFin,*/
         int     $empresaId,
-        string  $opcionDestino,
-        ?string  $moneda              = null,
-        ?float   $precio              = null,
+        //string  $opcionDestino,
+        string  $moneda,
+        float   $precio,
         ?int    $condicionPagoId      = null,
-        ?bool   $posicionExcepcional  = null,
+        /*?bool   $posicionExcepcional  = null,
         ?bool   $volumenLimitado      = null,
-        ?bool   $aTrabajar            = null,
+        ?bool   $aTrabajar            = null,*/
         ?int    $cosecha_id           = null,
-        ?int    $establecimientoId    = null,
+        //?int    $establecimientoId    = null,
         ?int    $puertoId             = null,
         ?string $observaciones        = null,
-        ?string $calidadObservaciones = null,
-        ?string $entrega              = null,
-        ?bool   $aFijar               = null,
-        ?string $placeId              = null,
+        //?string $calidadObservaciones = null,
+        //?string $entrega              = null,
+        //?bool   $aFijar               = null,
+        //?string $placeId              = null,
         ?int $idPosicionACopiar       = null
     ) {
-        $posicionExcepcional = self::getValorBool($posicionExcepcional);
+        /*$posicionExcepcional = self::getValorBool($posicionExcepcional);
         $volumenLimitado     = self::getValorBool($volumenLimitado);
-        $aTrabajar           = self::getValorBool($aTrabajar);
-        $aFijar              = self::getValorBool($aFijar);
+        $aTrabajar           = self::getValorBool($aTrabajar);*/
+        //$aFijar              = self::getValorBool($aFijar);
 
-        if ($aFijar) {
+        /*if ($aFijar) {
             $moneda = null;
             $precio = null;
-        }
+        }*/
 
         $row = new Posicion;
 
         $row->usuario_carga_id      = $usuarioCargaId;
         $row->producto_id           = $productoId;
-        $row->calidad_id            = $calidadId;
-        $row->fecha_entrega_inicio  = $fechaEntregaInicio;
-        $row->fecha_entrega_fin     = $fechaEntregaFin;
+        //$row->calidad_id            = $calidadId;
+        /*$row->fecha_entrega_inicio  = $fechaEntregaInicio;
+        $row->fecha_entrega_fin     = $fechaEntregaFin;*/
         $row->empresa_id            = $empresaId;
         $row->moneda                = $moneda;
         $row->precio                = $precio;
         $row->condicion_pago_id     = $condicionPagoId;
-        $row->posicion_excepcional  = $posicionExcepcional;
+       /*$row->posicion_excepcional  = $posicionExcepcional;
         $row->volumen_limitado      = $volumenLimitado;
-        $row->a_trabajar            = $aTrabajar;
+        $row->a_trabajar            = $aTrabajar;*/
         $row->cosecha_id            = $cosecha_id;
         $row->observaciones         = $observaciones;
-        $row->calidad_observaciones = $calidadObservaciones;
-        $row->entrega               = $entrega;
-        $row->a_fijar               = $aFijar;
+        //$row->calidad_observaciones = $calidadObservaciones;
+        //$row->entrega               = $entrega;
+        //$row->a_fijar               = $aFijar;
 
-        if ($opcionDestino === 'exportacion') {
-            /** @var Puerto $puerto */
-            $puerto = PuertoHelper::obtenerPuertoById($puertoId);
+        //if ($opcionDestino === 'exportacion') {
+        /** @var Puerto $puerto */
+        $puerto = PuertoHelper::obtenerPuertoById($puertoId);
+        if (!is_null($puerto)){
 
             $row->puerto_id = $puertoId;
             $row->localidad_destino = $puerto->getLocalidad();
-            $row->departamento_destino = $puerto->getDepartamento();
+            //$row->departamento_destino = '';
             $row->provincia_destino = $puerto->getProvincia();
-            $row->latitud_destino = $puerto->getLatitud();
-            $row->longitud_destino = $puerto->getLongitud();
-
-        } else {
+            //$row->latitud_destino = '';
+            //$row->longitud_destino = '';
+        }
+        /*} else {
             if (!is_null($placeId)) {
                 $detalles = PlacesService::obtenerDetalles($placeId);
 
                 $row->localidad_destino = $detalles->localidad;
-                $row->departamento_destino = $detalles->departamento;
+               // $row->departamento_destino = '';
                 $row->provincia_destino = $detalles->provincia;
-                $row->latitud_destino = $detalles->latitud;
-                $row->longitud_destino = $detalles->longitud;
+                //$row->latitud_destino = '';
+                //$row->longitud_destino = '';
 
             } else {
-                if (!is_null($establecimientoId)) {
-                    /** @var Establecimiento $establecimiento */
+                /*if (!is_null($establecimientoId)) {
+                    /** @var Establecimiento $establecimiento 
                     $establecimiento = EstablecimientoHelper::obtenerEstablecimientoById($establecimientoId);
 
                     $row->establecimiento_id = $establecimientoId;
                     $row->localidad_destino = $establecimiento->getLocalidad();
-                    $row->departamento_destino = $establecimiento->getDepartamento();
+                    //$row->departamento_destino = '';
                     $row->provincia_destino = $establecimiento->getProvincia();
-                    $row->latitud_destino = $establecimiento->getLatitud();
-                    $row->longitud_destino = $establecimiento->getLongitud();
-                } elseif (!is_null($idPosicionACopiar)) {
-                    /** @var Posicion $posicionPorCopiar */
-                    $posicionPorCopiar = Posicion::query()->where('id', '=', $idPosicionACopiar)->first();
+                    //$row->latitud_destino = '';
+                    //$row->longitud_destino = '';
+                } else*/
+        else
+        {
+            if (!is_null($idPosicionACopiar)) {
+                /** @var Posicion $posicionPorCopiar */
+                $posicionPorCopiar = Posicion::query()->where('id', '=', $idPosicionACopiar)->first();
 
-                    $row->localidad_destino = $posicionPorCopiar->getLocalidadDestino();
-                    $row->departamento_destino = $posicionPorCopiar->getDepartamentoDestino();
-                    $row->provincia_destino = $posicionPorCopiar->getProvinciaDestino();
-                    $row->latitud_destino = $posicionPorCopiar->getLatitudDestino();
-                    $row->longitud_destino = $posicionPorCopiar->getLongitudDestino();
-                } else {
-                    throw new \Exception('Error al crear la posición');
-                }
+                $row->localidad_destino = $posicionPorCopiar->getLocalidadDestino();
+                //$row->departamento_destino = '';
+                $row->provincia_destino = $posicionPorCopiar->getProvinciaDestino();
+                // $row->latitud_destino = '';
+                //$row->longitud_destino = '';
+            } else {
+                throw new \Exception('Error al crear la posición');
             }
         }
-
         return $row->insertar();
-    }
+        }       
+    
 
     /**
      * @param int $id
@@ -188,48 +191,48 @@ class PosicionesService
     static public function actualizar(
         int     $id,
         int     $productoId,
-        int     $calidadId,
-        string  $fechaEntregaInicio,
-        string  $fechaEntregaFin,
+        //int     $calidadId,
+        /*string  $fechaEntregaInicio,
+        string  $fechaEntregaFin,*/
         int     $empresaId,
         ?string  $moneda,
         ?float   $precio,
         ?int    $condicionPagoId      = null,
-        ?bool   $posicionExcepcional  = null,
+        /*?bool   $posicionExcepcional  = null,
         ?bool   $volumenLimitado      = null,
-        ?bool   $aTrabajar            = null,
+        ?bool   $aTrabajar            = null,*/
         ?int    $cosechaId            = null,
-        ?int    $establecimientoId    = null,
+        //?int    $establecimientoId    = null,
         ?int    $puertoId             = null,
-        ?string $observaciones        = null,
-        ?string $calidadObservaciones = null,
-        ?string $entrega              = null,
-        ?bool   $aFijar               = null
+        ?string $observaciones        = null
+        //?string $calidadObservaciones = null,
+        //?string $entrega              = null
+        //?bool   $aFijar               = null
     ): Posicion {
-        $posicionExcepcional = self::getValorBool($posicionExcepcional);
+        /*$posicionExcepcional = self::getValorBool($posicionExcepcional);
         $volumenLimitado     = self::getValorBool($volumenLimitado);
-        $aTrabajar           = self::getValorBool($aTrabajar);
-        $aFijar              = self::getValorBool($aFijar);
+        $aTrabajar           = self::getValorBool($aTrabajar);*/
+        //$aFijar              = self::getValorBool($aFijar);
 
         $row = Posicion::getById($id);
         $row->producto_id           = $productoId;
-        $row->calidad_id            = $calidadId;
-        $row->fecha_entrega_inicio  = $fechaEntregaInicio;
-        $row->fecha_entrega_fin     = $fechaEntregaFin;
+        //$row->calidad_id            = $calidadId;
+        /*$row->fecha_entrega_inicio  = $fechaEntregaInicio;
+        $row->fecha_entrega_fin     = $fechaEntregaFin;*/
         $row->empresa_id            = $empresaId;
         $row->moneda                = $moneda;
         $row->precio                = $precio;
         $row->condicion_pago_id     = $condicionPagoId;
-        $row->posicion_excepcional  = $posicionExcepcional;
+        /*$row->posicion_excepcional  = $posicionExcepcional;
         $row->volumen_limitado      = $volumenLimitado;
-        $row->a_trabajar            = $aTrabajar;
+        $row->a_trabajar            = $aTrabajar;*/
         $row->cosecha_id            = $cosechaId;
-        $row->establecimiento_id    = $establecimientoId;
+        //$row->establecimiento_id    = $establecimientoId;
         $row->puerto_id             = $puertoId;
         $row->observaciones         = $observaciones;
-        $row->calidad_observaciones = $calidadObservaciones;
-        $row->entrega               = $entrega;
-        $row->a_fijar               = $aFijar;
+        //$row->calidad_observaciones = $calidadObservaciones;
+        //$row->entrega               = $entrega;
+        //$row->a_fijar               = $aFijar;
 
         $row->guardar();
 

@@ -33,28 +33,28 @@ class OrdenesRequest extends FormRequest
             'id'                   => 'nullable', //Id que se manda cuando se copia una orden.
             'empresa_id'           => 'required|integer|exists:empresas,id',
             'producto_id'          => 'required|integer|exists:productos,id',
-            'calidad_id'           => 'required|integer|exists:calidades,id',
+            //'calidad_id'           => 'required|integer|exists:calidades,id',
             'puerto_id'            => 'required_if:opcion_destino,=,exportacion|integer|exists:puertos,id|nullable',
-            'establecimiento_id'   => 'nullable|exists:establecimientos_empresa,id',
+            //'establecimiento_id'   => 'nullable|exists:establecimientos_empresa,id',
             'condicion_pago_id'    => 'required|integer|exists:condiciones_pago,id',
             'moneda'               => 'nullable|string|in:USD,AR$',
             'precio'               => ['nullable', new PrecioRule(), 'numeric', 'max:999999'],
             'volumen'              => 'required|integer',
-            'estado_id'            => 'required|integer|exists:mercado_ordenes_estados,id',
-            'fecha_entrega_inicio' => ['nullable','date',"after_or_equal:$hoy"],
-            'fecha_entrega_fin'    => 'nullable|date|after_or_equal:fecha_entrega_inicio',
+            'estado_id'            => 'nullable|integer|exists:mercado_ordenes_estados,id',
+            /*'fecha_entrega_inicio' => ['nullable','date',"after_or_equal:$hoy"],
+            'fecha_entrega_fin'    => 'nullable|date|after_or_equal:fecha_entrega_inicio',*/
             'observaciones'        => 'nullable|string',
-            'entrega'              => 'required|string|in:DISPONIBLE,LIMIT,CONTRACTUAL,FORWARD',
-            'placeIdProcedencia'   => [$this->validarPlaceIdProcedencia()],
-            'placeIdDestino'       => [$this->validarPlaceIdDestino()],
-            'opcion_destino'       => ['required', 'in:consumo,exportacion'],
+            //'entrega'              => 'required|string|in:DISPONIBLE,LIMIT,CONTRACTUAL,FORWARD'
+            //'placeIdProcedencia'   => [$this->validarPlaceIdProcedencia()],
+            /*'placeIdDestino'       => [$this->validarPlaceIdDestino()],
+            'opcion_destino'       => ['required', 'in:consumo,exportacion'],*/
 
         ];
 
         return $rules;
     }
 
-    private function validarPlaceIdProcedencia()
+    /*private function validarPlaceIdProcedencia()
     {
         return function($attribute, $value, $fail) {
             $placeIdProcedencia = $this->get('placeIdProcedencia');
@@ -67,15 +67,15 @@ class OrdenesRequest extends FormRequest
                 $fail('Obligatorio');
             }
         };
-    }
+    }*/
 
-    private function validarPlaceIdDestino()
+    /*private function validarPlaceIdDestino()
     {
         return function($attribute, $value, $fail) {
             $placeIdDestino = $this->get('placeIdDestino');
             $opcionDestino = $this->get('opcion_destino');
 
-            /** @var Orden $orden */
+            /** @var Orden $orden 
             $ordenCopiada = OrdenesHelper::getById($this->get('id'));
 
             if ($opcionDestino === 'consumo' && (is_null($ordenCopiada) || !$ordenCopiada->isConsumo())) {
@@ -84,5 +84,5 @@ class OrdenesRequest extends FormRequest
                 }
             }
         };
-    }
+    }*/
 }

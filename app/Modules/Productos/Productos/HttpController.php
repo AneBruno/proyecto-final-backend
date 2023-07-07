@@ -40,9 +40,9 @@ class HttpController extends Controller
     {
         $nombre         = $request->input('nombre');
         $tipoProductoId = $request->input('tipo_producto_id');
-        $unidad         = $request->input('unidad');
-        $usoFrecuente   = $request->boolean('uso_frecuente');
-        $producto       = $this->productosService->crear($nombre, $tipoProductoId, $unidad, $usoFrecuente);
+        //$unidad         = $request->input('unidad');
+        //$usoFrecuente   = $request->boolean('uso_frecuente');
+        $producto       = $this->productosService->crear($nombre, $tipoProductoId/*, $unidad, $usoFrecuente*/);
         $resource       = new ProductoResource($producto);
 
         return $resource;
@@ -52,9 +52,9 @@ class HttpController extends Controller
     {
         $nombre         = $request->input('nombre');
         $tipoProductoId = $request->input('tipo_producto_id');
-        $unidad         = $request->input('unidad');
-        $usoFrecuente   = $request->boolean('uso_frecuente');
-        $producto       = $this->productosService->actualizar($id, $nombre, $tipoProductoId, $unidad, $usoFrecuente);
+        //$unidad         = $request->input('unidad');
+        //$usoFrecuente   = $request->boolean('uso_frecuente');
+        $producto       = $this->productosService->actualizar($id, $nombre, $tipoProductoId/*, $unidad, $usoFrecuente*/);
         $resource       = new ProductoResource($producto);
 
         return $resource;

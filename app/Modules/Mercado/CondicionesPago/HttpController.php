@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class HttpController extends Controller
 {
-
+    private $condicionesService;
     /**
      * @param Request $request
      * @return AnonymousResourceCollection
@@ -53,32 +53,44 @@ class HttpController extends Controller
         return new CondicionesPagoResource($row);
     }
 
+
     /**
-     * @param int $id
      * @param CondicionesPagoRequest $request
+     * @param CondicionPago $condicion
      * @return CondicionesPagoResource
+     * @throws RepositoryException
      */
-    public function update(int $id, CondicionesPagoRequest $request)
+    public function update(CondicionesPagoRequest $request, CondicionPago $condicion): CondicionesPagoResource
     {
         $this->authorize('anyAction', CondicionPago::class);
-        
-        $row = CondicionesPagoService::actualizar(
-            $id,
-            $request->input('descripcion')
-        );
 
-        return new CondicionesPagoResource($row);
+        $data = $request->only([
+            'descripcion',
+            'habilitado'
+        ]);
+
+        $condicion = $this->service->actualizar($condicion, $data);
+
+        return new CondicionesPagoResource($condicion);
     }
 
     /**
-     * @param int $id
+     * @param CondicionPago $condicion
+     * @return CondicionesPagoResource
      */
-    public function destroy(int $id)
+    public function habilitar(CondicionPago $condicion)
     {
-        $this->authorize('anyAction', CondicionPago::class);
-        
-        CondicionesPagoService::borrar($id);
-        return $this->json([]);
+        $condicion = $this->condicionesService->habilitar($condicion);
+        return new ProductoResource($condicion);
+    }
+
+    /**
+     * @param CondicionPago $producto
+     * @return ProductoResource
+     */
+    public function deshabilitar(CondicionPago $condicion) {
+        $condicion = $this->condicionesService->deshabilitar($condicion);
+        return new ProductoResource($condicion);
     }
 
 

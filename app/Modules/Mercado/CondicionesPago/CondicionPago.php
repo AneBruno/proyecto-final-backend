@@ -12,19 +12,40 @@ class CondicionPago extends ModelRepository
 
     protected $table = 'condiciones_pago';
 
-
     public $timestamps = true;
+
+    protected $fillable = [
+        'descripcion',
+        'habilitado'
+    ];
 
     static public function crear(string $descripcion): self {
         $row              = new static;
         $row->descripcion = $descripcion;
+        $row->habilitado      =true;
         return $row->insertar();
     }
 
     public function actualizar(string $descripcion): self {
         $this->descripcion = $descripcion;
         return $this->guardar();
+    }  
+    
+    //productos
+    public function habilitar(): self {
+        //$this->update(['habilitado' => 1]);
+        $this->habilitado = true;
+        $this->save();
+        return $this;
     }
+
+    public function deshabilitar(): self {
+        //$this->update(['habilitado' => 0]);
+        $this->habilitado = false;
+        $this->save();
+        return $this;
+    }
+//
 
     static public function aplicarFiltros(Builder $query, array $filtros) {
         parent::aplicarFiltros($query, $filtros);

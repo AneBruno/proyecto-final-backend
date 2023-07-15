@@ -26,6 +26,8 @@ class PuertosRequest extends FormRequest
         
         $rules = [
             'nombre'   => 'required|string',
+            'localidad'=> 'required|string',
+            'provincia' => 'required|string'
             //'terminal' => 'required|string',
         ];
         

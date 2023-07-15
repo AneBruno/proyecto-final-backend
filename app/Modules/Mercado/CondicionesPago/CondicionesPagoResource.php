@@ -14,9 +14,15 @@ class CondicionesPagoResource extends JsonResource
      */
     public function toArray($request)
     {
+        /** @var CondicionPago $condicion */
+        $condicion = $this->resource;
+
         return [
-            'id'            => $this->resource->id,
-            'descripcion'   => $this->resource->descripcion,
+            'id'            => $condicion->id,
+            'descripcion'   => $condicion->descripcion,
+            'habilitado'    => (bool) $this->resource->habilitado,
+            'created_at' => $condicion->created_at,
+            'updated_at' => $condicion->updated_at
         ];
     }
 }

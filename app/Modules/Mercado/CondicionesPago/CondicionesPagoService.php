@@ -56,8 +56,25 @@ class CondicionesPagoService
 
         return $row;
     }
+    
+    /**
+     * @param CondicionPago $condicion
+     * @return CondicionPago
+     */
+    public function habilitar(CondicionPago $condicion): CondicionPago {
+        $condicion->habilitar();
+        return $condicion;
+    }
 
     /**
+     * @param CondicionPago $condicion
+     * @return CondicionPago
+     */
+    public function deshabilitar(CondicionPago $condicion): CondicionPago {
+        return $condicion->deshabilitar();
+    }
+
+     /**
      *
      * @param int $id
      * @return void

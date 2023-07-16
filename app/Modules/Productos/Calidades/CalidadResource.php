@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Productos\Calidades;
 
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -11,7 +11,7 @@ class CalidadResource extends JsonResource
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         return [
@@ -21,3 +21,4 @@ class CalidadResource extends JsonResource
         ];
     }
 }
+*/

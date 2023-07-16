@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Productos\Calidades;
 
 class CalidadesService
@@ -23,7 +23,7 @@ class CalidadesService
      * @param string $nombre
      * @param int|null $orden
      * @return Calidad
-     */
+     *
     public function crear(string $nombre, int $orden): Calidad
     {
         $calidad = Calidad::crear($nombre, $orden);
@@ -37,7 +37,7 @@ class CalidadesService
      * @param string $nombre
      * @param int|null $orden
      * @return Calidad
-     */
+     *
     public function actualizar(int $id, string $nombre, int $orden): Calidad
     {
         $calidad = Calidad::getById($id);
@@ -50,9 +50,10 @@ class CalidadesService
      *
      * @param int $id
      * @return void
-     */
+     *
     public function borrar(int $id): void
     {
         Calidad::getById($id)->borrar();
     }
 }
+*/

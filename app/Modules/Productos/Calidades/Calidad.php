@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Productos\Calidades;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,7 +21,7 @@ class Calidad extends ModelRepository
 
     /**
      * @return string
-     */
+     *
     public function getNombre(): string
     {
         return $this->nombre;
@@ -51,3 +51,4 @@ class Calidad extends ModelRepository
         }
     }
 }
+*/

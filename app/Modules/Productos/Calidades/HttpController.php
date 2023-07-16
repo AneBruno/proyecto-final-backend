@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Productos\Calidades;
 
 use Illuminate\Http\Request;
@@ -59,3 +59,4 @@ class HttpController extends Controller
         return $this->calidadesService->borrar($id);
     }
 }
+*/

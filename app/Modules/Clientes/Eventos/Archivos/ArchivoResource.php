@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos\Archivos;
 
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -20,3 +20,4 @@ class ArchivoResource extends JsonResource {
         ];
     }
 }
+*/

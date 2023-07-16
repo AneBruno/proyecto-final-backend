@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\TiposArchivos;
 
 use App\Http\Controllers\Controller;
@@ -16,7 +16,7 @@ class HttpController extends Controller
      * @param Empresa $empresa
      * @return AnonymousResourceCollection
      * @throws AuthorizationException
-     */
+     *
     public function index(Request $request)
     {
         $rs = TipoArchivo::listar(
@@ -31,3 +31,4 @@ class HttpController extends Controller
     }
 
 }
+*/

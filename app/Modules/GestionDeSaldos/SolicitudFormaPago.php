@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\Modules\GestionDeSaldos;
+/*namespace App\Modules\GestionDeSaldos;
 
 use App\Tools\ModelRepository;
 
@@ -14,7 +14,7 @@ use App\Tools\ModelRepository;
  * Description of SolicitudFormaPago
  *
  * @author kodear
- */
+ *
 class SolicitudFormaPago extends ModelRepository {
     
     const FORMA_PAGO_CHEQUE        = 'Cheque';
@@ -42,3 +42,4 @@ class SolicitudFormaPago extends ModelRepository {
     }
     
 }
+*/

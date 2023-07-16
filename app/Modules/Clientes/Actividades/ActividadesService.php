@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Actividades;
+/*namespace App\Modules\Clientes\Actividades;
 
 class ActividadesService
 {
@@ -21,7 +21,7 @@ class ActividadesService
      * @param string $nombre
      * @param int|null $perfil
      * @return CategoriaCliente
-     */
+     *
     static public function crear(string $nombre): Actividad
     {
         $categoriaCliente = Actividad::crear($nombre);
@@ -35,7 +35,7 @@ class ActividadesService
      * @param string $nombre
      * @param int|null $perfil
      * @return CategoriaCliente
-     */
+     *
     static public function actualizar(int $id, string $nombre): Actividad
     {
         return Actividad::getById($id)->actualizar($nombre);
@@ -51,9 +51,10 @@ class ActividadesService
      *
      * @param int $id
      * @return void
-     */
+     *
     static public function borrar(int $id): void
     {
         Actividad::getById($id)->borrar();
     }
 }
+*/

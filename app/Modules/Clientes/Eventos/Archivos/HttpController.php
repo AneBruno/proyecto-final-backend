@@ -1,5 +1,5 @@
 <?php
-
+/*
 
 namespace App\Modules\Clientes\Eventos\Archivos;
 
@@ -16,4 +16,4 @@ class HttpController {
 
         return response()->download($rutaArchivo, $nombre);
     }
-}
+}*/

@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\TiposArchivos;
 
 use App\Tools\ModelRepository;
@@ -11,9 +11,10 @@ class TipoArchivo extends ModelRepository
 
     /**
      * @return BelongsTo
-     */
+     *
     public function archivos()
     {
         return $this->belongsTo(TipoArchivo::class, 'tipo_archivo_id', 'id');
     }
 }
+*/

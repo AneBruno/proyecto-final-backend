@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Contactos;
+/*namespace App\Modules\Clientes\Contactos;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Clientes\Empresas\Empresa;
@@ -14,7 +14,7 @@ class HttpController extends Controller {
     /**
      * @param Request $request
      * @return AnonymousResourceCollection
-     */
+     *
     public function index(Request $request) {
         $filtros = $this->obtenerFiltrosPorUsuario();
         
@@ -29,7 +29,7 @@ class HttpController extends Controller {
     /**
      * @param $id
      * @return JsonResource
-     */
+     *
     public function show(Contacto $contacto) {
         $this->authorize('anyAction', $contacto);
         $contacto = ContactosService::getById($contacto->id);
@@ -40,7 +40,7 @@ class HttpController extends Controller {
      * @param ContactoRequest $request
      * @return ContactoResource
      * @throws RepositoryException
-     */
+     *
     public function store(ContactoRequest $request) {
         
         $empresa = Empresa::getById($request->input('empresa_id'));
@@ -66,7 +66,7 @@ class HttpController extends Controller {
      * @param ContactoRequest $request
      * @return ContactoResource
      * @throws RepositoryException
-     */
+     *
     public function update(Contacto $contacto, ContactoRequest $request) {
         
         $this->authorize('anyAction', $contacto);
@@ -114,3 +114,4 @@ class HttpController extends Controller {
         return $filtros;
     }
 }
+*/

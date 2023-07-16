@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\Archivos;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,7 +11,7 @@ class ArchivoRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     */
+     *
     public function authorize()
     {
         return true;
@@ -22,7 +22,7 @@ class ArchivoRequest extends FormRequest
      *
      * @param Request $request
      * @return array
-     */
+     *
     public function rules(Request $request)
     {
         $rules = [
@@ -38,3 +38,4 @@ class ArchivoRequest extends FormRequest
         return $rules;
     }
 }
+*/

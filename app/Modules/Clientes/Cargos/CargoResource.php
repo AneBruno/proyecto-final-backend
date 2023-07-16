@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace  App\Modules\Clientes\Cargos;
 
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class CargoResource extends JsonResource
      *
      * @param  Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         return [
@@ -21,3 +21,4 @@ class CargoResource extends JsonResource
         ];
     }
 }
+*/

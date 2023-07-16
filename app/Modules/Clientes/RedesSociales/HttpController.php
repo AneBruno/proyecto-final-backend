@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\RedesSociales;
 
 use App\Http\Controllers\Controller;
@@ -14,7 +14,7 @@ class HttpController extends Controller {
     /**
      * @param Request $request
      * @return AnonymousResourceCollection
-     */
+     *
     public function index(Request $request, Contacto $contacto) {
         $this->authorize('anyAction', $contacto);
         
@@ -31,7 +31,7 @@ class HttpController extends Controller {
     /**
      * @param RedSocial $red_social
      * @return RedSocialResource
-     */
+     *
     public function show(Contacto $contacto, int $id) {
         $this->authorize('anyAction', $contacto);
         $row = RedesSocialesService::getById($id);
@@ -43,7 +43,7 @@ class HttpController extends Controller {
      * @param Contacto $contacto
      * @return RedSocialResource
      * @throws RepositoryException
-     */
+     *
     public function store(RedSocialRequest $request, Contacto $contacto)
     {
         $this->authorize('anyAction', $contacto);
@@ -60,7 +60,7 @@ class HttpController extends Controller {
      * @param int $id
      * @param RedSocialRequest $request
      * @return RedSocialResource
-     */
+     *
     public function update(RedSocialRequest $request, Contacto $contacto, int $id)
     {
         $this->authorize('anyAction', $contacto);
@@ -78,7 +78,7 @@ class HttpController extends Controller {
      * @param int $id
      * @return JsonResource
      * @throws RepositoryException
-     */
+     *
     public function destroy(Contacto $contacto, int $id)
     {
         $this->authorize('anyAction', $contacto);
@@ -87,3 +87,4 @@ class HttpController extends Controller {
         return $this->json([]);
     }
 }
+*/

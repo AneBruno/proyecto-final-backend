@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\Archivos;
 
 class ArchivosHelper
@@ -22,3 +22,4 @@ class ArchivosHelper
         self::DATOS_BANCARIOS
     ];
 }
+*/

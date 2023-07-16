@@ -1,6 +1,6 @@
 <?php
 
-use App\Modules\GestionDeSaldos\Cbus\Cbu;
+//use App\Modules\GestionDeSaldos\Cbus\Cbu;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -97,10 +97,10 @@ Route::group([
 
 			$router->post('mercado/panel:cambiarEstados', [App\Modules\Mercado\Panel\HttpController       ::class, 'cambiarEstados']);
 
-			$router->get('/cbus', [App\Modules\GestionDeSaldos\Cbus\HttpController::class, 'index']);
+			/*$router->get('/cbus', [App\Modules\GestionDeSaldos\Cbus\HttpController::class, 'index']);
 			$router->get('/cbus/{id}', [App\Modules\GestionDeSaldos\Cbus\HttpController::class, 'show']);
-			$router->get('/cbus/*/empresas', [App\Modules\GestionDeSaldos\Cbus\HttpController::class, 'listarEmpresas']);
-			$router->post('/cbus/{id}:procesar', [App\Modules\GestionDeSaldos\Cbus\HttpController::class, 'estadoProcesado']);
+			$router->get('/cbus//empresas', [App\Modules\GestionDeSaldos\Cbus\HttpController::class, 'listarEmpresas']);
+			$router->post('/cbus/{id}:procesar', [App\Modules\GestionDeSaldos\Cbus\HttpController::class, 'estadoProcesado']);*/
 
 			$router->post('clientes/eventos/{id}/actualizar', [App\Modules\Clientes\Eventos\HttpController          ::class, 'actualizar']);
 

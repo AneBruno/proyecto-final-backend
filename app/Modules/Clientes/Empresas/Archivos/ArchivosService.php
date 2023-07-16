@@ -1,5 +1,5 @@
 <?php
-
+/*
 
 namespace App\Modules\Clientes\Empresas\Archivos;
 
@@ -27,7 +27,7 @@ class ArchivosService
      * @param array $ordenes
      * @param array $relations
      * @return LengthAwarePaginator
-     */
+     *
     public function listar(
         int   $empresaId,
         int   $page      = 1,
@@ -48,7 +48,7 @@ class ArchivosService
      * @param array $relations
      * @return Archivo
      * @throws RepositoryException
-     */
+     *
     public function getOne(int $archivoId, array $options)
     {
         $archivo = Archivo::getById($archivoId, [], $options);
@@ -64,7 +64,7 @@ class ArchivosService
      * @param $archivoAdjunto
      * @return Archivo
      * @throws Exception
-     */
+     *
     public function create(
         int $empresaId,
         $fechaVencimiento,
@@ -92,7 +92,7 @@ class ArchivosService
      * @param null $archivoAdjunto
      * @return Archivo
      * @throws Exception
-     */
+     *
     public function update(Archivo $archivo, string $fechaVencimiento, int $tipoArchivoId, $archivoAdjunto = null)
     {
 
@@ -115,7 +115,7 @@ class ArchivosService
      * @param int $archivoId
      * @return bool|null
      * @throws RepositoryException
-     */
+     *
     public function delete(int $archivoId) {
         return Archivo::getById($archivoId)->delete();
     }
@@ -123,7 +123,7 @@ class ArchivosService
     /**
      * @param int $archivoId
      * @return string
-     */
+     *
     public function obtenerRutaArchivo(int $archivoId)
     {
         return $this->archivosStorageService->getFullPath($archivoId);
@@ -132,7 +132,7 @@ class ArchivosService
     /**
      * @param int $empresaId
      * @return bool
-     */
+     *
     public function completos(int $empresaId): bool
     {
         $archivos = ArchivosHelper::ARCHIVOS;
@@ -151,7 +151,7 @@ class ArchivosService
     /**
      * @param int $empresaId
      * @return array
-     */
+     *
     private function obtenerArrayTiposArchivos(int $empresaId)
     {
         $archivosDeEmpresa = Archivo::listarTodos(['empresa_id' => $empresaId]);
@@ -164,3 +164,4 @@ class ArchivosService
         return $arrayIds;
     }
 }
+*/

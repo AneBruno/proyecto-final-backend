@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Extranet\Auth;
+/*namespace App\Modules\Extranet\Auth;
 
 use App\Exceptions\BusinessException;
 use App\Http\Controllers\Controller;
@@ -18,3 +18,4 @@ class HttpController extends Controller {
         return $this->json($response);
     }
 }
+*/

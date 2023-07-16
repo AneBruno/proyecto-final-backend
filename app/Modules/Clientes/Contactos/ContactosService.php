@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Contactos;
+/*namespace App\Modules\Clientes\Contactos;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +15,7 @@ class ContactosService
      * @param array $filtros
      * @param array $ordenes
      * @return LengthAwarePaginator
-     */
+     *
     static public function listar(int $page = 1, int $limit = 0, array $filtros = [], array $ordenes = [])
     {
         return Contacto::listar($page, $limit, $filtros, $ordenes, ['expandir'=>['cargoNombre'],'with_relation'=>['empresa']]);
@@ -39,7 +39,7 @@ class ContactosService
      * @param string|null $direccion
      * @return Contacto
      * @throws RepositoryException
-     */
+     *
     static public function crear(
         string  $nombre,
         string  $telefono_celular,
@@ -82,7 +82,7 @@ class ContactosService
      * @param string|null $direccion
      * @return Contacto
      * @throws RepositoryException
-     */
+     *
     static public function actualizar(
         int     $id,
         string  $nombre,
@@ -137,7 +137,7 @@ class ContactosService
     /**
      * @param int $id
      * @throws RepositoryException
-     */
+     *
     static public function borrar(int $id): void
     {
         Contacto::getById($id)->borrar();
@@ -185,3 +185,4 @@ class ContactosService
         };
     }
 }
+*/

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Cargos;
+/*namespace App\Modules\Clientes\Cargos;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -10,7 +10,7 @@ class CargoRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     */
+     *
     public function authorize()
     {
         return true;
@@ -20,7 +20,7 @@ class CargoRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-     */
+     *
     public function rules()
     {
         return [
@@ -44,3 +44,4 @@ class CargoRequest extends FormRequest
         return $this->getMethod() === 'PUT' ? array_reverse($this->segments())[0] : null;
     }
 }
+*/

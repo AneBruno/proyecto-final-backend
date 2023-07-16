@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\Archivos;
 
 use App\Helpers\HttpRequestHelper;
@@ -21,7 +21,7 @@ class HttpController extends Controller
     /**
      * HttpController constructor.
      * @param ArchivosService $service
-     */
+     *
     public function __construct(ArchivosService $service)
     {
         $this->service = $service;
@@ -32,7 +32,7 @@ class HttpController extends Controller
      * @param Empresa $empresa
      * @return AnonymousResourceCollection
      * @throws AuthorizationException
-     */
+     *
     public function index(Request $request, Empresa $empresa)
     {
         $this->authorize('anyAction', $empresa);
@@ -56,14 +56,14 @@ class HttpController extends Controller
      * @return ArchivoResource
      * @throws RepositoryException
      * @throws AuthorizationException
-     */
+     *
     public function show(Request $request, Empresa $empresa, Archivo $archivo)
     {
         $this->authorize('anyAction', $empresa);
 
         $options['with_relation'] = HttpRequestHelper::getModelRelation($request);
 
-        /** @var Archivo $archivo */
+        /** @var Archivo $archivo 
         $archivo = $this->service->getOne($archivo->getKey(), $options);
 
         return new ArchivoResource($archivo);
@@ -74,7 +74,7 @@ class HttpController extends Controller
      * @param Empresa $empresa
      * @return ArchivoResource
      * @throws Exception
-     */
+     *
     public function store(ArchivoRequest $request, Empresa $empresa)
     {
         $this->authorize('anyAction', $empresa);
@@ -99,7 +99,7 @@ class HttpController extends Controller
      * @param Archivo $archivo
      * @return ArchivoResource
      * @throws Exception
-     */
+     *
     public function update(ArchivoRequest $request, Empresa $empresa, Archivo $archivo)
     {
         $this->authorize('anyAction', $empresa);
@@ -119,7 +119,7 @@ class HttpController extends Controller
      * @return JsonResponse
      * @throws AuthorizationException
      * @throws RepositoryException
-     */
+     *
     public function destroy(Empresa $empresa, Archivo $archivo)
     {
         $this->authorize('anyAction', $empresa);
@@ -134,7 +134,7 @@ class HttpController extends Controller
      * @param Empresa $empresa
      * @param Archivo $archivo
      * @return BinaryFileResponse
-     */
+     *
     public function download(Request $request, Empresa $empresa, Archivo $archivo)
     {
         $rutaArchivo = $this->service->obtenerRutaArchivo($archivo->getKey());
@@ -145,7 +145,7 @@ class HttpController extends Controller
     /**
      * @param Empresa $empresa
      * @return JsonResource
-     */
+     *
     public function completos(Empresa $empresa)
     {
         $resultado = $this->service->completos($empresa->getKey());
@@ -153,3 +153,4 @@ class HttpController extends Controller
         return $this->json(['resultado' => $resultado]);
     }
 }
+*/

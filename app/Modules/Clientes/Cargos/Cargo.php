@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Cargos;
+/*namespace App\Modules\Clientes\Cargos;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -60,3 +60,4 @@ class Cargo extends ModelRepository
         }
     }
 }
+*/

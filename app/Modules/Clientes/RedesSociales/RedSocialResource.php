@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\RedesSociales;
 
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class RedSocialResource extends JsonResource
      *
      * @param  Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         return [
@@ -23,3 +23,4 @@ class RedSocialResource extends JsonResource
         ];
     }
 }
+*/

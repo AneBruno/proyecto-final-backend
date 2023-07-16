@@ -1,5 +1,5 @@
 <?php
-
+/*
 
 namespace App\Modules\Clientes\Establecimientos;
 
@@ -12,9 +12,10 @@ class EstablecimientoHelper
     /**
      * @param $id
      * @return Builder|Model|object|null
-     */
+     *
     public static function obtenerEstablecimientoById($id)
     {
         return Establecimiento::query()->where('id', '=', $id)->first();
     }
 }
+*/

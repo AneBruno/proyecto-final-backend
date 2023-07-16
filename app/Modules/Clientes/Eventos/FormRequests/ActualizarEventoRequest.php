@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos\FormRequests;
 
 class ActualizarEventoRequest extends CrearEventoRequest {
@@ -11,4 +11,4 @@ class ActualizarEventoRequest extends CrearEventoRequest {
             'resolucion' => 'nullable|string',
         ]);
     }
-}
+}*/

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\GestionDeSaldos;
+/*namespace App\Modules\GestionDeSaldos;
 
 use Illuminate\Http\Request;
 use App\Modules\GestionDeSaldos\EstadoSolicitudResource;
@@ -13,7 +13,7 @@ class SolicitudResource extends JsonResource
      *
      * @param Request $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         return [
@@ -36,3 +36,4 @@ class SolicitudResource extends JsonResource
         ];
     }
 }
+*/

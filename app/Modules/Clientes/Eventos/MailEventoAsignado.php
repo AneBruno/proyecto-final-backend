@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+/*
 namespace App\Modules\Clientes\Eventos;
 
 use App\Modules\Usuarios\Usuarios\User;
@@ -16,8 +16,8 @@ use Illuminate\Queue\SerializesModels;
 /**
  * Description of MailEventoAsignado
  *
- * @author kodear
- */
+ * @athor kodear
+ *
 class MailEventoAsignado extends Mailable {
     
     use Queueable;
@@ -53,3 +53,4 @@ class MailEventoAsignado extends Mailable {
         return substr($absolutePath, strlen($appPath));
     }
 }
+*/

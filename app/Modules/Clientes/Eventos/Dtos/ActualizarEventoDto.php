@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos\Dtos;
 
 use App\Modules\Clientes\Eventos\Evento;
@@ -16,3 +16,4 @@ class ActualizarEventoDto extends CrearEventoDto
         return new self($request->validated());
     }
 }
+*/

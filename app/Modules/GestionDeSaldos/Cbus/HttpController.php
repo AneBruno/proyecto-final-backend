@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\GestionDeSaldos\Cbus;
+/*namespace App\Modules\GestionDeSaldos\Cbus;
 
 use App\Http\Controllers\Controller;
 use App\Modules\GestionDeSaldos\Cbus\CbuResource;
@@ -65,3 +65,4 @@ class HttpController extends Controller {
         return new CbuResource($cbu);
     }
 }
+*/

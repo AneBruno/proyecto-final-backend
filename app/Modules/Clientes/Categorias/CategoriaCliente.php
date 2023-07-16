@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Categorias;
 
 use App\Tools\ModelRepository;
@@ -50,3 +50,4 @@ class CategoriaCliente extends ModelRepository
         }
     }
 }
+*/

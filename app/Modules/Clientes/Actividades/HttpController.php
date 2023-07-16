@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Actividades;
+/*namespace App\Modules\Clientes\Actividades;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -47,3 +47,4 @@ class HttpController extends Controller {
         return true;
     }
 }
+*/

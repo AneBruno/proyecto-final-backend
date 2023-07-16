@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\GestionDeSaldos\Requests;
+/*namespace App\Modules\GestionDeSaldos\Requests;
 
 use App\Modules\GestionDeSaldos\SolicitudFormaPago;
 use App\Http\FormRequest;
@@ -11,7 +11,7 @@ class AgregarSolicitudRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     */
+     *
     public function authorize()
     {
         return true;
@@ -21,7 +21,7 @@ class AgregarSolicitudRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-     */
+     *
     public function rules()
     {
     	$request = $this->request;
@@ -87,3 +87,4 @@ class AgregarSolicitudRequest extends FormRequest
     }
 }
 
+*/

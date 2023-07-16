@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\GestionDeSaldos\Cbus\Emails;
+/*namespace App\Modules\GestionDeSaldos\Cbus\Emails;
 
 use App\Modules\GestionDeSaldos\Cbus\Cbu;
 use Illuminate\Bus\Queueable;
@@ -18,7 +18,7 @@ class NuevaSolicitudCbu extends Mailable
      * Create a new message instance.
      *
      * @return void
-     */
+     
     public function __construct(Cbu $cbu)
     {
         $this->cbu = $cbu;
@@ -28,7 +28,7 @@ class NuevaSolicitudCbu extends Mailable
      * Build the message.
      *
      * @return $this
-     */
+    
     public function build()
     {
         return $this->subject('Nueva Solicitud de CBU')
@@ -38,4 +38,4 @@ class NuevaSolicitudCbu extends Mailable
 				'razon_social' => $this->cbu->razon_social
 			]);
     }
-}
+}*/

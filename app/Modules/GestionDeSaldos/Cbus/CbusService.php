@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\Modules\GestionDeSaldos\Cbus;
+/*namespace App\Modules\GestionDeSaldos\Cbus;
 
 use App\Modules\Extranet\Auth\AuthService;
 use App\Modules\GestionDeSaldos\Cbus\Emails\NuevaSolicitudCbu;
@@ -18,7 +18,7 @@ use App\Modules\Usuarios\Usuarios\UserService;
  * Description of SolicitudesService
  *
  * @author kodear
- */
+ /
 class CbusService {
     
     static public function agregar(
@@ -80,3 +80,4 @@ class CbusService {
         return $cbu->actualizar(['estado' => Cbu::ESTADO_PROCESADO]);
     }
 }
+*/

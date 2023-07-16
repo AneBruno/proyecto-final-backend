@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Contactos;
+/*namespace App\Modules\Clientes\Contactos;
 
 use App\Modules\Clientes\Cargos\Cargo;
 use App\Modules\Clientes\Empresas\Empresa;
@@ -32,7 +32,7 @@ class Contacto extends ModelRepository
      * @param string $nivel_jerarquia
      * @return static
      * @throws RepositoryException
-     */
+     *
     static public function crear(
         string  $nombre,
         string  $telefono_celular,
@@ -68,7 +68,7 @@ class Contacto extends ModelRepository
      * @param string $nivel_jerarquia
      * @return $this
      * @throws RepositoryException
-     */
+     *
     public function actualizar(
         string  $nombre,
         string  $telefono_celular,
@@ -94,7 +94,7 @@ class Contacto extends ModelRepository
     /**
      * @param Builder $query
      * @param array $filtros
-     */
+     *
     static public function aplicarFiltros(Builder $query, array $filtros)
     {
         parent::aplicarFiltros($query, $filtros);
@@ -143,7 +143,7 @@ class Contacto extends ModelRepository
 
     /**
      * @return HasMany
-     */
+     *
     public function redesSociales()
     {
         return $this->hasMany(RedSocial::class, 'contacto_id', 'id');
@@ -151,7 +151,7 @@ class Contacto extends ModelRepository
 
     /**
      * @return BelongsTo
-     */
+     *
     public function cargo()
     {
         return $this->belongsTo(Cargo::class, 'cargo_id', 'id');
@@ -159,9 +159,10 @@ class Contacto extends ModelRepository
 
     /**
      * @return HasOne
-     */
+     *
     public function empresa()
     {
         return $this->hasOne(Empresa::class, 'id', 'empresa_id');
     }
 }
+*/

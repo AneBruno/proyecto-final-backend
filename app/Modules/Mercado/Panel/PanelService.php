@@ -46,30 +46,30 @@ class PanelService {
 
             $resumen[$clave]['clave'] = $clave;
             $resumen[$clave]['producto'            ]   = static::atributos($posicion->producto,        ['id', 'nombre'      ]);
-            $resumen[$clave]['calidad'             ]   = static::atributos($posicion->calidad,         ['id', 'nombre'      ]);
-            $resumen[$clave]['establecimiento'     ]   = static::atributos($posicion->establecimiento, ['id', 'nombre'      ]);
+            //$resumen[$clave]['calidad'             ]   = static::atributos($posicion->calidad,         ['id', 'nombre'      ]);
+            //$resumen[$clave]['establecimiento'     ]   = static::atributos($posicion->establecimiento, ['id', 'nombre'      ]);
             $resumen[$clave]['puerto'              ]   = static::atributos($posicion->puerto,          ['id', 'nombre'      ]);
             $resumen[$clave]['condicion_pago'      ]   = static::atributos($posicion->condicionPago,   ['id', 'descripcion' ]);
             $resumen[$clave]['cosecha'			   ]   = static ::atributos($posicion->cosecha, 		  ['descripcion'	   ]);
-            $resumen[$clave]['fecha_entrega_inicio']   = $posicion->fecha_entrega_inicio;
-            $resumen[$clave]['fecha_entrega_fin'   ]   = $posicion->fecha_entrega_fin;
+            //$resumen[$clave]['fecha_entrega_inicio']   = $posicion->fecha_entrega_inicio;
+            //$resumen[$clave]['fecha_entrega_fin'   ]   = $posicion->fecha_entrega_fin;
             $resumen[$clave]['precio'              ]   = $posicion->precio;
             $resumen[$clave]['moneda'              ]   = $posicion->moneda;
             $resumen[$clave]['cosecha_id'          ]   = $posicion->cosecha_id;
-            $resumen[$clave]['entrega'             ]   = $posicion->entrega;
+            //$resumen[$clave]['entrega'             ]   = $posicion->entrega;
             $resumen[$clave]['localidad_destino'   ]   = $posicion->getLocalidadDestino();
-            $resumen[$clave]['departamento_destino']   = $posicion->getDepartamentoDestino();
+            //$resumen[$clave]['departamento_destino']   = $posicion->getDepartamentoDestino();
             $resumen[$clave]['provincia_destino'   ]   = $posicion->getProvinciaDestino();
 
             $resumen[$clave]['posiciones'          ][] = [
                     'id' => $posicion->id,
                     'estado' => $posicion->estado,
                     'precio' => $posicion->precio,
-                    'volumen_limitado' => $posicion->volumen_limitado,
+                    /*'volumen_limitado' => $posicion->volumen_limitado,
                     'posicion_excepcional' => $posicion->posicion_excepcional,
-                    'a_trabajar' => $posicion->a_trabajar,
-                    'empresa' => static::atributos($posicion->empresa, ['id', 'razon_social', 'abreviacion']),
-					'calidad_observaciones' => $posicion->calidad_observaciones,
+                    'a_trabajar' => $posicion->a_trabajar,*/
+                    'empresa' => static::atributos($posicion->empresa, ['id', 'razon_social'/*, 'abreviacion'*/]),
+					//'calidad_observaciones' => $posicion->calidad_observaciones,
 					'observaciones' => $posicion->observaciones,
                     'usuario_carga' => $posicion->usuarioCarga
                 ];
@@ -104,18 +104,18 @@ class PanelService {
          */
         foreach ($resumen as $clave => $posicion) {
             $filtros['producto_id'] = $posicion['producto']['id'];
-            $filtros['fechaEntregaInicioDesde'] = DateHelper::sumarDias($posicion['fecha_entrega_inicio'], -30);
-            $filtros['fechaEntregaFinHasta'] = DateHelper::sumarDias($posicion['fecha_entrega_fin'], 30);
+            //$filtros['fechaEntregaInicioDesde'] = DateHelper::sumarDias($posicion['fecha_entrega_inicio'], -30);
+            //$filtros['fechaEntregaFinHasta'] = DateHelper::sumarDias($posicion['fecha_entrega_fin'], 30);
             $filtros['condicion_pago_id'] = $posicion['condicion_pago']['id'];
-            $filtros['entrega'] = $posicion['entrega'];
+            //$filtros['entrega'] = $posicion['entrega'];
 
             //Filtro para el destino.
             if ($posicion['puerto']['id'] !== '') {
                 $filtros['puerto_id'] = $posicion['puerto']['id'];
-                unset($filtros['localidad_destino'], $filtros['departamento_destino'],$filtros['provincia_destino']);
+                unset($filtros['localidad_destino'], /*$filtros['departamento_destino'],*/$filtros['provincia_destino']);
             } else {
                 $filtros['localidad_destino'] = $posicion['localidad_destino'];
-                $filtros['departamento_destino'] = $posicion['departamento_destino'];
+                //$filtros['departamento_destino'] = $posicion['departamento_destino'];
                 $filtros['provincia_destino'] = $posicion['provincia_destino'];
                 $filtros['puerto_id'] = 'null';
             }
@@ -204,8 +204,7 @@ class PanelService {
              * - cosecha
              * - a fijar
              */
-            $ubicacion = $posicion->puerto_id ? "puerto_{$posicion->puerto_id}" : "establecimiento_{$posicion->establecimiento_id}";
-            return "{$posicion->moneda}_{$posicion->producto_id}_{$posicion->calidad_id}_{$ubicacion}_{$posicion->condicion_pago_id}_{$posicion->fecha_entrega_inicio}_{$posicion->fecha_entrega_fin}_{$posicion->cosecha_id}_{$posicion->entrega}_{$posicion->a_fijar}";
+            return "{$posicion->moneda}_{$posicion->producto_id}_{$posicion->puerto_id}_{$posicion->condicion_pago_id}_{$posicion->cosecha_id}";
         }
     }
 
@@ -217,7 +216,7 @@ class PanelService {
     {
         $filtros = array_merge(['fecha' => date('Y-m-d'), 'productoTrashed' => true], $filtros);
         $ordenamiento = [
-            'producto_uso_frecuente' => 'DESC',
+            //'producto_uso_frecuente' => 'DESC',
             'producto_nombre'        => 'ASC',
             'destino_nombre'         => 'ASC',
             'exportacion'            => 'ASC',
@@ -258,14 +257,14 @@ class PanelService {
 
             $filtros = self::addFiltro($filtros, 'moneda', $valores[0]);
             $filtros = self::addFiltro($filtros, 'producto_id', $valores[1]);
-            $filtros = self::addFiltro($filtros, 'calidad_id', $valores[2]);
+           // $filtros = self::addFiltro($filtros, 'calidad_id', $valores[2]);
             $filtros = self::addFiltroUbicacion($filtros, $valores[3], $valores[4]);
             $filtros = self::addFiltro($filtros, 'condicion_pago_id', $valores[5]);
-            $filtros = self::addFiltro($filtros, 'fecha_entrega_inicio', $valores[6]);
-            $filtros = self::addFiltro($filtros, 'fecha_entrega_fin', $valores[7]);
+            /*$filtros = self::addFiltro($filtros, 'fecha_entrega_inicio', $valores[6]);
+            $filtros = self::addFiltro($filtros, 'fecha_entrega_fin', $valores[7]);*/
             $filtros = self::addFiltro($filtros, 'cosecha_id', $valores[8]);
-            $filtros = self::addFiltro($filtros, 'entrega', $valores[9]);
-            $filtros = self::addFiltro($filtros, 'a_fijar', $valores[10]);
+            //$filtros = self::addFiltro($filtros, 'entrega', $valores[9]);
+           // $filtros = self::addFiltro($filtros, 'a_fijar', $valores[10]);
 
             $filtros = self::addFiltro($filtros, 'estado', 'todas');
         }

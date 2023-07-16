@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos\Archivos;
 
 use App\Tools\ModelRepository;
@@ -35,3 +35,4 @@ class Archivo extends ModelRepository {
         }
     }
 }
+*/

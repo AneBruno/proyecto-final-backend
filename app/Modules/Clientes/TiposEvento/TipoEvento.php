@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\TiposEvento;
 
 use App\Tools\ModelRepository;
@@ -21,7 +21,7 @@ class TipoEvento extends ModelRepository
     /**
      * @param Builder $query
      * @param array $filtros
-     */
+     *
     static public function aplicarFiltros(Builder $query, array $filtros)
     {
         parent::aplicarFiltros($query, $filtros);
@@ -40,7 +40,7 @@ class TipoEvento extends ModelRepository
     /**
      * @param Builder $query
      * @param array $ordenes
-     */
+     *
     static public function aplicarOrdenes(Builder $query, array $ordenes)
     {
         foreach ($ordenes as $columna => $sentido) {
@@ -86,3 +86,4 @@ class TipoEvento extends ModelRepository
         return $this;
     }
 }
+*/

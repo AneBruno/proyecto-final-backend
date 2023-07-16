@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\Archivos\Policies;
 
 use App\Modules\Usuarios\Roles\RolHelper;
@@ -13,7 +13,7 @@ class ArchivoPolicy
     /**
      * @param User $user
      * @return bool
-     */
+     *
     public function create(User $user)
     {
         return $user->hasAnyRol(
@@ -28,7 +28,7 @@ class ArchivoPolicy
     /**
      * @param User $user
      * @return mixed
-     */
+     *
     public function update(User $user)
     {
         return $user->hasAnyRol(
@@ -42,7 +42,7 @@ class ArchivoPolicy
     /**
      * @param User $user
      * @return mixed
-     */
+     *
     public function viewAny(User $user)
     {
         return $user->hasAnyRol(
@@ -57,7 +57,7 @@ class ArchivoPolicy
     /**
      * @param User $user
      * @return bool
-     */
+     *
     public function view(User $user)
     {
         return $user->hasAnyRol(
@@ -72,7 +72,7 @@ class ArchivoPolicy
     /**
      * @param User $user
      * @return bool
-     */
+     *
     public function delete(User $user)
     {
         return $user->hasAnyRol(
@@ -87,7 +87,7 @@ class ArchivoPolicy
     /**
      * @param User $user
      * @return bool
-     */
+     *
     public function download(User $user)
     {
         return $user->hasAnyRol(
@@ -99,3 +99,4 @@ class ArchivoPolicy
         );
     }
 }
+*/

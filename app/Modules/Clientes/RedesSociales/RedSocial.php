@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\RedesSociales;
 
 use App\Tools\ModelRepository;
@@ -18,7 +18,7 @@ class RedSocial extends ModelRepository
      * @param string|null $url
      * @return static
      * @throws RepositoryException
-     */
+     *
     static public function crear(int  $contacto_id, string  $red, ?string $url): self
     {
         $row = new static;
@@ -35,7 +35,7 @@ class RedSocial extends ModelRepository
      * @param string $url
      * @return $this
      * @throws RepositoryException
-     */
+     *
     public function actualizar(string  $red, string $url): self
     {
         $this->red = $red;
@@ -47,7 +47,7 @@ class RedSocial extends ModelRepository
     /**
      * @param Builder $query
      * @param array $filtros
-     */
+     *
     static public function aplicarFiltros(Builder $query, array $filtros)
     {
         parent::aplicarFiltros($query, $filtros);
@@ -59,3 +59,4 @@ class RedSocial extends ModelRepository
         }
     }
 }
+*/

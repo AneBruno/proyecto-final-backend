@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas;
 
 use App\Tools\ModelRepository;
@@ -19,7 +19,7 @@ class EmpresaActividad extends ModelRepository
         //'deleted_at',
     ];
     
-    /*static public function filtrosEq(): array {
+    static public function filtrosEq(): array {
         return ['id', 'empresa_id'];
     }
     
@@ -28,5 +28,5 @@ class EmpresaActividad extends ModelRepository
         $row->empresa_id   = $empresa_id;
         $row->actividad_id = $actividad_id;
         return $row->insertar();
-    }*/
-}
+    }
+}*/

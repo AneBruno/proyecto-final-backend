@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos\FormRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -74,3 +74,4 @@ class CrearEventoRequest extends FormRequest
         
     }
 }
+*/

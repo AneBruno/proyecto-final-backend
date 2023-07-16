@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Actividades;
+/*namespace App\Modules\Clientes\Actividades;
 
 use App\Tools\ModelRepository;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -43,3 +43,4 @@ class Actividad extends ModelRepository
         }
     }
 }
+*/

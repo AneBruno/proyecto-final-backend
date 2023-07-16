@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos\Dtos;
 
 use App\Modules\Clientes\Eventos\FormRequests\CrearEventoRequest;
@@ -43,4 +43,4 @@ class CrearEventoDto extends DataTransferObject {
             return $archivo instanceof UploadedFile;
         });
     }
-}
+}*/

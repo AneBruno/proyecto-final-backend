@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos;
 
 use App\Modules\Clientes\Contactos\Contacto;
@@ -301,3 +301,4 @@ class Evento extends ModelRepository {
         return false;
     }
 }
+*/

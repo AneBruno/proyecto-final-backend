@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\TiposEvento;
 
 use App\Modules\Usuarios\Usuarios\User;
@@ -26,3 +26,4 @@ class TipoEventoPolicy
         return $user->isAdministradorPlataforma();
     }
 }
+*/

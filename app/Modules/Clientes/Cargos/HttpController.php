@@ -1,6 +1,6 @@
 <?php
 
-namespace  App\Modules\Clientes\Cargos;
+/*namespace  App\Modules\Clientes\Cargos;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class HttpController extends Controller {
     /**
      * @param Request $request
      * @return AnonymousResourceCollection
-     */
+     *
     public function index(Request $request) {
         $rs = CargoService::listar(
             $request->get('page'   , 1 ),
@@ -41,3 +41,4 @@ class HttpController extends Controller {
         return $this->json([]);
     }
 }
+*/

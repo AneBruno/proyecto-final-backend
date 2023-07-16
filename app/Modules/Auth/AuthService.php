@@ -47,8 +47,13 @@ class AuthService
 
         if ($user->getAttributeValue('habilitado') == 0) {
             throw new AuthenticationException(
-                "El usuario \"{$user->email}\" no está habilitado para ingresar al sistema. <br />\n" .
-                "Para solicitar la habilitación comuníquese con el administrador de la plataforma"
+                "Usuario \"{$user->email}\" no habilitado.<br />\n" .
+                "Comunicarse con el administrador."
+            );
+        }else if ($user->getAttributeValue('rol_id') == 6) {
+            throw new AuthenticationException(
+                "El usuario aún está pendiente de validación.<br />\n" .
+                "Comunicarse con el administrador."
             );
         }
 
@@ -64,7 +69,7 @@ class AuthService
     
     static public function obtenerAccesos(User $user): array {
         $accesos = $user->rol->accesos->toArray();
-        if (
+        /*if (
             $user->aprobacion_gerencia_comercial || 
             $user->aprobacion_dpto_creditos      || 
             $user->aprobacion_dpto_finanzas      ||
@@ -75,7 +80,7 @@ class AuthService
         
         if ($user->aprobacion_cbu) {
             $accesos[] = static::crearRegistro('Solicitudes de CBU',   'Saldos', 1002, 'menu', 'gestion-saldos/solicitudes-cbu'  );
-        }
+        }*/
         
         
         return $accesos;

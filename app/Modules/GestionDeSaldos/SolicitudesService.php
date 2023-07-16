@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\Modules\GestionDeSaldos;
+/*namespace App\Modules\GestionDeSaldos;
 
 use App\Exceptions\BusinessException;
 use App\Modules\Extranet\Auth\AuthService;
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
  * Description of SolicitudesService
  *
  * @author kodear
- */
+ *
 class SolicitudesService {
     
     static public function agregar(
@@ -163,3 +163,4 @@ class SolicitudesService {
         return $solicitud->actualizar(['estado_id' => EstadoSolicitud::ID_CANCELADO]);
     }
 }
+*/

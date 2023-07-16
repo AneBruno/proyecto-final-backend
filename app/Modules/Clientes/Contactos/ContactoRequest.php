@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace  App\Modules\Clientes\Contactos;
 
 use App\Modules\Clientes\Cargos\Cargo;
@@ -11,7 +11,7 @@ class ContactoRequest extends FormRequest
      * Determine if the user is authorized to make this request.
      *
      * @return bool
-     */
+     *
     public function authorize()
     {
         return true;
@@ -21,7 +21,7 @@ class ContactoRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array
-     */
+     *
     public function rules()
     {
         $cargoClass = Cargo::class;
@@ -39,3 +39,4 @@ class ContactoRequest extends FormRequest
         return $rules;
     }    
 }
+*/

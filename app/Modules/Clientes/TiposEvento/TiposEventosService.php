@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 namespace App\Modules\Clientes\TiposEvento;
 
 
@@ -19,7 +19,7 @@ class TiposEventosService
      * @param array $ordenes
      * @param array $opciones
      * @return LengthAwarePaginator|Builder[]|Collection
-     */
+     *
     public function listar(int $page = 1, int $limit = 0, array $filtros = [], array $ordenes = [], array $opciones = [])
     {
         return TipoEvento::listar(
@@ -35,7 +35,7 @@ class TiposEventosService
      * @param int $id
      * @return TipoEvento|ModelRepository
      * @throws RepositoryException
-     */
+     *
     public function getOne(int $id)
     {
         return TipoEvento::getById($id);
@@ -45,7 +45,7 @@ class TiposEventosService
      * @param string $nombre
      * @return TipoEvento
      * @throws RepositoryException
-     */
+     *
     public function crear(string $nombre, ?int $cantidad_dias_alerta_1, ?int $cantidad_dias_alerta_2): TipoEvento
     {
         return TipoEvento::crear($nombre, $cantidad_dias_alerta_1, $cantidad_dias_alerta_2);
@@ -56,7 +56,7 @@ class TiposEventosService
      * @param string $nombre
      * @return TipoEvento
      * @throws RepositoryException
-     */
+     *
     public function actualizar($id, string $nombre, ?int $cantidad_dias_alerta_1, ?int $cantidad_dias_alerta_2): TipoEvento
     {
         $tipoEvento = TipoEvento::getById($id);
@@ -67,7 +67,7 @@ class TiposEventosService
      * @param TipoEvento $tipoEvento
      * @return TipoEvento
      * @throws RepositoryException
-     */
+     *
     public function habilitar(TipoEvento $tipoEvento): TipoEvento
     {
         return $tipoEvento->habilitar();
@@ -77,9 +77,9 @@ class TiposEventosService
      * @param TipoEvento $tipoEvento
      * @return TipoEvento
      * @throws RepositoryException
-     */
+     *
     public function deshabilitar(TipoEvento $tipoEvento): TipoEvento
     {
         return $tipoEvento->deshabilitar();
     }
-}
+}*/

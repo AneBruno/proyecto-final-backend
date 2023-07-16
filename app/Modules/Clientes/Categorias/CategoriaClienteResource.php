@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Categorias;
 
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -11,7 +11,7 @@ class CategoriaClienteResource extends JsonResource
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         return [
@@ -22,3 +22,4 @@ class CategoriaClienteResource extends JsonResource
         ];
     }
 }
+*/

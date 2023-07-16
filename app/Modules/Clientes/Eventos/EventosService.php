@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos;
 
 use App\Exceptions\BusinessException;
@@ -158,3 +158,4 @@ class EventosService {
     }
 
 }
+*/

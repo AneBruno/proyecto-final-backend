@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Establecimientos;
 
 use App\Modules\Clientes\Empresas\EmpresaResource;
@@ -14,10 +14,10 @@ class EstablecimientoResource extends JsonResource
      *
      * @param  Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
-        /** @var Establecimiento $establecimiento */
+        /** @var Establecimiento $establecimiento *
         $establecimiento = $this->resource;
 
         return [
@@ -46,3 +46,4 @@ class EstablecimientoResource extends JsonResource
         ];
     }
 }
+*/

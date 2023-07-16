@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\GestionDeSaldos\Empresas;
+/*namespace App\Modules\GestionDeSaldos\Empresas;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,3 +15,4 @@ class HttpController extends Controller {
         return $this->jsonCollection(EmpresasService::obtenerPorUsuario($token, $filtros['busqueda']??''));
     }
 }
+*/

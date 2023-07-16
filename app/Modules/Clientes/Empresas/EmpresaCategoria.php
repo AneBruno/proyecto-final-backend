@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas;
 
 use App\Tools\ModelRepository;
@@ -18,11 +18,11 @@ class EmpresaCategoria extends ModelRepository
         return ['id', 'empresa_id'];
     }
     
-    /*static public function crear(int $empresa_id, int $categoria_id): self {
+    static public function crear(int $empresa_id, int $categoria_id): self {
         CategoriaCliente::getById($categoria_id); // sólo para validar;
         $row               = new static;
         $row->empresa_id   = $empresa_id;
         $row->categoria_id = $categoria_id;
         return $row->insertar();
-    }*/
-}
+    }
+}*/

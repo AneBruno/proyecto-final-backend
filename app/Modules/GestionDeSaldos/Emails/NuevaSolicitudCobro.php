@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\GestionDeSaldos\Emails;
+/*namespace App\Modules\GestionDeSaldos\Emails;
 
 use App\Modules\GestionDeSaldos\Solicitud;
 use Illuminate\Bus\Queueable;
@@ -16,7 +16,7 @@ class NuevaSolicitudCobro extends \App\Modules\Base\Emails\Mailable
      * Create a new message instance.
      *
      * @return void
-     */
+     *
     public function __construct(Solicitud $solicitud)
     {
         $this->solicitud = $solicitud;
@@ -26,7 +26,7 @@ class NuevaSolicitudCobro extends \App\Modules\Base\Emails\Mailable
      * Build the message.
      *
      * @return $this
-     */
+     *
     public function build()
     {
         return $this->subject('Nueva solicitud de cobro')
@@ -37,3 +37,4 @@ class NuevaSolicitudCobro extends \App\Modules\Base\Emails\Mailable
 			]);
     }
 }
+*/

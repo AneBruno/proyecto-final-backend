@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\TiposArchivos;
 
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class TipoArchivoResource extends JsonResource
      *
      * @param  Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         return [
@@ -20,4 +20,4 @@ class TipoArchivoResource extends JsonResource
             'descripcion' => $this->descripcion
         ];
     }
-}
+}*/

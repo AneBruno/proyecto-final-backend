@@ -1,6 +1,6 @@
 <?php
 
-namespace  App\Modules\Clientes\Cargos;
+/*namespace  App\Modules\Clientes\Cargos;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -13,7 +13,7 @@ class CargoService
      * @param array $filtros
      * @param array $ordenes
      * @return LengthAwarePaginator
-     */
+     *
     static public function listar(int $page = 1, int $limit = 0, array $filtros = [], array $ordenes = [])
     {
         return Cargo::listar($page, $limit, $filtros, $ordenes);
@@ -26,3 +26,4 @@ class CargoService
         ]) === 0;
     }
 }
+*/

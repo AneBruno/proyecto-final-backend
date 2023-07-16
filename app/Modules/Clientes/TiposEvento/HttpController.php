@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\TiposEvento;
 
 use App\Helpers\HttpRequestHelper;
@@ -15,7 +15,7 @@ class HttpController extends Controller
     /**
      * HttpController constructor.
      * @param TiposEventosService $service
-     */
+     *
     public function __construct(TiposEventosService $service)
     {
         $this->service = $service;
@@ -24,7 +24,7 @@ class HttpController extends Controller
     /**
      * @param Request $request
      * @return AnonymousResourceCollection
-     */
+     *
     public function index(Request $request)
     {
         $opciones['with_relation'] = HttpRequestHelper::getModelRelation($request);
@@ -44,7 +44,7 @@ class HttpController extends Controller
      * @param int $id
      * @return TipoEventoResource
      * @throws RepositoryException
-     */
+     *
     public function show(int $id)
     {
         $tipoEvento = $this->service->getOne($id);
@@ -57,7 +57,7 @@ class HttpController extends Controller
      * @return TipoEventoResource
      * @throws AuthorizationException
      * @throws RepositoryException
-     */
+     *
     public function store(CrearTipoEventoRequest $request)
     {
         $this->authorize('create', TipoEvento::class);
@@ -77,7 +77,7 @@ class HttpController extends Controller
      * @return TipoEventoResource
      * @throws AuthorizationException
      * @throws RepositoryException
-     */
+     *
     public function update($id, ActualizarTipoEventoRequest $request)
     {
         $this->authorize('update', TipoEvento::class);
@@ -97,7 +97,7 @@ class HttpController extends Controller
      * @return TipoEventoResource
      * @throws AuthorizationException
      * @throws RepositoryException
-     */
+     *
     public function habilitar(TipoEvento $tipoEvento)
     {
         $this->authorize('habilitar', TipoEvento::class);
@@ -112,7 +112,7 @@ class HttpController extends Controller
      * @return TipoEventoResource
      * @throws AuthorizationException
      * @throws RepositoryException
-     */
+     *
     public function deshabilitar(TipoEvento $tipoEvento)
     {
         $this->authorize('deshabilitar', TipoEvento::class);
@@ -122,3 +122,4 @@ class HttpController extends Controller
         return new TipoEventoResource($tipoEvento);
     }
 }
+*/

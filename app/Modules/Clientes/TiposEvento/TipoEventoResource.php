@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\TiposEvento;
 
 use Illuminate\Http\Request;
@@ -12,7 +12,7 @@ class TipoEventoResource extends JsonResource
      *
      * @param  Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         return [
@@ -26,3 +26,4 @@ class TipoEventoResource extends JsonResource
         ];
     }
 }
+*/

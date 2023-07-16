@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\RedesSociales;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -15,7 +15,7 @@ class RedesSocialesService
      * @param array $filtros
      * @param array $ordenes
      * @return LengthAwarePaginator
-     */
+     *
     static public function listar(int $page = 1, int $limit = 0, array $filtros = [], array $ordenes = [])
     {
         return RedSocial::listar($page, $limit, $filtros, $ordenes);
@@ -31,7 +31,7 @@ class RedesSocialesService
      * @param string|null $url
      * @return RedSocial
      * @throws RepositoryException
-     */
+     *
     static public function crear(
         int  $contacto_id,
         string  $red,
@@ -58,7 +58,7 @@ class RedesSocialesService
      * @param string|null $url
      * @return RedSocial
      * @throws RepositoryException
-     */
+     *
     static public function actualizar(
         int $id,
         string  $red,
@@ -81,9 +81,9 @@ class RedesSocialesService
     /**
      * @param int $id
      * @throws RepositoryException
-     */
+     *
     static public function borrar(int $id): void
     {
         RedSocial::getById($id)->borrar();
     }
-}
+}*/

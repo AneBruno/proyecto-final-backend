@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Establecimientos;
 
 use App\Modules\Direcciones\Direcciones;
@@ -92,3 +92,4 @@ class EstablecimientosService {
         };
     }
 }
+*/

@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Categorias;
 
 use App\Http\Controllers\Controller;
@@ -58,3 +58,4 @@ class HttpController extends Controller
         return CategoriasClienteService::borrar($id);
     }
 }
+*/

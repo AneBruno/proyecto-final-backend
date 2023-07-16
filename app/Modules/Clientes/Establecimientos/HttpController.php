@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Establecimientos;
 
 use App\Http\Controllers\Controller;
@@ -73,3 +73,4 @@ class HttpController extends Controller
         return true;
     }
 }
+*/

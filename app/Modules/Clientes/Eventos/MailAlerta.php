@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+/*
 namespace App\Modules\Clientes\Eventos;
 
 use App\Modules\Mail\Base;
@@ -14,7 +14,7 @@ use App\Modules\Mail\Base;
  * Description of MailEventoAsignado
  *
  * @author kodear
- */
+ *
 class MailAlerta extends Base {
     
     public $subject = 'Vencimiento - Evento';
@@ -30,4 +30,4 @@ class MailAlerta extends Base {
     public function build(): self {
         return $this->markdown(static::getMailTemplatePath(__DIR__ . '/mail-alerta'), $this->datos);
     }
-}
+}*/

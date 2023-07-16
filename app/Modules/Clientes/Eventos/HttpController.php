@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos;
 
 use App\Helpers\HttpRequestHelper;
@@ -68,3 +68,4 @@ class HttpController extends Controller {
         return new EventoResource($evento);
     }
 }
+*/

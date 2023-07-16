@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Extranet\SolicitudesCobro;
+/*namespace App\Modules\Extranet\SolicitudesCobro;
 
 use App\Exceptions\BusinessException;
 use App\Http\Controllers\Controller;
@@ -96,4 +96,4 @@ class HttpController extends Controller {
         $rs = EstadoSolicitud::listarTodos();
         return EstadoSolicitudResource::collection($rs);
     }
-}
+}*/

@@ -33,19 +33,10 @@ class HttpController extends Controller {
             $request->input('telefono'             ),
             $request->input('email'                ),
             $request->input('perfil'               ),
-            /*$request->input('comision_comprador'   ),
-            $request->input('comision_vendedor'    ),
-            $request->input('categoria_crediticia' ),
-            $request->input('afinidad'             ),*/
             $request->input('usuario_comercial_id' ),
             $request->input('direccion'            ),
             $request->input('localidad'            ),
             $request->input('provincia'            )
-            //$request->input('placeId'              ),
-            //$request->input('descripcion_ubicacion')
-            /*$request->input('actividades_id'       ),
-            $request->input('categorias_id'        ),
-            $request->input('abreviacion', null)*/
         );
 
         return $this->json($empresa);
@@ -61,19 +52,10 @@ class HttpController extends Controller {
             $request->input('telefono'             ),
             $request->input('email'                ),
             $request->input('perfil'               ),
-            /*$request->input('comision_comprador'   ),
-            $request->input('comision_vendedor'    ),
-            $request->input('categoria_crediticia' ),
-            $request->input('afinidad'             ),*/
             $request->input('usuario_comercial_id' ),
             $request->input('direccion'            ),
             $request->input('localidad'            ),
             $request->input('provincia'            )
-            //$request->input('placeId',         null),
-            //$request->input('descripcion_ubicacion')
-            /*$request->input('actividades_id'       ),
-            $request->input('categorias_id'        ),
-            $request->input('abreviacion',null)*/
         );
 
         return $this->json($empresa);
@@ -95,14 +77,6 @@ class HttpController extends Controller {
         return $this->json($empresa);
     }
 
-    /*public function destroy(Empresa $empresa)
-    {
-        $this->authorize('anyAction', $empresa);
-
-        //EmpresasService::borrar($empresa->getKey());
-        return $this->json([]);
-    }
-*/
     protected function obtenerFiltrosPorUsuario(): array {
         $usuario = $this->getRequest()->user();
         $filtros = [];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Extranet\Auth;
+/*namespace App\Modules\Extranet\Auth;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
@@ -55,4 +55,4 @@ class MagicClient {
         
         return $json['data'];
     }
-}
+}*/

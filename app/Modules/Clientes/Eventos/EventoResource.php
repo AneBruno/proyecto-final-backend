@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Eventos;
 
 use App\Modules\Clientes\Contactos\ContactoResource;
@@ -18,7 +18,7 @@ class EventoResource extends JsonResource
      *
      * @param Request $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         return [
@@ -45,3 +45,4 @@ class EventoResource extends JsonResource
         ];
     }
 }
+*/

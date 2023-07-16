@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\Archivos;
 
 use App\Modules\Clientes\Empresas\TiposArchivos\TipoArchivo;
@@ -33,7 +33,7 @@ class Archivo extends ModelRepository
      * @param int $tipoArchivoId
      * @return static
      * @throws RepositoryException
-     */
+     *
     static public function crear(int $empresaId, $fechaVencimiento, int $tipoArchivoId): self {
         $row = new static;
 
@@ -49,7 +49,7 @@ class Archivo extends ModelRepository
      * @param int $tipoArchivoId
      * @return $this
      * @throws RepositoryException
-     */
+     *
     public function actualizar(string $fechaVencimiento, int $tipoArchivoId): self {
         $this->tipo_archivo_id = $tipoArchivoId;
         $this->fecha_vencimiento = $fechaVencimiento;
@@ -59,7 +59,7 @@ class Archivo extends ModelRepository
 
     /**
      * @return BelongsTo
-     */
+     *
     public function empresa()
     {
         return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
@@ -67,7 +67,7 @@ class Archivo extends ModelRepository
 
     /**
      * @return HasOne
-     */
+     *
     public function tipoArchivo()
     {
         return $this->hasOne(TipoArchivo::class, 'id', 'tipo_archivo_id');
@@ -89,3 +89,4 @@ class Archivo extends ModelRepository
         }
     }
 }
+*/

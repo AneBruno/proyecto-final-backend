@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Categorias;
 
 class CategoriasClienteService
@@ -40,3 +40,4 @@ class CategoriasClienteService
         CategoriaCliente::getById($id)->borrar();
     }
 }
+*/

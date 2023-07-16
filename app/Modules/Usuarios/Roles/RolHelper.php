@@ -16,5 +16,5 @@ class RolHelper
 
     public const ADMINISTRATIVO = 5;
 
-    public const SOPORTE_EQUIPO_NDG = 6;
+    public const NUEVO_USUARIO = 6;
 }

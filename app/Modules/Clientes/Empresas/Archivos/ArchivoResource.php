@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Empresas\Archivos;
 
 use App\Modules\Clientes\Empresas\EmpresaResource;
@@ -15,7 +15,7 @@ class ArchivoResource extends JsonResource
      *
      * @param  Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         $urlArchivoFirmada = URL::signedRoute('clientesEmpresasArchivosDescarga', [
@@ -35,3 +35,4 @@ class ArchivoResource extends JsonResource
         ];
     }
 }
+*/

@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Clientes\Establecimientos;
 
 use App\Modules\Clientes\Empresas\Empresa;
@@ -24,7 +24,7 @@ class Establecimiento extends ModeloConLocalizacion
 
     /**
      * @return string
-     */
+     *
     public function getNombre(): string
     {
         return $this->nombre;
@@ -101,7 +101,7 @@ class Establecimiento extends ModeloConLocalizacion
 
     /**
      * @return BelongsTo
-     */
+     *
     public function empresa()
     {
         return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
@@ -109,7 +109,7 @@ class Establecimiento extends ModeloConLocalizacion
 
     /**
      * @return BelongsTo
-     */
+     *
     public function puerto()
     {
         return $this->belongsTo(Puerto::class, 'puerto_id', 'id');
@@ -141,3 +141,4 @@ class Establecimiento extends ModeloConLocalizacion
     }
 
 }
+*/

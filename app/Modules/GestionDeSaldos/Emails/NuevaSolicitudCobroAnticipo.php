@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\GestionDeSaldos\Emails;
+/*namespace App\Modules\GestionDeSaldos\Emails;
 
 class NuevaSolicitudCobroAnticipo extends NuevaSolicitudCobro
 {
@@ -8,7 +8,7 @@ class NuevaSolicitudCobroAnticipo extends NuevaSolicitudCobro
 	 * Build the message.
 	 *
 	 * @return $this
-	 */
+	 *
 	public function build()
 	{
 		return $this->subject('Nueva solicitud de cobro')
@@ -17,4 +17,4 @@ class NuevaSolicitudCobroAnticipo extends NuevaSolicitudCobro
 				'solicitud' => $this->solicitud,
 			]);
 	}
-}
+}*/

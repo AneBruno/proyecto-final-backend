@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\GestionDeSaldos\Cbus;
+/*namespace App\Modules\GestionDeSaldos\Cbus;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -12,7 +12,7 @@ class CbuResource extends JsonResource
      *
      * @param Request $request
      * @return array
-     */
+     /
     public function toArray($request)
     {
         return [
@@ -29,3 +29,4 @@ class CbuResource extends JsonResource
         ];
     }
 }
+*/

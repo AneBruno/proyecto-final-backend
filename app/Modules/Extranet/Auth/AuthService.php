@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Extranet\Auth;
+/*namespace App\Modules\Extranet\Auth;
 
 use App\Exceptions\BusinessException;
 
@@ -61,4 +61,4 @@ class AuthService {
 
         return $datos['accounts'];
     }
-}
+}*/

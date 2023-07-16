@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace App\Modules\GestionDeSaldos\Empresas;
+/*namespace App\Modules\GestionDeSaldos\Empresas;
 
 use App\Modules\Extranet\Auth\AuthService;
 
@@ -14,7 +14,7 @@ use App\Modules\Extranet\Auth\AuthService;
  * Description of EmpresasService
  *
  * @author kodear
- */
+ *
 class EmpresasService {
     
     static public function obtenerPorUsuario(string $token, string $busqueda = '') {
@@ -29,3 +29,4 @@ class EmpresasService {
         return $empresas;
     }
 }
+*/

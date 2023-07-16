@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Clientes\Contactos;
+/*namespace App\Modules\Clientes\Contactos;
 
 use App\Modules\Usuarios\Usuarios\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -13,7 +13,7 @@ class ContactoPolicy
      * Create a new policy instance.
      *
      * @return void
-     */
+     *
     public function __construct()
     {
         //
@@ -30,3 +30,4 @@ class ContactoPolicy
         return true;
     }
 }
+*/

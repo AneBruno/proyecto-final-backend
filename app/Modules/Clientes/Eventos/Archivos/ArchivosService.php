@@ -1,5 +1,5 @@
 <?php
-
+/*
 
 namespace App\Modules\Clientes\Eventos\Archivos;
 
@@ -54,4 +54,4 @@ class ArchivosService {
            // unlink($rutaArchivo); //borrado del servidor
         });
     }
-}
+}*/

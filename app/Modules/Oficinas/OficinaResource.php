@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Oficinas;
 
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -11,13 +11,13 @@ class OficinaResource extends JsonResource
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
-     */
+     *
     public function toArray($request)
     {
         $resource = $this->resource;
         /**
          *  @var Oficina $oficina
-         */
+         *
         $oficinaMadre = $resource->oficinaMadre()->getResults();
         
         return [
@@ -32,7 +32,7 @@ class OficinaResource extends JsonResource
      *
      * @param Oficina $oficina
      * @return string
-     */
+     *
     public function obtenerNombre(?Oficina $oficina): string
     {
         $oficinaMadreNombre = '';
@@ -42,3 +42,4 @@ class OficinaResource extends JsonResource
         return $oficinaMadreNombre;
     }
 }
+*/

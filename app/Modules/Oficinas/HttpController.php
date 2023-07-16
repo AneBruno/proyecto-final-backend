@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Oficinas;
 
 use App\Http\Controllers\Controller;
@@ -59,3 +59,4 @@ class HttpController extends Controller
         return $this->oficinasService->borrar($id);
     }
 }
+*/

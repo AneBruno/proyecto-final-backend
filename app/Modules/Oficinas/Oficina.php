@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Oficinas;
 
 use App\Tools\ModelRepository;
@@ -38,7 +38,7 @@ class Oficina extends ModelRepository
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
+     *
     public function oficinaMadre()
     {
         return $this->hasOne(static::class, 'id', 'oficina_madre_id');
@@ -57,3 +57,4 @@ class Oficina extends ModelRepository
         }
     }
 }
+*/

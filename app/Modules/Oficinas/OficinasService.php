@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Oficinas;
 
 class OficinasService
@@ -25,7 +25,7 @@ class OficinasService
      * @param string $nombre
      * @param int|null $oficina_madre_id
      * @return Oficina
-     */
+     *
     public function crear(string $nombre, ?int $oficina_madre_id): Oficina
     {
         $oficina = Oficina::crear($nombre, $oficina_madre_id);
@@ -39,7 +39,7 @@ class OficinasService
      * @param string $nombre
      * @param int|null $oficina_madre_id
      * @return Oficina
-     */
+     *
     public function actualizar(int $id, string $nombre, ?int $oficina_madre_id): Oficina
     {
         $oficina = Oficina::getById($id)->actualizar($nombre, $oficina_madre_id);
@@ -51,9 +51,10 @@ class OficinasService
      *
      * @param int $id
      * @return void
-     */
+     *
     public function borrar(int $id): void
     {
         Oficina::getById($id)->borrar();
     }
 }
+*/

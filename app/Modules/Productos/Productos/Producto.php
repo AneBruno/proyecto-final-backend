@@ -19,8 +19,6 @@ class Producto extends ModelRepository
     protected $fillable = [
         'nombre',
         'tipo_producto_id',
-        //'unidad',
-       // 'uso_frecuente',
         'deleted_at',
         'habilitado'
     ];
@@ -33,21 +31,17 @@ class Producto extends ModelRepository
         return $this->nombre;
     }
 
-    static public function crear(string $nombre, int $tipo_producto_id/*, string $unidad, bool $uso_frecuente*/): self {
+    static public function crear(string $nombre, int $tipo_producto_id): self {
         $row                   = new static;
         $row->nombre           = $nombre;
         $row->tipo_producto_id = $tipo_producto_id;
-        //$row->unidad           = $unidad;
-        //$row->uso_frecuente    = $uso_frecuente;
         $row->habilitado       = true;
         return $row->insertar();
     }
 
-    public function actualizar(string $nombre, int $tipo_producto_id/*, string $unidad, bool $uso_frecuente*/): self {
+    public function actualizar(string $nombre, int $tipo_producto_id): self {
         $this->nombre           = $nombre;
         $this->tipo_producto_id = $tipo_producto_id;
-        //$this->unidad           = $unidad;
-        //$this->uso_frecuente    = $uso_frecuente;
         return $this->guardar();
     }
 
@@ -91,7 +85,7 @@ class Producto extends ModelRepository
         parent::aplicarOrdenes($query, $ordenes);
         foreach($ordenes as $nombre => $sentido) {
             $direccion = strtolower($sentido);
-            if (in_array($nombre, [/*'uso_frecuente',*/ 'nombre'])) {
+            if (in_array($nombre, ['nombre'])) {
                 $query->orderBy($nombre, $direccion);
             }
         }

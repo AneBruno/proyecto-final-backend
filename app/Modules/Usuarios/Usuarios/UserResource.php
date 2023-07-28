@@ -16,25 +16,18 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        $urlImagen = UserService::getUrlImagen($this->id);
+        //$urlImagen = UserService::getUrlImagen($this->id);
 
         return [
             'id'             => $this->id,
             'email'          => $this->email,
-            'nombre'         => $this->nombre,
+            'nombre'         => $this->resource->nombre,
             'nombreCompleto' => $this->nombreCompleto,
             'apellido'       => $this->apellido,
             'telefono'       => $this->telefono,
             'rol'            => new RolResource($this->rol),
-            //'oficina'        => $this->oficina,
-            //'oficina_id'     => $this->oficina_id,
             'habilitado'     => (bool) $this->habilitado,
-            'urlImagen'      => $urlImagen,
-			/*'aprobacion_cbu' => $this->aprobacion_cbu,
-			'aprobacion_gerencia_comercial' => $this->aprobacion_gerencia_comercial,
-			'aprobacion_dpto_creditos' => $this->aprobacion_dpto_creditos,
-			'aprobacion_dpto_finanzas' => $this->aprobacion_dpto_finanzas,
-			'confirmacion_pagos' => $this->confirmacion_pagos,*/
+            //'urlImagen'      => $urlImagen,
 			'suscripto_notificaciones' => $this->suscripto_notificaciones,
             'accesos'        => AuthService::obtenerAccesos($this->resource),
         ];

@@ -28,11 +28,9 @@ class PuertosRequest extends FormRequest
             'nombre'   => 'required|string',
             'localidad'=> 'required|string',
             'provincia' => 'required|string'
-            //'terminal' => 'required|string',
         ];
         
         if ($this->getMethod() == 'POST') {
-            //$rules['placeId'] = 'required|string';
             
         }
         

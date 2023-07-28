@@ -17,10 +17,12 @@ class EmpresaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'         => $this->id,
-            'razon_social' => $this->razon_social,
-            'comercial_asignado' => new UserResource($this->resource->comercial_asignado),
-            'perfil'     => $this->perfil,
+            'id'         => $this->resource->id,
+            'cuit' => $this->resource->cuit,
+            'razon_social' => $this->resource->razon_social,
+            'telefono'=> $this->resource->telefono,
+            'comercial_asignado' => new UserResource($this->whenLoaded('usuarioComercial')),
+            'perfil'     => $this->resource->perfil,
             'habilitado' => (bool) $this->resource->habilitada == null
         ];
     }

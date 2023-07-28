@@ -25,9 +25,9 @@ class ProductosService
      * @param int $tipoProductoId
      * @return Producto
      */
-    public function crear(string $nombre, int $tipoProductoId/*, string $unidad, bool $usoFrecuente*/): Producto
+    public function crear(string $nombre, int $tipoProductoId): Producto
     {
-    $producto = Producto::crear($nombre, $tipoProductoId/*, $unidad, $usoFrecuente*/);
+    $producto = Producto::crear($nombre, $tipoProductoId);
 
         return $producto;
     }
@@ -42,15 +42,11 @@ class ProductosService
         int    $id,
         string $nombre,
         int    $tipoProductoId
-        //string $unidad,
-       // bool   $usoFrecuente
     ): Producto {
 
         $producto = Producto::getById($id)->actualizar(
             $nombre,
-            $tipoProductoId,
-            //$unidad,
-            //$usoFrecuente,
+            $tipoProductoId
         );
 
         return $producto;

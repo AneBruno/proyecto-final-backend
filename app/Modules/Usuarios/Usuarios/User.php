@@ -46,7 +46,6 @@ class User extends ModelRepository implements
         'telefono',
         'avatar',
         'rol_id',
-        //'oficina_id',
         'habilitado',
     ];
 
@@ -67,41 +66,38 @@ class User extends ModelRepository implements
      * @param int ...$roles
      * @return bool
      */
-    public function hasAnyRol(int ...$roles)
-    {
+    public function hasAnyRol(int ...$roles){
         return in_array($this->rol_id, $roles);
     }
 
     /**
      * @return BelongsTo
      */
-    public function rol()
-    {
+    public function rol() {
         return $this->belongsTo(\App\Modules\Usuarios\Roles\Rol::class);
     }
 
     /**
-     * @return BelongsTo
-     */
-    /*public function oficina()
-    {
-        return $this->belongsTo(\App\Modules\Oficinas\Oficina::class);
-    }*/
-
-    /**
      * @return string
      */
-    public function getFullName(): string
-    {
+    public function getFullName(): string {
         return $this->nombre . ' ' . $this->apellido;
     }
 
-    static public function crear(string $email, string $nombre, string $apellido, int $rol_id): self {
+    static public function crear(
+        string $nombre, 
+        string $apellido, 
+        string $telefono, 
+        string $email,
+        string $password
+        ): self {
         $row           = new static;
-        $row->email    = $email;
         $row->nombre   = $nombre;
         $row->apellido = $apellido;
-        $row->rol_id   = $rol_id;
+        $row->telefono = $telefono;
+        $row->email    = $email;
+        $row-> password = $password;
+        $row->rol_id   = 6;
 
         $row->insertar();
 
@@ -123,27 +119,6 @@ class User extends ModelRepository implements
         return $this;
     }
 
-    /*public function actualizarOficina(?int $oficina_id) {
-        $this->oficina_id = $oficina_id;
-        $this->guardar();
-        return $this;
-    }*/
-
-	/*public function actualizarPermisosGestionSaldos (
-		int $aprobacionCbu,
-		int $aprobacionGerenciaComercial,
-		int $aprobacionDptoCreditos,
-		int $aprobacionDptoFinanzas,
-		int $confirmacionPagos
-	) {
-		$this->aprobacion_cbu = $aprobacionCbu;
-		$this->aprobacion_gerencia_comercial = $aprobacionGerenciaComercial;
-		$this->aprobacion_dpto_creditos = $aprobacionDptoCreditos;
-		$this->aprobacion_dpto_finanzas = $aprobacionDptoFinanzas;
-		$this->confirmacion_pagos = $confirmacionPagos;
-
-		$this->guardar();
-	}*/
 
     public function habilitar(): self {
         $this->habilitado = true;
@@ -175,10 +150,7 @@ class User extends ModelRepository implements
             }
             if (in_array($nombre, [
             	'email',
-				'habilitado',
-				//'aprobacion_cbu',
-				//'aprobacion_gerencia_comercial',
-				//'confirmacion_pagos'
+				'habilitado'
 			]) && strlen("{$valor}")>0) {
                 $query->where($nombre, $valor);
             }
@@ -245,6 +217,6 @@ class User extends ModelRepository implements
     }
     
     public function esSoporte(): bool {
-        return $this->rol_id === RolHelper::SOPORTE_EQUIPO_NDG;
+        return $this->rol_id === RolHelper::NUEVO_USUARIO;
     }
 }

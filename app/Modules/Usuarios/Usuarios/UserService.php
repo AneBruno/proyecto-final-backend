@@ -29,12 +29,23 @@ class UserService
      * @param string $nombre
      * @param string $apellido
      * @param string|null $url
+     * //nuevo:
+     * @param string|null $telefono
+     * @param string|null $password
      * @return User
      */
-    static public function create(string $email, string $nombre, string $apellido, ?string $url = null): User
+    static public function create(
+        string $email, 
+        string $nombre, 
+        string $apellido
+        /*?string $telefono,
+        ?string $password,*/
+        //?string $url = null
+        ): User
     {
-        $user = User::crear($email, $nombre, $apellido, RolesHelper::SOPORTE_EQUIPO_NDG);
-
+    $user = User::crear($email, $nombre, $apellido, RolesHelper::NUEVO_USUARIO/*, $telefono, $password*/);
+        
+        //sacar??: 
         if($url) {
             $content = file_get_contents($url);
             $storage = ModelFilesServiceFactory::create(new User());
@@ -64,29 +75,14 @@ class UserService
      *
      * @param int $usuario_id
      * @param int $rol_id
-     * @param int|null $oficina_id
      */
     static public function actualizarDatosPorAdministrador(
     	int $usuario_id,
 		int $rol_id
-		//?int $oficina_id
-		/*int $aprobacionCbu,
-		int $aprobacionGerenciaComercial,
-		int $aprobacionDptoCreditos,
-		int $aprobacionDptoFinanzas,
-		int $confirmacionPagos*/
 	): User
     {
         $usuario = User::getById($usuario_id);
         $usuario->actualizarRol($rol_id);
-        //$usuario->actualizarOficina($oficina_id);
-		/*$usuario->actualizarPermisosGestionSaldos(
-			$aprobacionCbu,
-			$aprobacionGerenciaComercial,
-			$aprobacionDptoCreditos,
-			$aprobacionDptoFinanzas,
-			$confirmacionPagos
-		);*/
 
         return $usuario;
     }
@@ -123,8 +119,7 @@ class UserService
      * @param bool $habilitado
      * @return User
      */
-    static public function habilitar(int $usuario_id, bool $habilitado): User
-    {
+    static public function habilitar(int $usuario_id, bool $habilitado): User{
         $user = User::getById($usuario_id);
         return $habilitado ? $user->habilitar() : $user->deshabilitar();
     }

@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Mail;
 
 class EmpresasService {
 
-    static public function listar(int $page = 1, int $limit = 0, array $filtros = [], array $ordenes = []) {
-        return Empresa::listar($page, $limit, $filtros, $ordenes);
+    static public function listar(int $page = 1, int $limit = 0, array $filtros = [], array $ordenes = [], array $opciones = []) {
+        return Empresa::listar($page, $limit, $filtros, $ordenes, $opciones);
     }
 
 
@@ -24,7 +24,7 @@ class EmpresasService {
         ?int    $telefono,
         ?string $email,
         ?string $perfil,
-        ?int   $usuarioComercial,
+        int   $usuarioComercial,
         ?string $direccion,
         ?string $localidad,
         ?string $provincia
@@ -59,7 +59,7 @@ class EmpresasService {
         ?int     $telefono,
         ?string  $email,
         ?string  $perfil,
-        ?int    $usuarioComercial,
+        int    $usuarioComercial,
         ?string $direccion,
         ?string $localidad,
         ?string $provincia

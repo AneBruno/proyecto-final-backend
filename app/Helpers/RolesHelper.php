@@ -9,5 +9,5 @@ class RolesHelper
     public const COMERCIAL = 3;
     public const REPRESENTANTE = 4;
     public const ADMINISTRATIVO = 5;
-    public const SOPORTE_EQUIPO_NDG = 6;
+    public const NUEVO_USUARIO = 6;
 }

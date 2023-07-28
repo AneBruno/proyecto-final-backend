@@ -32,48 +32,23 @@ class EmpresaRequest extends FormRequest
 
         $rules = [
             'razon_social'         => 'required|string|max:50',
-            'usuario_comercial_id' => 'nullable|int'
-        ];
+            'telefono'             => 'nullable|integer',
+            'email'                => 'nullable|email',
+            'perfil'               => 'required|string|in:COMPRADOR,VENDEDOR,COMPRADOR_VENDEDOR',
+            'usuario_comercial_id' => 'required|integer',
+            'direccion'            => 'nullable|string',
+            'localidad'            => 'nullable|string',
+            'provincia'            => 'nullable|string'
+        ];      
 
-        if($usuario->isAdministradorPlataforma()) {
-            $rules = array_merge($rules, [
-                'telefono'             => 'nullable|integer',
-                'email'                => 'nullable|email',
-                'perfil'               => 'nullable|string|in:COMPRADOR,VENDEDOR,COMPRADOR_VENDEDOR',
-                'direccion'            => 'nullable|string',
-                'localidad'            => 'nullable|string',
-                'provincia'            => 'nullable|string'
+        if ($this->getMethod() === 'POST') {
+            $rules['cuit'        ] = ['required','integer', new CuitRule, EmpresasService::validadorCuitUnico()];
+        }
 
-            ]);
+        if ($this->getMethod() === 'PUT') {
 
-            if ($this->getMethod() === 'POST') {
-                $rules['cuit'        ] = ['required','integer', new CuitRule, EmpresasService::validadorCuitUnico()];
-            }
-
-            if ($this->getMethod() === 'PUT') {
-
-                $id = array_reverse($this->segments())[0];
-                $rules['cuit'   ] = ['required','integer', new CuitRule, EmpresasService::validadorCuitUnico($id)];
-            }
-        } else {
-            $rules = array_merge($rules, [
-                'telefono'             => 'required|integer',
-                'email'                => 'required|email',
-                'perfil'               => 'required|string|in:COMPRADOR,VENDEDOR,COMPRADOR_VENDEDOR',
-                'direccion'            => 'nullable|string',
-                'localidad'            => 'nullable|string',
-                'provincia'            => 'nullable|string'
-            ]);
-
-            if ($this->getMethod() === 'POST') {
-                $rules['cuit'        ] = ['required','integer', new CuitRule, EmpresasService::validadorCuitUnico()];
-            }
-
-            if ($this->getMethod() === 'PUT') {
-
-                $id = array_reverse($this->segments())[0];
-                $rules['cuit'   ] = ['required','integer', new CuitRule, EmpresasService::validadorCuitUnico($id)];
-            }
+            $id = array_reverse($this->segments())[0];
+            $rules['cuit'   ] = ['required','integer', new CuitRule, EmpresasService::validadorCuitUnico($id)];
         }
         return $rules;
     }

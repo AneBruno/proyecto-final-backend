@@ -8,17 +8,14 @@ use Carbon\Carbon;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\App;
 use Kodear\Laravel\Repository\Exceptions\RepositoryException;
+use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
     
-    static public function createToken(User $user, $rememberMe)
+    static public function createToken(User $user)
     {
         $tokenResult = $user->createToken('Personal Access Token');
-
-        if ($rememberMe) {
-            $tokenResult->token->expires_at = Carbon::now()->addWeek();
-        }
 
         $tokenResult->token->save();
 
@@ -30,34 +27,36 @@ class AuthService
         $user->token()->delete();
     }
 
-    static public function login($gooToken, $rememberMe = false): array {
-        $rawUser = App::make(GoogleService::class)->login($gooToken);
+    static public function login(string $email, string $password): array {
 
         /** @var User $user */
-        try {
-            $user = UserService::getByEmail($rawUser['email']);
-        } catch (RepositoryException $e) {
-            $user = UserService::create(
-                $rawUser['email'      ],
-                $rawUser['given_name' ],
-                $rawUser['family_name'],
-                $rawUser['picture'    ]
+        try{
+            $user = UserService::getByEmail($email);
+        }catch (\Exception $e){
+            throw new AuthenticationException(
+                "Usuario y/o contraseña inválidos"
             );
         }
-
-        if ($user->getAttributeValue('habilitado') == 0) {
+        
+        if(!Hash::check($password, $user->password)){
+            throw new AuthenticationException(
+                "Usuario y/o contraseña inválidos"
+            );
+        }
+        if ($user->habilitado == 0) {
             throw new AuthenticationException(
                 "Usuario \"{$user->email}\" no habilitado.<br />\n" .
                 "Comunicarse con el administrador."
             );
-        }else if ($user->getAttributeValue('rol_id') == 6) {
+        }
+        if ($user->rol_id== 6) {
             throw new AuthenticationException(
                 "El usuario aún está pendiente de validación.<br />\n" .
                 "Comunicarse con el administrador."
             );
         }
 
-        $tokenResult = static::createToken($user, $rememberMe);
+        $tokenResult = static::createToken($user);
 
         return [
             'access_token' => $tokenResult->accessToken,
@@ -68,21 +67,7 @@ class AuthService
     }
     
     static public function obtenerAccesos(User $user): array {
-        $accesos = $user->rol->accesos->toArray();
-        /*if (
-            $user->aprobacion_gerencia_comercial || 
-            $user->aprobacion_dpto_creditos      || 
-            $user->aprobacion_dpto_finanzas      ||
-            $user->confirmacion_pagos
-        ) {
-            $accesos[] = static::crearRegistro('Solicitudes de cobro', 'Saldos', 1001, 'menu', 'gestion-saldos/solicitudes-cobro');
-        }
-        
-        if ($user->aprobacion_cbu) {
-            $accesos[] = static::crearRegistro('Solicitudes de CBU',   'Saldos', 1002, 'menu', 'gestion-saldos/solicitudes-cbu'  );
-        }*/
-        
-        
+        $accesos = $user->rol->accesos->toArray();  
         return $accesos;
     }
     
@@ -96,5 +81,17 @@ class AuthService
             'tipo'        => $tipo,
             'uri'         => $uri,
         ];
+    }
+
+    static public function registro(
+        string $nombre, 
+        string $apellido, 
+        string $telefono, 
+        string $email,
+        string $password
+    ): User{
+        $password_hash = Hash::make($password);
+        return User::crear($nombre,$apellido,$telefono,$email,$password_hash);
+
     }
 }

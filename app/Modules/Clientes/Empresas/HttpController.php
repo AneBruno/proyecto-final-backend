@@ -4,6 +4,7 @@ namespace App\Modules\Clientes\Empresas;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helpers\HttpRequestHelper;
 
 class HttpController extends Controller {
 
@@ -11,13 +12,18 @@ class HttpController extends Controller {
 
         $filtros = $this->obtenerFiltrosPorUsuario();
 
+        $opciones = $request->get('opciones', []);
+        $opciones['with_relation'] = 'usuarioComercial'; //HttpRequestHelper::getModelRelation($request);
+
         $rs = EmpresasService::listar(
             $request->get('page'   , 1 ),
             $request->get('limit'  , 10),
             array_merge($request->get('filtros', []), $filtros),
+            [],
+            $opciones
         );
 
-        return $this->jsonCollection($rs);
+        return EmpresaResource::collection($rs);
     }
 
     public function show(int $id) {

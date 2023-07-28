@@ -12,8 +12,8 @@ class HttpController extends Controller
     public function login(Request $request)
     {
         $loginInfo  = AuthService::login(
-            $request->header('X-go-token'), 
-            $request->get('remember_me')
+            $request->input('email'), 
+            $request->input('password')
         );
         
         return response()->json([
@@ -33,6 +33,18 @@ class HttpController extends Controller
     {
         AuthService::logout($request->user());
 
+        return response()->json();
+    }
+
+    public function registro(Request $request){
+        AuthService::registro(
+            $request->input('nombre'),
+            $request->input('apellido'),
+            $request->input('telefono'),
+            $request->input('email'),
+            $request->input('password')
+
+        );
         return response()->json();
     }
 }

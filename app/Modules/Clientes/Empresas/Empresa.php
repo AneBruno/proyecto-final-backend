@@ -24,7 +24,7 @@ class Empresa extends ModeloConLocalizacion
      * @param int $telefono
      * @param string $email
      * @param string $perfil
-     * @param int|null $usuario_comercial_id
+     * @param int $usuario_comercial_id
      * @param string|null $direccion
      * @param string|null $localidad
      * @param string|null $provincia
@@ -37,7 +37,7 @@ class Empresa extends ModeloConLocalizacion
         ?int    $telefono,
         ?string $email,
         ?string $perfil,
-        ?int   $usuario_comercial_id,
+        int   $usuario_comercial_id,
         ?string $direccion,
         ?string $localidad,
         ?string $provincia
@@ -70,7 +70,7 @@ class Empresa extends ModeloConLocalizacion
         ?int    $telefono,
         ?string $email,
         ?string $perfil,
-        ?int   $usuario_comercial_id,
+        int   $usuario_comercial_id,
         ?string $direccion,
         ?string $localidad,
         ?string $provincia
@@ -102,8 +102,13 @@ class Empresa extends ModeloConLocalizacion
     }
 
     public function usuarioComercial() {
-        return $this->hasOne(User::class, 'id', 'usuario_comercial_id')->withTrashed();
+       // return $this->hasOne(User::class, 'id', 'usuario_comercial_id')->withTrashed();
+       return $this->belongsTo(User::class, 'usuario_comercial_id', 'id');
     }
+
+    /*public function tipoEvento(): BelongsTo {
+        return $this->belongsTo(TipoEvento::class, 'tipo_evento_id', 'id');
+    } */
 
     static public function aplicarFiltros(Builder $query, array $filtros) {
         // esto es para evitar que el join con otras tablas reemplacen los

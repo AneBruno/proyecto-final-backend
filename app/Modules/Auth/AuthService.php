@@ -5,6 +5,7 @@ namespace App\Modules\Auth;
 use App\Modules\Usuarios\Usuarios\User;
 use App\Modules\Usuarios\Usuarios\UserService;
 use Carbon\Carbon;
+use App\Mail\UsuarioNuevoMail;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\App;
 use Kodear\Laravel\Repository\Exceptions\RepositoryException;
@@ -91,7 +92,15 @@ class AuthService
         string $password
     ): User{
         $password_hash = Hash::make($password);
-        return User::crear($nombre,$apellido,$telefono,$email,$password_hash);
+        $usuario = User::crear($nombre,$apellido,$telefono,$email,$password_hash);
+        
+        $admins = UserService::listarAdministradores();
+
+		foreach ($admins as $admin) {
+			UserService::enviarMail($admin, new UsuarioNuevoMail($usuario));
+		}
+
+        return $usuario;
 
     }
 }

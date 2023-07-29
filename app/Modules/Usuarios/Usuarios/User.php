@@ -44,7 +44,7 @@ class User extends ModelRepository implements
         'nombre',
         'apellido',
         'telefono',
-        'avatar',
+       // 'avatar',
         'rol_id',
         'habilitado',
     ];
@@ -104,10 +104,9 @@ class User extends ModelRepository implements
         return $row;
     }
 
-    public function actualizarDatosPersonales(string $nombre, string $apellido, bool $suscripto_notificaciones, ?int $telefono = null) {
+    public function actualizarDatosPersonales(string $nombre, string $apellido, ?int $telefono = null) {
         $this->nombre     = $nombre;
         $this->apellido   = $apellido;
-        $this->suscripto_notificaciones = $suscripto_notificaciones;
         $this->telefono   = $telefono;
         $this->guardar();
         return $this;
@@ -145,7 +144,7 @@ class User extends ModelRepository implements
                 $valor = is_array($valor) ? $valor : [$valor];
                 $query->whereIn('id', $valor);
             }
-            if (in_array($nombre, ['rol_id'/*, 'oficina_id'*/])) {
+            if (in_array($nombre, ['rol_id'])) {
                 $query->whereIn($nombre, is_array($valor)?$valor:[$valor]);
             }
             if (in_array($nombre, [
@@ -187,13 +186,6 @@ class User extends ModelRepository implements
                 $query->orderByRaw("field(id, {$valor}) desc");
             }
         }
-    }
-
-    /**
-     * @deprecated usar esAdministradorPlataforma()
-     */
-    public function isAdministradorPlataforma(): bool {
-        return $this->rol_id === RolHelper::ADMINISTRADOR_PLATAFORMA;
     }
 
     public function esAdministradorPlataforma(): bool {

@@ -88,9 +88,6 @@ class EmpresasService {
     static public function habilitar(int $id): Empresa {
         $empresa = Empresa::getById($id);
         $empresa->habilitar();
-
-        //@todo: acá se envía el correo electrónico a la empresa.
-        static::notificarEmpresaHabilitada($empresa);
         return $empresa;
     }
 
@@ -122,7 +119,7 @@ class EmpresasService {
     }
 
     static public function notificarNuevaEmpresa(Empresa $empresa): void {
-        $rs = UserService::listarAdministrativos();
+        $rs = UserService::listarAdministradores();
 
         foreach($rs as $usuario) {
             try {
@@ -133,11 +130,4 @@ class EmpresasService {
         }
     }
 
-    static public function notificarEmpresaHabilitada(Empresa $empresa): void {
-        if (!$empresa->email) {
-            return;
-        }
-
-        Mail::to($empresa->email)->send(new MailEmpresaHabilitada($empresa));
-    }
 }

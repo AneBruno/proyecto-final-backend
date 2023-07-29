@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Modules\Google\Places;
 
 use Illuminate\Http\Request;
@@ -16,3 +16,4 @@ class HttpController extends Controller
         return $this->json((array)PlacesService::obtenerDetalles($id, $request->get('sessionToken')));
     }
 }
+*/

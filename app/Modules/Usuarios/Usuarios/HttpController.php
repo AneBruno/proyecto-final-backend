@@ -34,9 +34,9 @@ class HttpController extends Controller {
             $request->user()->getKey(),
             $request->post('nombre'    ),
             $request->post('apellido'  ),
-			$request->post('suscripto_notificaciones'),
-            $request->post('telefono'  ),
-            $request->file('foto', null)
+			//$request->post('suscripto_notificaciones'),
+            $request->post('telefono'  )
+            //$request->file('foto', null)
         );
 
         return new UserResource($user);
@@ -65,11 +65,4 @@ class HttpController extends Controller {
         return new UserResource($user);
     }
 
-    public function unsubscribeEmails(Request $request) {
-    	$userId = $request->query('user_id');
-
-		UserService::unsusbcribeFromEmailNotifications($userId);
-
-		return view('pages.unsubscribed-from-emails');
-	}
 }

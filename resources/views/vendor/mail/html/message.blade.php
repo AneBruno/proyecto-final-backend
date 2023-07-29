@@ -20,7 +20,7 @@
 
     {{-- Footer --}}
     @slot('footer')
-        @component('mail::footer', ['unsuscribeRoute' => $unsuscribeRoute ?? null])
+        @component('mail::footer')
         @endcomponent
     @endslot
 @endcomponent

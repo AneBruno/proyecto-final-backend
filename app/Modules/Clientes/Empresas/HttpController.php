@@ -13,7 +13,7 @@ class HttpController extends Controller {
         $filtros = $this->obtenerFiltrosPorUsuario();
 
         $opciones = $request->get('opciones', []);
-        $opciones['with_relation'] = 'usuarioComercial'; //HttpRequestHelper::getModelRelation($request);
+        $opciones['with_relation'] = 'usuarioComercial'; 
 
         $rs = EmpresasService::listar(
             $request->get('page'   , 1 ),

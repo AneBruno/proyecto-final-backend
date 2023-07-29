@@ -1,8 +1,8 @@
-@component('mail::message', ['unsuscribeRoute' => $unsuscribeRoute])
+@component('mail::message')
 
-<p>Se ha creado el usuario <b>{{ $nombre }}</b>.</p>
+<p> Se registró el usuario <b>{{ $nombre }}</b>.</p>
 <br>
 
-<p>Ingrese a la plataforma para asignarle el Rol y la Oficina correspondiente.<p>
+<p>Ingrese a la plataforma para verificar su información y habilitarlo para operar.<p>
 
 @endcomponent

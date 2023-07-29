@@ -5,10 +5,6 @@
                 <td class="content-cell" align="center">
                     {{ Illuminate\Mail\Markdown::parse($slot) }}
 
-                    @if ($unsuscribeRoute)
-                        Para desuscribirse, haga click <a href={{$unsuscribeRoute}}>aquí</a>
-                    @endif
-
                 </td>
             </tr>
         </table>

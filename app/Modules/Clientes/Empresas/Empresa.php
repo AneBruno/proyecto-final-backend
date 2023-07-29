@@ -102,13 +102,8 @@ class Empresa extends ModeloConLocalizacion
     }
 
     public function usuarioComercial() {
-       // return $this->hasOne(User::class, 'id', 'usuario_comercial_id')->withTrashed();
        return $this->belongsTo(User::class, 'usuario_comercial_id', 'id');
     }
-
-    /*public function tipoEvento(): BelongsTo {
-        return $this->belongsTo(TipoEvento::class, 'tipo_evento_id', 'id');
-    } */
 
     static public function aplicarFiltros(Builder $query, array $filtros) {
         // esto es para evitar que el join con otras tablas reemplacen los

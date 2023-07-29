@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Negocio de Granos'),
+    'name' => env('APP_NAME', 'Proyecto'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     /**
      * FROM OF MAILS
      */
-    'from_email' => env('MAIL_FROM_ADDRESS', 'noreply@kodear.net'),
+    'from_email' => env('MAIL_FROM_ADDRESS', 'no-reply@proyecto.com'),
 
 
     /*

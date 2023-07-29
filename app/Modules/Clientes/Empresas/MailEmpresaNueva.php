@@ -18,7 +18,7 @@ class MailEmpresaNueva extends Mailable
      */
     public function __construct($empresa)
     {
-        $this->subject = 'Alta de nueva empresa';
+        $this->subject = 'Nueva empresa registrada';
         $this->empresa = $empresa;
     }
 

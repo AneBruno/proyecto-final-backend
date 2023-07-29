@@ -101,8 +101,8 @@ return [
     */
     
     'reply_to' => [
-        'address' => 'noreply@ngranos.com.ar',
-        'name'    => 'Negocios de Granos'
+        'address' => 'no-reply@proyecto.com',
+        'name'    => 'Proyecto'
     ],
 
     /*

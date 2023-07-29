@@ -29,7 +29,6 @@ class UserService
      * @param string $nombre
      * @param string $apellido
      * @param string|null $url
-     * //nuevo:
      * @param string|null $telefono
      * @param string|null $password
      * @return User
@@ -99,16 +98,16 @@ class UserService
         int           $usuario_id,
         string        $nombre,
         string        $apellido,
-        bool		  $suscripto_notificaciones,
-        ?int          $telefono = null,
-        ?UploadedFile $foto     = null
+        //bool		  $suscripto_notificaciones,
+        ?int          $telefono = null
+       // ?UploadedFile $foto     = null
     ): User {
-        $user = User::getById($usuario_id)->actualizarDatosPersonales($nombre, $apellido, $suscripto_notificaciones, $telefono);
+        $user = User::getById($usuario_id)->actualizarDatosPersonales($nombre, $apellido/*, $suscripto_notificaciones*/, $telefono);
 
-        if ($foto) {
+        /*if ($foto) {
             $storage = ModelFilesServiceFactory::create(new User());
             $storage->storeUploadedFile($usuario_id, $foto);
-        }
+        }*/
 
         return $user;
     }
@@ -122,10 +121,6 @@ class UserService
     static public function habilitar(int $usuario_id, bool $habilitado): User{
         $user = User::getById($usuario_id);
         return $habilitado ? $user->habilitar() : $user->deshabilitar();
-    }
-
-    static public function getUrlImagen(int $id): string {
-        return ModelFilesServiceFactory::create(new User())->getUrl($id);
     }
 
     static public function listarAdministrativos() {
@@ -144,23 +139,8 @@ class UserService
 	}
 
     static public function enviarMail(User $user, Mailable $mail): void {
-    	if (!$user->suscripto_notificaciones) {
-    		return;
-		}
 
         Mail::to($user)->send($mail);
     }
 
-    static public function unsusbcribeFromEmailNotifications(int $userId) {
-    	$user = User::getById($userId);
-
-    	$user->suscripto_notificaciones = false;
-		$user->save();
-
-		return $user;
-	}
-
-    static public function unsubscribeFromEmailsRoute(int $userId) {
-		return URL::signedRoute('unsubscribed-from-emails', ['user_id' => $userId]);
-	}
 }

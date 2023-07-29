@@ -1,12 +1,12 @@
 <?php
-
+/*
 namespace App\Modules\Google\Places;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ *
 
 use App\Modules\Google\StaticMaps\StaticMap;
 use Illuminate\Support\Collection;
@@ -16,7 +16,7 @@ use SKAgarwal\GoogleApi\PlacesApi;
  * Description of PlacesService
  *
  * @author salomon
- */
+ *
 class PlacesService {
 
     private static PlacesApi $api;
@@ -101,4 +101,4 @@ class PlacesService {
     {
         return str_replace(['Provincia de', 'Province'], '',$provincia);
     }
-}
+}*/

@@ -23,7 +23,7 @@ class EmpresaResource extends JsonResource
             'telefono'=> $this->resource->telefono,
             'comercial_asignado' => new UserResource($this->whenLoaded('usuarioComercial')),
             'perfil'     => $this->resource->perfil,
-            'habilitado' => (bool) $this->resource->habilitada == null
+            'habilitada' => (bool) $this->resource->habilitada == null
         ];
     }
 }

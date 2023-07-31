@@ -14,7 +14,6 @@ class PosicionesPolicy
     {
         return $user->hasAnyRol(
             RolHelper::ADMINISTRADOR_PLATAFORMA,
-            RolHelper::RESPONSABLE_COMERCIAL,
             RolHelper::COMERCIAL,
             RolHelper::REPRESENTATE
         );
@@ -27,7 +26,6 @@ class PosicionesPolicy
     {
         return $user->hasAnyRol(
             RolHelper::ADMINISTRADOR_PLATAFORMA,
-            RolHelper::RESPONSABLE_COMERCIAL,
             RolHelper::COMERCIAL,
             RolHelper::REPRESENTATE
         );

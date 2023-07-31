@@ -17,6 +17,7 @@ class TipoProductoResource extends JsonResource
         return [
             'id'               => $this->resource->id,
             'nombre'           => $this->resource->nombre,
+            'habilitado'       => $this->resource->habilitado
         ];
     }
 }

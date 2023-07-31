@@ -18,10 +18,10 @@ class OrdenPolicy
     {
         return $user->hasAnyRol(
             RolHelper::ADMINISTRADOR_PLATAFORMA,
-            RolHelper::RESPONSABLE_COMERCIAL,
+           // RolHelper::RESPONSABLE_COMERCIAL,
             RolHelper::COMERCIAL,
             RolHelper::REPRESENTATE,
-            RolHelper::ADMINISTRATIVO
+            //RolHelper::ADMINISTRATIVO
         );
     }
     /**
@@ -32,10 +32,10 @@ class OrdenPolicy
     {
         return $user->hasAnyRol(
             RolHelper::ADMINISTRADOR_PLATAFORMA,
-            RolHelper::RESPONSABLE_COMERCIAL,
+            //RolHelper::RESPONSABLE_COMERCIAL,
             RolHelper::COMERCIAL,
             RolHelper::REPRESENTATE,
-            RolHelper::ADMINISTRATIVO
+            //RolHelper::ADMINISTRATIVO
         );
     }
 }

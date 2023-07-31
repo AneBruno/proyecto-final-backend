@@ -17,6 +17,7 @@ class TipoProducto extends ModelRepository
 
     protected $fillable = [
         'nombre',
+        'habilitado'
     ];
 
     public function productos()
@@ -38,11 +39,24 @@ class TipoProducto extends ModelRepository
     static public function crear(string $nombre): self {
         $row         = new static;
         $row->nombre = $nombre;
+        $row->habilitado =1;
         return $row->insertar();
     }
 
     public function actualizar(string $nombre): self {
         $this->nombre = $nombre;
         return $this->guardar();
+    }
+
+    public function habilitar(): self {
+        $this->habilitado = true;
+        $this->save();
+        return $this;
+    }
+
+    public function deshabilitar(): self {
+        $this->habilitado = false;
+        $this->save();
+        return $this;
     }
 }

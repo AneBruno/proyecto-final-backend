@@ -31,21 +31,17 @@ class CondicionPago extends ModelRepository
         return $this->guardar();
     }  
     
-    //productos
     public function habilitar(): self {
-        //$this->update(['habilitado' => 1]);
         $this->habilitado = true;
         $this->save();
         return $this;
     }
 
     public function deshabilitar(): self {
-        //$this->update(['habilitado' => 0]);
         $this->habilitado = false;
         $this->save();
         return $this;
     }
-//
 
     static public function aplicarFiltros(Builder $query, array $filtros) {
         parent::aplicarFiltros($query, $filtros);

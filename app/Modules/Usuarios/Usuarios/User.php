@@ -192,20 +192,12 @@ class User extends ModelRepository implements
         return $this->rol_id === RolHelper::ADMINISTRADOR_PLATAFORMA;
     }
     
-    public function esResponsableComercial(): bool {
-        return $this->rol_id === RolHelper::RESPONSABLE_COMERCIAL;
-    }
-    
     public function esComercial(): bool {
         return $this->rol_id === RolHelper::COMERCIAL;
     }
     
     public function esRepresentante(): bool {
         return $this->rol_id === RolHelper::REPRESENTATE;
-    }
-    
-    public function esAdministrativo(): bool {
-        return $this->rol_id === RolHelper::ADMINISTRATIVO;
     }
     
     public function esSoporte(): bool {

@@ -24,7 +24,7 @@ class CambiarEstadoPosicionRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'estado' => 'required|string|in:ACTIVA,DENUNCIADA,RETIRADA,ELIMINADA',
+            'estado' => 'required|string|in:ACTIVA,ELIMINADA',
         ];
 
         return $rules;

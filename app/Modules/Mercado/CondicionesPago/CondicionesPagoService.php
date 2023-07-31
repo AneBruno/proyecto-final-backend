@@ -57,21 +57,17 @@ class CondicionesPagoService
         return $row;
     }
     
-    /**
-     * @param CondicionPago $condicion
-     * @return CondicionPago
-     */
-    public function habilitar(CondicionPago $condicion): CondicionPago {
+
+    static public function habilitar(int $id): CondicionPago {
+        $condicion = CondicionPago::getById($id);
         $condicion->habilitar();
         return $condicion;
     }
 
-    /**
-     * @param CondicionPago $condicion
-     * @return CondicionPago
-     */
-    public function deshabilitar(CondicionPago $condicion): CondicionPago {
-        return $condicion->deshabilitar();
+    static public function deshabilitar(int $id): CondicionPago {
+        $condicion = CondicionPago::getById($id);
+        $condicion->deshabilitar();
+        return $condicion;
     }
 
      /**

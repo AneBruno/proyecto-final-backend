@@ -42,8 +42,21 @@ class HttpController extends Controller
         return $this->json($row);
     }
 
-    public function destroy(TipoProducto $tipos_producto) {
+    /*public function destroy(TipoProducto $tipos_producto) {
         $this->tiposProductosService->eliminar($tipos_producto);
         return $this->json([]);
+    }*/
+
+    public function habilitar(TipoProducto $tipo)
+    {
+        //$this->authorize('anyAction', TipoProducto::class);
+        $tipo = TiposProductoService::habilitar($tipo->getKey());
+        return $this->json($tipo);
+    }
+
+    public function deshabilitar(TipoProducto $tipo) {
+       // $this->authorize('anyAction', TipoProducto::class);
+        $tipo = TiposProductoService::deshabilitar($tipo->getKey());
+        return $this->json($tipo);
     }
 }

@@ -31,9 +31,7 @@ class Orden extends ModelRepository
     protected $fillable = [
         'empresa_id',
         'producto_id',
-        //'calidad_id',
         'puerto_id',
-        //'establecimiento_id',
         'condicion_pago_id',
         'moneda',
         'precio' ,
@@ -41,11 +39,8 @@ class Orden extends ModelRepository
         'fecha_vencimiento',
         'usuario_carga_id',
         'estado_id',
-        /*'fecha_entrega_inicio',
-        'fecha_entrega_fin',*/
         'observaciones',
         'posicion_id',
-        //'entrega',
         'precio_cierre_slip'
     ];
 
@@ -82,7 +77,6 @@ class Orden extends ModelRepository
 				'condicion_pago_id',
 				'estado_id',
 				'moneda',
-				//'entrega',
 				'localidad_destino',
 				'departamento_destino',
 				'provincia_destino'
@@ -117,14 +111,6 @@ class Orden extends ModelRepository
 				}
 			}
 
-            /*if ($filtro === 'fechaEntregaInicioDesde') {
-                $query->where('mercado_ordenes.fecha_entrega_inicio', '>=', $valor);
-            }
-
-            if ($filtro === 'fechaEntregaFinHasta') {
-                $query->where('mercado_ordenes.fecha_entrega_fin', '<=', $valor);
-            }*/
-
             if ($filtro === 'precioDesde') {
                 $query->where('mercado_ordenes.precio', '>=', $valor);
             }
@@ -149,11 +135,6 @@ class Orden extends ModelRepository
                     $query->whereIn('mercado_ordenes.puerto_id', $valor);
                 }
             }
-
-            /*if ($filtro == 'calidad_id') {
-                $valor = is_array($valor) ? $valor : array_filter([$valor]);
-                $query->whereIn('mercado_ordenes.calidad_id', $valor);
-            }*/
 
             if ($filtro == 'producto_id') {
                 $valor = is_array($valor) ? $valor : array_filter([$valor]);
@@ -193,23 +174,6 @@ class Orden extends ModelRepository
     public function producto()
     {
         return $this->belongsTo(Producto::class, 'producto_id', 'id')->withTrashed();
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    /*public function calidad()
-    {
-        return $this->belongsTo(Calidad::class, 'calidad_id', 'id');
-    }*/
-
-    /**
-     * @return BelongsTo
-     */
-    /*public function establecimiento()
-    {
-        return $this->belongsTo(Establecimiento::class, 'establecimiento_id', 'id');
-
     }
 
     /**

@@ -34,9 +34,7 @@ class HttpController extends Controller {
             $request->user()->getKey(),
             $request->post('nombre'    ),
             $request->post('apellido'  ),
-			//$request->post('suscripto_notificaciones'),
             $request->post('telefono'  )
-            //$request->file('foto', null)
         );
 
         return new UserResource($user);

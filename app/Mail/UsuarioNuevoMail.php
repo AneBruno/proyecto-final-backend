@@ -27,7 +27,7 @@ class UsuarioNuevoMail extends Mailable
      */
     public function __construct(User $user)
     {
-        $this->subject = 'Nueva usuario registrado';
+        $this->subject = 'Nuevo usuario registrado';
         $this->user = $user;
     }
 

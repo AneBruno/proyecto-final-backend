@@ -74,24 +74,18 @@ class HttpController extends Controller
         return new CondicionesPagoResource($condicion);
     }
 
-    /**
-     * @param CondicionPago $condicion
-     * @return CondicionesPagoResource
-     */
     public function habilitar(CondicionPago $condicion)
     {
-        $condicion = $this->condicionesService->habilitar($condicion);
-        return new ProductoResource($condicion);
+        $this->authorize('anyAction', CondicionPago::class);
+
+        $condicion = CondicionesPagoService::habilitar($condicion->getKey());
+        return $this->json($condicion);
     }
 
-    /**
-     * @param CondicionPago $producto
-     * @return ProductoResource
-     */
     public function deshabilitar(CondicionPago $condicion) {
-        $condicion = $this->condicionesService->deshabilitar($condicion);
-        return new ProductoResource($condicion);
+        $this->authorize('anyAction', CondicionPago::class);
+        $condicion = CondicionesPagoService::deshabilitar($condicion->getKey());
+        return $this->json($condicion);
     }
-
 
 }

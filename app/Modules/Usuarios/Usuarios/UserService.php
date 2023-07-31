@@ -98,16 +98,9 @@ class UserService
         int           $usuario_id,
         string        $nombre,
         string        $apellido,
-        //bool		  $suscripto_notificaciones,
         ?int          $telefono = null
-       // ?UploadedFile $foto     = null
     ): User {
-        $user = User::getById($usuario_id)->actualizarDatosPersonales($nombre, $apellido/*, $suscripto_notificaciones*/, $telefono);
-
-        /*if ($foto) {
-            $storage = ModelFilesServiceFactory::create(new User());
-            $storage->storeUploadedFile($usuario_id, $foto);
-        }*/
+        $user = User::getById($usuario_id)->actualizarDatosPersonales($nombre, $apellido, $telefono);
 
         return $user;
     }
@@ -121,13 +114,6 @@ class UserService
     static public function habilitar(int $usuario_id, bool $habilitado): User{
         $user = User::getById($usuario_id);
         return $habilitado ? $user->habilitar() : $user->deshabilitar();
-    }
-
-    static public function listarAdministrativos() {
-        return User::listar(1, 0, [
-            'rol_id'  => RolesHelper::ADMINISTRATIVO,
-            'habilitado' => true,
-        ]);
     }
 
     static public function listarAdministradores() {

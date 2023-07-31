@@ -23,10 +23,8 @@ class EmpresaPolicy
     public function anyAction(User $user, Empresa $empresa) {
         if (!$user->hasAnyRol(
             RolHelper::ADMINISTRADOR_PLATAFORMA,
-            RolHelper::RESPONSABLE_COMERCIAL,
             RolHelper::COMERCIAL,
-            RolHelper::REPRESENTATE,
-            RolHelper::ADMINISTRATIVO
+            RolHelper::REPRESENTATE
         )) {
             return false;
         }

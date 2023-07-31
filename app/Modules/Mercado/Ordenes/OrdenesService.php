@@ -90,16 +90,12 @@ class OrdenesService
 
         $orden->empresa_id = $crearOrdenDto->empresa_id;
         $orden->producto_id = $crearOrdenDto->producto_id;
-        //$orden->calidad_id = $crearOrdenDto->calidad_id;
         $orden->condicion_pago_id = $crearOrdenDto->condicion_pago_id;
         $orden->moneda = $crearOrdenDto->moneda;
         $orden->precio = $crearOrdenDto->precio;
         $orden->volumen = $crearOrdenDto->volumen;
         $orden->estado_id = 2;
-        /*$orden->fecha_entrega_inicio = $crearOrdenDto->fecha_entrega_inicio;
-        $orden->fecha_entrega_fin = $crearOrdenDto->fecha_entrega_fin;*/
         $orden->observaciones = $crearOrdenDto->observaciones;
-        //$orden->entrega = $crearOrdenDto->entrega;
         $orden->usuario_carga_id = $user->getKey();
 
         $idOrdenCopia = $crearOrdenDto->id;

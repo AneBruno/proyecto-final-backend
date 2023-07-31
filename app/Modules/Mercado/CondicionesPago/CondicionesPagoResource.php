@@ -20,7 +20,7 @@ class CondicionesPagoResource extends JsonResource
         return [
             'id'            => $condicion->id,
             'descripcion'   => $condicion->descripcion,
-            'habilitado'    => (bool) $this->resource->habilitado,
+            'habilitado'    => (bool) $this->resource->habilitado ==null,
             'created_at' => $condicion->created_at,
             'updated_at' => $condicion->updated_at
         ];

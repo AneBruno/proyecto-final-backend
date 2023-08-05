@@ -1,11 +1,10 @@
 <?php
 
-use App\Modules\GestionDeSaldos\EstadoSolicitud;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migration
+class CambiarNombresEstados extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +13,8 @@ class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migrat
      */
     public function up()
     {
-
+        DB::table('mercado_ordenes_estados')->where('id', 1)->update(['nombre' => 'Activa']);
+        DB::table('mercado_ordenes_estados')->where('id', 3)->update(['nombre' => 'Confirmada']);
     }
 
     /**
@@ -24,6 +24,6 @@ class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migrat
      */
     public function down()
     {
-
+        //
     }
 }

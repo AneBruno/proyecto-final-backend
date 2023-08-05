@@ -1,11 +1,10 @@
 <?php
 
-use App\Modules\GestionDeSaldos\EstadoSolicitud;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migration
+class CambiarRolUsuario extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +13,7 @@ class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migrat
      */
     public function up()
     {
-
+        DB::table('usuarios')->where('id', 2)->update(['rol_id' => '1']);
     }
 
     /**
@@ -24,6 +23,6 @@ class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migrat
      */
     public function down()
     {
-
+        //
     }
 }

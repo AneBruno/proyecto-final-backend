@@ -2,7 +2,6 @@
 
 namespace App\Modules\Clientes\Empresas;
 
-use App\Modules\Clientes\Empresas\Archivos\Archivo;
 use App\Modules\Direcciones\ModeloConLocalizacion;
 use App\Modules\Usuarios\Usuarios\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;

@@ -29,4 +29,6 @@ class UserResource extends JsonResource
             'accesos'        => AuthService::obtenerAccesos($this->resource),
         ];
     }
+
+
 }

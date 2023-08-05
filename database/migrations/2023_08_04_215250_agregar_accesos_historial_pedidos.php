@@ -1,11 +1,10 @@
 <?php
 
-use App\Modules\GestionDeSaldos\EstadoSolicitud;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migration
+class AgregarAccesosHistorialPedidos extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +13,15 @@ class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migrat
      */
     public function up()
     {
+        DB::table('accesos')->insert([
+            'nombre' => 'Historial de pedidos',
+            'grupo' => 'Mercado',
+            'uri' => 'mercado/historial',
+            'tipo' => 'menu',
+            'orden' => '4'
+        ]);
 
+   
     }
 
     /**
@@ -24,6 +31,6 @@ class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migrat
      */
     public function down()
     {
-
+        //
     }
 }

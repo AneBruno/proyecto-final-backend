@@ -25,42 +25,6 @@ class UserService
     }
 
     /**
-     * @param string $email
-     * @param string $nombre
-     * @param string $apellido
-     * @param string|null $url
-     * @param string|null $telefono
-     * @param string|null $password
-     * @return User
-     */
-    static public function create(
-        string $email, 
-        string $nombre, 
-        string $apellido
-        /*?string $telefono,
-        ?string $password,*/
-        //?string $url = null
-        ): User
-    {
-    $user = User::crear($email, $nombre, $apellido, RolesHelper::NUEVO_USUARIO/*, $telefono, $password*/);
-        
-        //sacar??: 
-        if($url) {
-            $content = file_get_contents($url);
-            $storage = ModelFilesServiceFactory::create(new User());
-            $storage->storeContent($user->getKey(), $content);
-        }
-
-        $admins = UserService::listarAdministradores();
-
-		foreach ($admins as $admin) {
-			static::enviarMail($admin, new UsuarioNuevoMail($user));
-		}
-
-        return $user;
-    }
-
-    /**
      *
      * @param User $user
      * @param Rol $rol

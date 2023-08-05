@@ -25,9 +25,9 @@ class SeedTablaEstadosSolicitudes extends Migration
         ];
         
         foreach($descripciones as $descripcion) {
-            $solicitud = new EstadoSolicitud();
-            $solicitud->descripcion = $descripcion;
-            $solicitud->guardar();
+            // $solicitud = new EstadoSolicitud();
+            // $solicitud->descripcion = $descripcion;
+            // $solicitud->guardar();
         }
         
     }

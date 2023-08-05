@@ -27,8 +27,8 @@ class CerrarSlipRequest extends FormRequest
         $rules = [
             'precio'               => ['nullable', new PrecioRule(), 'numeric', 'max:999999'],
             'volumen'              => 'required|integer',
-            'fecha_entrega_inicio' => 'nullable|date',
-            'fecha_entrega_fin'    => 'nullable|date|after_or_equal:fecha_entrega_inicio',
+            /*'fecha_entrega_inicio' => 'nullable|date',
+            'fecha_entrega_fin'    => 'nullable|date|after_or_equal:fecha_entrega_inicio',*/
             'posicion_id'          => 'required|integer|exists:mercado_posiciones,id',
             'precio_cierre_slip'   => ['required', new PrecioRule(), 'numeric','max:999999']
         ];

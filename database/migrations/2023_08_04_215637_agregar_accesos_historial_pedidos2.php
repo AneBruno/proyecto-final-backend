@@ -1,11 +1,10 @@
 <?php
 
-use App\Modules\GestionDeSaldos\EstadoSolicitud;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migration
+class AgregarAccesosHistorialPedidos2 extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +13,18 @@ class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migrat
      */
     public function up()
     {
-
+        DB::table('accesos_roles')->insert([
+            'rol_id' => '1',
+            'acceso_id' => '35'
+        ],
+        [
+            'rol_id' => '3',
+            'acceso_id' => '35'
+        ],
+        [
+            'rol_id' => '4',
+            'acceso_id' => '35' 
+        ]);
     }
 
     /**
@@ -24,6 +34,6 @@ class ChangeDescripcionAnticipoSolcitadoOnEstadosSolicitudesTable extends Migrat
      */
     public function down()
     {
-
+        //
     }
 }

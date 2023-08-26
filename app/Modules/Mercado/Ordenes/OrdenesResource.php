@@ -3,12 +3,11 @@
 namespace App\Modules\Mercado\Ordenes;
 
 use App\Modules\Clientes\Empresas\EmpresaResource;
-use App\Modules\Clientes\Establecimientos\EstablecimientoResource;
 use App\Modules\Mercado\CondicionesPago\CondicionesPagoResource;
+use App\Modules\Mercado\Cosechas\CosechaResource;
 use App\Modules\Mercado\Ordenes\Estado\OrdenEstadoResource;
 use App\Modules\Mercado\Posiciones\PosicionResource;
 use App\Modules\Productos\Productos\ProductoResource;
-use App\Modules\Productos\Calidades\CalidadResource;
 use App\Modules\Puertos\PuertosResource;
 use App\Modules\Usuarios\Usuarios\UserResource;
 use Illuminate\Http\Request;
@@ -51,7 +50,9 @@ class OrdenesResource extends JsonResource
             'localidad_destino'        => $orden->localidad_destino,
             'provincia_destino'        => $orden->provincia_destino,
             'created_at'               => $orden->created_at,
-            'updated_at'               => $orden->updated_at
+            'updated_at'               => $orden->updated_at,
+            //'cosecha_id'               => $orden->cosecha_id,
+            //'cosecha'                  => new CosechaResource($this->whenLoaded('cosecha')),
         ];
     }
 }

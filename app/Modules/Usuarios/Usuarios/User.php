@@ -89,7 +89,8 @@ class User extends ModelRepository implements
         string $apellido, 
         string $telefono, 
         string $email,
-        string $password
+        string $password,
+        string $empresa_registro
         ): self {
         $row           = new static;
         $row->nombre   = $nombre;
@@ -98,6 +99,8 @@ class User extends ModelRepository implements
         $row->email    = $email;
         $row-> password = $password;
         $row->rol_id   = 6;
+        $row-> empresa_registro = $empresa_registro;
+
 
         $row->insertar();
 

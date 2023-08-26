@@ -136,8 +136,6 @@ class HttpController extends Controller
     public function cerrarSlip(CerrarSlipRequest $request, Orden $orden)
     {
         $data = $request->only([
-            'precio',
-            'volumen',
             'posicion_id',
             'precio_cierre_slip'
         ]);

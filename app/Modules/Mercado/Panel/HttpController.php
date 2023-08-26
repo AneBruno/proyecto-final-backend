@@ -2,7 +2,6 @@
 
 namespace App\Modules\Mercado\Panel;
 
-use App\Modules\Mercado\Panel\FormRequests\CambiarEstadosRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -51,12 +50,4 @@ class HttpController extends Controller
         return $this->json($row);
     }
 
-    public function cambiarEstados(CambiarEstadosRequest $request)
-    {
-        $estado = $request->get('estado');
-        $posiciones = $request->get('posiciones_ids');
-
-        PanelService::cambiarEstados($posiciones, $estado);
-        return response()->json(['data' => ['estado' => $estado]], 200);
-    }
 }

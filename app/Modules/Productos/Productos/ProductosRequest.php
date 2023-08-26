@@ -25,7 +25,7 @@ class ProductosRequest extends FormRequest
     {
         return [
             'nombre'           => 'required|string',
-            'tipo_producto_id' => 'required|integer'
+            //'tipo_producto_id' => 'required|integer'
         ];
     }
 }

@@ -18,7 +18,7 @@ class Producto extends ModelRepository
 
     protected $fillable = [
         'nombre',
-        'tipo_producto_id',
+        //'tipo_producto_id',
         'deleted_at',
         'habilitado'
     ];
@@ -31,17 +31,17 @@ class Producto extends ModelRepository
         return $this->nombre;
     }
 
-    static public function crear(string $nombre, int $tipo_producto_id): self {
+    static public function crear(string $nombre/*, int $tipo_producto_id*/): self {
         $row                   = new static;
         $row->nombre           = $nombre;
-        $row->tipo_producto_id = $tipo_producto_id;
+        //$row->tipo_producto_id = $tipo_producto_id;
         $row->habilitado       = true;
         return $row->insertar();
     }
 
-    public function actualizar(string $nombre, int $tipo_producto_id): self {
+    public function actualizar(string $nombre/*, int $tipo_producto_id*/): self {
         $this->nombre           = $nombre;
-        $this->tipo_producto_id = $tipo_producto_id;
+        //$this->tipo_producto_id = $tipo_producto_id;
         return $this->guardar();
     }
 
@@ -58,10 +58,10 @@ class Producto extends ModelRepository
     /**
      * @return HasOne
      */
-    public function tipoProducto()
+    /*public function tipoProducto()
     {
         return $this->hasOne(TipoProducto::class, 'id', 'tipo_producto_id')->withTrashed();
-    }
+    }*/
 
     static public function aplicarFiltros(Builder $query, array $filtros) {
 

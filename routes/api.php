@@ -55,8 +55,6 @@ Route::group([
 			$router->put('productos/{producto}/deshabilitar', [App\Modules\Productos\Productos\HttpController ::class, 'deshabilitar']);
 			$router->put('clientes/empresas/{empresa}/habilitar', [App\Modules\Clientes\Empresas\HttpController   ::class, 'habilitar']);
 			$router->put('clientes/empresas/{empresa}/deshabilitar', [App\Modules\Clientes\Empresas\HttpController   ::class, 'deshabilitar']);
-			$router->put('productos/tipo/{tipo}/habilitar', [App\Modules\Productos\TiposProducto\HttpController   ::class, 'habilitar']);
-			$router->put('productos/tipo/{tipo}/deshabilitar', [App\Modules\Productos\TiposProducto\HttpController   ::class, 'deshabilitar']);
 			
 
 			$router->patch('mercado/posiciones/{posicion}/estado', [App\Modules\Mercado\Posiciones\HttpController  ::class, 'cambiarEstado']);
@@ -67,12 +65,12 @@ Route::group([
 			$router->put('mercado/condicionesPago/{condicion}/habilitar', [App\Modules\Mercado\CondicionesPago\HttpController   ::class, 'habilitar']);
 			$router->put('mercado/condicionesPago/{condicion}/deshabilitar', [App\Modules\Mercado\CondicionesPago\HttpController   ::class, 'deshabilitar']);
 			$router->post('mercado/panel:cambiarEstados', [App\Modules\Mercado\Panel\HttpController       ::class, 'cambiarEstados']);
+			//$router->get('mercado/historial', [App\Modules\Mercado\Ordenes\HttpController::class, 'listarNegocios']);
 
 			$router->apiResources([
 				'usuarios' => '\\' . App\Modules\Usuarios\Usuarios\HttpController         ::class,
 				'roles' => '\\' . App\Modules\Usuarios\Roles\HttpController            ::class,
 				'productos' => '\\' . App\Modules\Productos\Productos\HttpController       ::class,
-				'tipos-producto' => '\\' . App\Modules\Productos\TiposProducto\HttpController   ::class,
 				'puertos' => '\\' . App\Modules\Puertos\HttpController                   ::class,
 
                 'clientes/empresas' =>  App\Modules\Clientes\Empresas\HttpController::class,
@@ -83,6 +81,7 @@ Route::group([
 				'mercado/panel' => '\\' . App\Modules\Mercado\Panel\HttpController             ::class,
 				'mercado/ordenes' => '\\' . App\Modules\Mercado\Ordenes\HttpController           ::class,
 				'mercado/cosechas' => '\\' . App\Modules\Mercado\Cosechas\HttpController          ::class,
+				//'mercado/historial' => '\\' . App\Modules\Mercado\Ordenes\HttpController           ::class,
 
 			]);
 

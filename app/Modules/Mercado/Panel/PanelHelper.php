@@ -14,7 +14,7 @@ class PanelHelper
 
         /** @var Orden $orden */
         foreach($ordenes as $orden) {
-            if ($orden->isFirme() && $orden->getPrecio() < $mejorOrden->getPrecio()) {
+            if ($orden->isActiva() && $orden->getPrecio() < $mejorOrden->getPrecio()) {
                 $mejorOrden = $orden;
             }
         }
@@ -25,7 +25,7 @@ class PanelHelper
     {
         /** @var Orden $orden */
         foreach ($ordenes as $orden) {
-            if ($orden->isFirme()) {
+            if ($orden->isActiva()) {
                 return $orden;
             }
         }
@@ -49,7 +49,7 @@ class PanelHelper
             //Volumen de la orden que va iterando
             $volumenOrden = $orden->getVolumen();
 
-            if ($orden->isFirme() && $orden->getPrecio() === $mejorPrecioOrden) {
+            if ($orden->isActiva() && $orden->getPrecio() === $mejorPrecioOrden) {
                 $mejoresToneladas += $volumenOrden;
             } else {
                 $otrasToneladas += $volumenOrden;

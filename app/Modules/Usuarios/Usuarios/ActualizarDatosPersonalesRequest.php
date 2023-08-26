@@ -27,7 +27,8 @@ class ActualizarDatosPersonalesRequest extends FormRequest
             'nombre'     => 'required|string',
             'apellido'   => 'required|string',
             'telefono'   => 'nullable|integer',
-            'foto'       => 'nullable|file',
+            
+            
         ];
     }
 }

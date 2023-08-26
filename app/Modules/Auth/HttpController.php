@@ -42,7 +42,8 @@ class HttpController extends Controller
             $request->input('apellido'),
             $request->input('telefono'),
             $request->input('email'),
-            $request->input('password')
+            $request->input('password'),
+            $request->input('empresa_registro')
 
         );
         return response()->json();

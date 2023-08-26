@@ -27,14 +27,10 @@ class Posicion extends ModelRepository
     protected $guarded = [];
 
     const ACTIVA = 'ACTIVA';
-    //const DENUNCIADA = 'DENUNCIADA';
-    //const RETIRADA = 'RETIRADA';
     const ELIMINADA = 'ELIMINADA';
 
     const ESTADOS = [
         self::ACTIVA,
-        //self::DENUNCIADA,
-        //self::RETIRADA,
         self::ELIMINADA,
     ];
 
@@ -113,9 +109,8 @@ class Posicion extends ModelRepository
      */
     public function getDestino()
     {
-        if (!is_null($this->puerto_id)) {
-            return $this->puerto;
-        } 
+        return $this->puerto;
+         
     }
 
     public function getLocalidadDestino()

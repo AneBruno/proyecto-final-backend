@@ -41,7 +41,8 @@ class Orden extends ModelRepository
         'estado_id',
         'observaciones',
         'posicion_id',
-        'precio_cierre_slip'
+        'precio_cierre_slip',
+        'posicion_id'
     ];
 
     public function actualizar(array $data): self {
@@ -49,7 +50,7 @@ class Orden extends ModelRepository
         return $this->guardar();
     }
 
-    public function crear(CrearOrdenDto $data): self {
+    public function crear(CrearOrdenDto $data): void {
 
     }
 
@@ -78,7 +79,6 @@ class Orden extends ModelRepository
 				'estado_id',
 				'moneda',
 				'localidad_destino',
-				'departamento_destino',
 				'provincia_destino'
 			])) {
                 if($valor === 'null') {
@@ -226,9 +226,14 @@ class Orden extends ModelRepository
         return $this->volumen;
     }
     
-    public function isFirme(): bool
+   /* public function isFirme(): bool
     {
         return $this->estado_id === OrdenEstado::ORDEN_FIRME;
+    }*/
+
+    public function isActiva(): bool
+    {
+        return $this->estado_id === OrdenEstado::OFERTA_ACTIVA;
     }
 
     public function getObtenerPrecioCierreSlip()
@@ -245,7 +250,7 @@ class Orden extends ModelRepository
         return implode(' - ', [
             date('DD-MM-YYY', strtotime($this->fecha_vencimiento)),
             $this->empresa()->obtenerAbreviacion(),
-            $this->producto()->nombre,
+           // $this->producto()->nombre,
             "{$this->volumen}tn",
             $this->moneda,
             $this->precio

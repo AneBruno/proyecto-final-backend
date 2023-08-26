@@ -13,7 +13,7 @@ class CrearTablaUsuarios extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
+        /*Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
             $table->string("email")->unique();
             $table->string("password")->nullable();
@@ -23,7 +23,7 @@ class CrearTablaUsuarios extends Migration
             $table->string('avatar');
             $table->timestamps();
             $table->softDeletes();
-        });
+        });*/
     }
 
     /**

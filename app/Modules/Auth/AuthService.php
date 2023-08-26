@@ -46,13 +46,13 @@ class AuthService
         }
         if ($user->habilitado == 0) {
             throw new AuthenticationException(
-                "Usuario \"{$user->email}\" no habilitado.<br />\n" .
+                "El usuario \"{$user->email}\" no está habilitado.\n" .
                 "Comunicarse con el administrador."
             );
         }
         if ($user->rol_id== 6) {
             throw new AuthenticationException(
-                "El usuario aún está pendiente de validación.<br />\n" .
+                "El usuario aún está pendiente de validación.\n" .
                 "Comunicarse con el administrador."
             );
         }
@@ -89,10 +89,11 @@ class AuthService
         string $apellido, 
         string $telefono, 
         string $email,
-        string $password
+        string $password,
+        string $empresa_registro
     ): User{
         $password_hash = Hash::make($password);
-        $usuario = User::crear($nombre,$apellido,$telefono,$email,$password_hash);
+        $usuario = User::crear($nombre,$apellido,$telefono,$email,$password_hash,$empresa_registro);
         
         $admins = UserService::listarAdministradores();
 

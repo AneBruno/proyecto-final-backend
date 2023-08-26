@@ -25,7 +25,7 @@ class CambiarEstadosRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'estado' => 'required|string|in:CREADA,DENUNCIADA,RETIRADA',
+            'estado' => 'required|string|in:ACTIVA',
             'posiciones_ids' => 'array',
             'posiciones_ids.*' => 'integer|exists:mercado_posiciones,id'
         ];

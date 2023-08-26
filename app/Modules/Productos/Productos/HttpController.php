@@ -39,8 +39,8 @@ class HttpController extends Controller
     public function store(ProductosRequest $request)
     {
         $nombre         = $request->input('nombre');
-        $tipoProductoId = $request->input('tipo_producto_id');
-        $producto       = $this->productosService->crear($nombre, $tipoProductoId);
+        //$tipoProductoId = $request->input('tipo_producto_id');
+        $producto       = $this->productosService->crear($nombre/*, $tipoProductoId*/);
         $resource       = new ProductoResource($producto);
 
         return $resource;
@@ -49,8 +49,8 @@ class HttpController extends Controller
     public function update(int $id, ProductosRequest $request)
     {
         $nombre         = $request->input('nombre');
-        $tipoProductoId = $request->input('tipo_producto_id');
-        $producto       = $this->productosService->actualizar($id, $nombre, $tipoProductoId);
+        //$tipoProductoId = $request->input('tipo_producto_id');
+        $producto       = $this->productosService->actualizar($id, $nombre/*, $tipoProductoId*/);
         $resource       = new ProductoResource($producto);
 
         return $resource;

@@ -27,6 +27,7 @@ class UserResource extends JsonResource
             'rol'            => new RolResource($this->rol),
             'habilitado'     => (bool) $this->habilitado,
             'accesos'        => AuthService::obtenerAccesos($this->resource),
+            'empresa_registro' =>$this->empresa_registro
         ];
     }
 

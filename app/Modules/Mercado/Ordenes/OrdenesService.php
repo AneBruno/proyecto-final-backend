@@ -45,9 +45,9 @@ class OrdenesService
      */
     public function listar(User $user, int $page = 1, int $limit = 0, array $filtros = [], array $ordenes = [], array $opciones = [])
     {
-        if ($user->hasAnyRol(RolHelper::REPRESENTATE)) {
+        /*if ($user->hasAnyRol(RolHelper::REPRESENTATE)) {
             $filtros['usuario_carga_id'] = $user->getKey();
-        }
+        }*/
 
         return Orden::listar(
             $page,

@@ -32,8 +32,8 @@ class ModelRepository extends Model {
         return $builder->get();
     }
 
-    static public function listarTodos(array $filtros = [], array $ordenes = []): Collection {
-        return static::listar(1, 0, $filtros, $ordenes);
+    static public function listarTodos(array $filtros = [], array $ordenes = [], array $opciones = []): Collection {
+        return static::listar(1, 0, $filtros, $ordenes, $opciones);
     }
 
     static public function generarConsulta(array $filtros = [], array $ordenes = [], array $opciones = []): Builder {

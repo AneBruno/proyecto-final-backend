@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Modules\Usuarios\Usuarios\User;
 use App\Modules\Usuarios\Roles\RolHelper;
 use Illuminate\Http\Request;
+use App\Mail\UsuarioHabilitadoMail;
 
 class HttpController extends Controller {
 
@@ -60,7 +61,11 @@ class HttpController extends Controller {
         $this->validarAdministrador();
 
         $user = UserService::habilitar($id, $request->boolean('habilitar'));
+        
         return new UserResource($user);
     }
 
 }
+  /*if ($user->habilitado == true){
+            UserService::enviarMail($user, new UsuarioHabilitadoMail($user));
+        }*/

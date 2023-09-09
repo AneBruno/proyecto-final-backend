@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 
-class CambiarDatosPuertos2 extends Migration
+class ModificarContenidoFormasPago extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,10 @@ class CambiarDatosPuertos2 extends Migration
      */
     public function up()
     {
-        DB::table('puertos')->where('id', '2')->update(['localidad' => 'Rosario']);
-        DB::table('puertos')->where('id', '2')->update(['provincia' => 'Santa Fe']);
-        DB::table('puertos')->where('id', '4')->update(['localidad' => 'Quequén']);
-        DB::table('puertos')->where('id', '4')->update(['provincia' => 'Buenos Aires']);
+        DB::table('condiciones_pago')->where('id', '3')->update(['descripcion' => 'Contra entrega']);
+        DB::table('condiciones_pago')
+        ->whereIn('id', [4,5])
+        ->delete();
     }
 
     /**

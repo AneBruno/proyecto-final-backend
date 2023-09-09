@@ -10,6 +10,7 @@ class RolHelper
 
     public const COMERCIAL = 3;
 
+    //Cliente:
     public const REPRESENTATE = 4;
 
     public const NUEVO_USUARIO = 6;

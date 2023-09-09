@@ -44,7 +44,6 @@ class User extends ModelRepository implements
         'nombre',
         'apellido',
         'telefono',
-       // 'avatar',
         'rol_id',
         'habilitado',
     ];
@@ -92,14 +91,15 @@ class User extends ModelRepository implements
         string $password,
         string $empresa_registro
         ): self {
-        $row           = new static;
-        $row->nombre   = $nombre;
-        $row->apellido = $apellido;
-        $row->telefono = $telefono;
-        $row->email    = $email;
-        $row-> password = $password;
-        $row->rol_id   = 6;
-        $row-> empresa_registro = $empresa_registro;
+        $row                     = new static;
+        $row->nombre             = $nombre;
+        $row->apellido           = $apellido;
+        $row->telefono           = $telefono;
+        $row->email              = $email;
+        $row-> password          = $password;
+        $row->rol_id             = 6;
+        $row-> empresa_registro  = $empresa_registro;
+        $row ->habilitado        = false;
 
 
         $row->insertar();

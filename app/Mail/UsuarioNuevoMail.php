@@ -12,7 +12,7 @@ class UsuarioNuevoMail extends Mailable
     use Queueable;
     use SerializesModels;
     
-    public $subject = 'Asignación de Rol y Oficina a nuevo usuario';
+    //public $subject = 'Asignación de Rol y Oficina a nuevo usuario';
     
     /**
      *

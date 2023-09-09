@@ -123,6 +123,11 @@ class Posicion extends ModelRepository
         return $this->provincia_destino;
     }
 
+    public function getVolumen()
+    {
+        return $this->volumen;
+    }
+
 
     /**
      * @return bool

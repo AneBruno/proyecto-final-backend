@@ -3,6 +3,7 @@
 namespace App\Modules\Mercado\Panel;
 
 use Illuminate\Http\Request;
+use App\Helpers\HttpRequestHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -27,6 +28,7 @@ class HttpController extends Controller
      */
     public function index(Request $request)
     {
+        $opciones['with_relation'] = HttpRequestHelper::getModelRelation($request);
         $filtros = $request->input('filtros', []);
 
         if (!array_key_exists('estado', $filtros)) {

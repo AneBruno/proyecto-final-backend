@@ -81,7 +81,7 @@ Route::group([
 				'mercado/panel' => '\\' . App\Modules\Mercado\Panel\HttpController             ::class,
 				'mercado/ordenes' => '\\' . App\Modules\Mercado\Ordenes\HttpController           ::class,
 				'mercado/cosechas' => '\\' . App\Modules\Mercado\Cosechas\HttpController          ::class,
-				//'mercado/historial' => '\\' . App\Modules\Mercado\Ordenes\HttpController           ::class,
+				'mercado/historial' => '\\' . App\Modules\Mercado\Ordenes\HttpController           ::class,
 
 			]);
 

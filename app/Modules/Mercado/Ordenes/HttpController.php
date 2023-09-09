@@ -169,4 +169,9 @@ class HttpController extends Controller
             'observaciones'
         ]);
     }
+
+    public function listarHistorial(){
+        //listar todas las ordenes donde 'posicion_id' is not null
+        //todos datos orden + razon social posicion
+    }
 }

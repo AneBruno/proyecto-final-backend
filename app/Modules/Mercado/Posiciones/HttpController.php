@@ -67,11 +67,12 @@ class HttpController extends Controller
             $request->input('empresa_id'),
             $request->input('moneda'),
             $request->input('precio'),
+            $request->input('volumen'),
             $request->input('condicion_pago_id'),
             $request->input('cosecha_id'),
             $request->input('puerto_id'),
             $request->input('observaciones'),
-            $request->input('id'),
+            $request->input('id')            
         );
 
         return new PosicionResource($row);
@@ -91,6 +92,7 @@ class HttpController extends Controller
             $request->input('empresa_id'),
             $request->input('moneda'),
             $request->input('precio'),
+            $request->input('volumen'),
             $request->input('condicion_pago_id'),
             $request->input('puerto_id'),
             $request->input('cosecha_id'),

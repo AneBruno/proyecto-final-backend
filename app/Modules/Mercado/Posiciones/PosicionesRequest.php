@@ -34,7 +34,8 @@ class PosicionesRequest extends FormRequest
             'precio' => ['required', new PrecioRule(), 'numeric', 'max:999999'],
             'condicion_pago_id' => 'required|integer|exists:condiciones_pago,id',
             'cosecha_id' => 'required|integer|exists:mercado_cosechas,id',
-            'observaciones' => 'nullable|string'
+            'observaciones' => 'nullable|string',
+            'volumen'              => 'required|integer',
         ];
 
         return $rules;
@@ -46,6 +47,7 @@ class PosicionesRequest extends FormRequest
             'moneda.required_if' => 'Obligatorio',
             'precio.required_if' => 'Obligatorio',
             'puerto_id.required_if' => 'Obligatorio',
+            'volumen.required_if' => 'Obligatorio',
         ];
     }
 

@@ -25,13 +25,14 @@ class PosicionesService
      */
     static public function listar(int $offset = 0, int $limit = 0, array $filtros = [], array $ordenes = [], array $opciones = [])
     {
-        if (!array_key_exists('estado', $filtros)) {
+        /*if (!array_key_exists('estado', $filtros)) {
             $filtros['estado'] = 'todas'; //listado por defecto
-        }
+        }*/
         $opciones['with_relation'] = array_merge([
             'producto',
             'puerto',
             'condicionPago',
+            'usuarioCarga'
         ], $opciones['with_relation']);
 
         return Posicion::listar($offset, $limit, $filtros, $ordenes, $opciones);
@@ -48,7 +49,8 @@ class PosicionesService
             'producto',
             'puerto',
             'condicionPago',
-            'empresa'
+            'empresa',
+            'usuarioCarga'
         ]);
 
         return Posicion::getById($id, [], $opciones);
@@ -60,6 +62,7 @@ class PosicionesService
         int     $empresaId,
         string  $moneda,
         float   $precio,
+        int     $volumen,
         ?int    $condicionPagoId      = null,
         ?int    $cosecha_id           = null,
         ?int    $puertoId             = null,
@@ -77,6 +80,7 @@ class PosicionesService
         $row->condicion_pago_id     = $condicionPagoId;
         $row->cosecha_id            = $cosecha_id;
         $row->observaciones         = $observaciones;
+        $row->volumen               = $volumen;
 
         /** @var Puerto $puerto */
         $puerto = PuertoHelper::obtenerPuertoById($puertoId);
@@ -120,8 +124,9 @@ class PosicionesService
         int     $id,
         int     $productoId,
         int     $empresaId,
-        ?string  $moneda,
-        ?float   $precio,
+        ?string $moneda,
+        ?float  $precio,
+        int     $volumen,
         ?int    $condicionPagoId      = null,
         ?int    $cosechaId            = null,
         ?int    $puertoId             = null,
@@ -137,6 +142,7 @@ class PosicionesService
         $row->cosecha_id            = $cosechaId;
         $row->puerto_id             = $puertoId;
         $row->observaciones         = $observaciones;
+        $row->volumen               = $volumen;
 
         $row->guardar();
 

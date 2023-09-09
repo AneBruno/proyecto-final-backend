@@ -32,6 +32,7 @@ class PanelService {
     public function listar(array $filtros = []) {
         $rs = $this->getPosicionesAgrupadasFiltradasPorFecha($filtros);
         foreach($rs as $row){
+            //$row->usuario_carga=$this
             $row->cantidad_ofertas=$this->obtenerCantidadOfertas($row);
         }
         return $rs;

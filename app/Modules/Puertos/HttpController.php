@@ -5,7 +5,6 @@ namespace App\Modules\Puertos;
 use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Modules\Geo\PlacesRepository;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class HttpController extends Controller
@@ -34,9 +33,6 @@ class HttpController extends Controller
             $request->input('nombre'  ),
             $request->input('localidad'  ),
             $request->input('provincia'  )
-            //$request->input('terminal'),
-            /*$request->input('placeId' ),
-            $request->input('descripcion_ubicacion')*/
         );
 
         return $this->json($row);
@@ -49,9 +45,6 @@ class HttpController extends Controller
             $request->input('nombre'  ),
             $request->input('localidad'  ),
             $request->input('provincia'  )
-            //$request->input('terminal'),
-            /*$request->input('placeId' ),
-            $request->input('descripcion_ubicacion')*/
         );
 
         return $this->json($row);
@@ -82,6 +75,6 @@ class HttpController extends Controller
     }*/
 
     public function obtenerDetalles(string $id) {
-        return new JsonResource(PlacesRepository::obtenerDetalles($id));
+        //return new JsonResource(PlacesRepository::obtenerDetalles($id));
     }
 }

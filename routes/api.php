@@ -65,7 +65,7 @@ Route::group([
 			$router->put('mercado/condicionesPago/{condicion}/habilitar', [App\Modules\Mercado\CondicionesPago\HttpController   ::class, 'habilitar']);
 			$router->put('mercado/condicionesPago/{condicion}/deshabilitar', [App\Modules\Mercado\CondicionesPago\HttpController   ::class, 'deshabilitar']);
 			$router->post('mercado/panel:cambiarEstados', [App\Modules\Mercado\Panel\HttpController       ::class, 'cambiarEstados']);
-			//$router->get('mercado/historial', [App\Modules\Mercado\Ordenes\HttpController::class, 'listarNegocios']);
+			//$router->get('mercado/historial/consulta/{orden}', [App\Modules\Mercado\Ordenes\HttpController::class, 'cerrarSlip']);
 
 			$router->apiResources([
 				'usuarios' => '\\' . App\Modules\Usuarios\Usuarios\HttpController         ::class,

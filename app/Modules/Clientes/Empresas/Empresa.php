@@ -27,6 +27,7 @@ class Empresa extends ModeloConLocalizacion
      * @param string|null $direccion
      * @param string|null $localidad
      * @param string|null $provincia
+     * * @param float|null $comision
      * @return static
      * @throws RepositoryException
      */
@@ -39,7 +40,8 @@ class Empresa extends ModeloConLocalizacion
         int   $usuario_comercial_id,
         ?string $direccion,
         ?string $localidad,
-        ?string $provincia
+        ?string $provincia,
+        ?float $comision
     ): self {
 
         $row = new static;
@@ -50,9 +52,10 @@ class Empresa extends ModeloConLocalizacion
         $row->perfil               = $perfil;
         $row->usuario_comercial_id = $usuario_comercial_id;
         $row->habilitada           = false;
-        $row->direccion               = $direccion;
-        $row->localidad               = $localidad;
-        $row->provincia               = $provincia;
+        $row->direccion            = $direccion;
+        $row->localidad            = $localidad;
+        $row->provincia            = $provincia;
+        $row->comision             = $comision;
 
         return $row->insertar();
     }
@@ -72,7 +75,8 @@ class Empresa extends ModeloConLocalizacion
         int   $usuario_comercial_id,
         ?string $direccion,
         ?string $localidad,
-        ?string $provincia
+        ?string $provincia,
+        ?float $comision
     ): self {
 
         $this->cuit                 = $cuit;
@@ -81,9 +85,10 @@ class Empresa extends ModeloConLocalizacion
         $this->email                = $email;
         $this->perfil               = $perfil;
         $this->usuario_comercial_id = $usuario_comercial_id;
-        $this->direccion               = $direccion;
-        $this->localidad               = $localidad;
-        $this->provincia               = $provincia;
+        $this->direccion            = $direccion;
+        $this->localidad            = $localidad;
+        $this->provincia            = $provincia;
+        $this->comision             = $comision;
 
         return $this->guardar();
     }

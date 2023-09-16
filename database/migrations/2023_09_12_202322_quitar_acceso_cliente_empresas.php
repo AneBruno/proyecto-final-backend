@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class AsiganrNullTipoproductoTablaProductos extends Migration
+class QuitarAccesoClienteEmpresas extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +13,11 @@ class AsiganrNullTipoproductoTablaProductos extends Migration
      */
     public function up()
     {
-        DB::table('productos')->whereBetween('id', [1, 6])->update(['tipo_producto_id' => NULL]);
-        
+        DB::transaction(function () {
+            DB::table('accesos_roles')
+                ->where('id', '=', 25) 
+                ->delete();
+        });
     }
 
     /**

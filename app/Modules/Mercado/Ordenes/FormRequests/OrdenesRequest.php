@@ -40,6 +40,7 @@ class OrdenesRequest extends FormRequest
             'volumen'              => 'required|integer',
             'estado_id'            => 'nullable|integer|exists:mercado_ordenes_estados,id',
             'observaciones'        => 'nullable|string',
+            'toneladas_cierre'     => 'nullable|int'
 
         ];
 

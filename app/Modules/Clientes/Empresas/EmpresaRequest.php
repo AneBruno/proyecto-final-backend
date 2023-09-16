@@ -38,7 +38,8 @@ class EmpresaRequest extends FormRequest
             'usuario_comercial_id' => 'required|integer',
             'direccion'            => 'nullable|string',
             'localidad'            => 'nullable|string',
-            'provincia'            => 'nullable|string'
+            'provincia'            => 'nullable|string',
+            'comision'             => 'nullable|numeric'
         ];      
 
         if ($this->getMethod() === 'POST') {

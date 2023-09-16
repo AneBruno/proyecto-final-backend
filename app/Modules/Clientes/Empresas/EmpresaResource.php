@@ -17,13 +17,14 @@ class EmpresaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'         => $this->resource->id,
-            'cuit' => $this->resource->cuit,
-            'razon_social' => $this->resource->razon_social,
-            'telefono'=> $this->resource->telefono,
-            'comercial_asignado' => new UserResource($this->whenLoaded('usuarioComercial')),
-            'perfil'     => $this->resource->perfil,
-            'habilitada' => (bool) $this->resource->habilitada == null
+            'id'                    => $this->resource->id,
+            'cuit'                  => $this->resource->cuit,
+            'razon_social'          => $this->resource->razon_social,
+            'telefono'              => $this->resource->telefono,
+            'comercial_asignado'    => new UserResource($this->whenLoaded('usuarioComercial')),
+            'perfil'                => $this->resource->perfil,
+            'habilitada'            => (bool) $this->resource->habilitada == null,
+            'comision'              => $this->resource->comision
         ];
     }
 }

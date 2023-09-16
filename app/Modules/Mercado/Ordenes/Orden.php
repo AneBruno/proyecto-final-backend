@@ -42,7 +42,8 @@ class Orden extends ModelRepository
         'observaciones',
         'posicion_id',
         'precio_cierre_slip',
-        'posicion_id'
+        'posicion_id',
+        'toneladas_cierre'
     ];
 
     public function actualizar(array $data): self {
@@ -141,10 +142,10 @@ class Orden extends ModelRepository
                 $query->whereIn('mercado_ordenes.producto_id', $valor);
             }
 
-            if ($filtro == 'usuario_carga_id') {
+            /*if ($filtro == 'usuario_carga_id') {
                 $valor = is_array($valor) ? $valor : array_filter([$valor]);
                 $query->whereIn('mercado_ordenes.usuario_carga_id', $valor);
-            }
+            }*/
         }
     }
 

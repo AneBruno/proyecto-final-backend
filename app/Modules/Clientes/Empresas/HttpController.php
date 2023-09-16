@@ -42,7 +42,8 @@ class HttpController extends Controller {
             $request->input('usuario_comercial_id' ),
             $request->input('direccion'            ),
             $request->input('localidad'            ),
-            $request->input('provincia'            )
+            $request->input('provincia'            ),
+            $request->input('comision'            )
         );
 
         return $this->json($empresa);
@@ -61,7 +62,8 @@ class HttpController extends Controller {
             $request->input('usuario_comercial_id' ),
             $request->input('direccion'            ),
             $request->input('localidad'            ),
-            $request->input('provincia'            )
+            $request->input('provincia'            ),
+            $request->input('comision'             )
         );
 
         return $this->json($empresa);
@@ -86,10 +88,6 @@ class HttpController extends Controller {
     protected function obtenerFiltrosPorUsuario(): array {
         $usuario = $this->getRequest()->user();
         $filtros = [];
-
-        if ($usuario->rol_id === 4) {
-            $filtros['usuario_comercial_id'] = $usuario->id;
-        }
 
         return $filtros;
     }

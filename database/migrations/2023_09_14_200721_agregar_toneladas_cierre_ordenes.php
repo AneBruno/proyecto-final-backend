@@ -3,9 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
-class AsiganrNullTipoproductoTablaProductos extends Migration
+class AgregarToneladasCierreOrdenes extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +13,9 @@ class AsiganrNullTipoproductoTablaProductos extends Migration
      */
     public function up()
     {
-        DB::table('productos')->whereBetween('id', [1, 6])->update(['tipo_producto_id' => NULL]);
-        
+        Schema::table('mercado_ordenes', function (Blueprint $table) {
+            $table->integer('toneladas_cierre')->nullable(true);
+        });
     }
 
     /**

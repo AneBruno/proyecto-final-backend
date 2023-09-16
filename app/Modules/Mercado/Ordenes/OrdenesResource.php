@@ -51,6 +51,7 @@ class OrdenesResource extends JsonResource
             'provincia_destino'        => $orden->provincia_destino,
             'created_at'               => $orden->created_at,
             'updated_at'               => $orden->updated_at,
+            'toneladas_cierre'         => $orden->toneladas_cierre
             //'cosecha_id'               => $orden->cosecha_id,
             //'cosecha'                  => new CosechaResource($this->whenLoaded('cosecha')),
         ];

@@ -27,7 +27,8 @@ class EmpresasService {
         int   $usuarioComercial,
         ?string $direccion,
         ?string $localidad,
-        ?string $provincia
+        ?string $provincia,
+        ?float $comision 
     ): Empresa {
 
         DB::beginTransaction();
@@ -42,7 +43,8 @@ class EmpresasService {
             $usuarioComercial,
             $direccion,
             $localidad,
-            $provincia    
+            $provincia,
+            $comision    
         );
 
         DB::commit();
@@ -62,7 +64,8 @@ class EmpresasService {
         int    $usuarioComercial,
         ?string $direccion,
         ?string $localidad,
-        ?string $provincia
+        ?string $provincia,
+        ?float $comision
     ): Empresa {
 
         DB::beginTransaction();
@@ -77,7 +80,8 @@ class EmpresasService {
             $usuarioComercial,
             $direccion,
             $localidad,
-            $provincia
+            $provincia,
+            $comision
         );
 
         DB::commit();

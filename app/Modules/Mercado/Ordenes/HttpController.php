@@ -138,10 +138,16 @@ class HttpController extends Controller
         $data = $request->only([
             'posicion_id',
             'precio_cierre_slip',
+            'toneladas_cierre',
+            'comision_vendedor_cierre',
+            'comision_comprador_cierre'
+        ]);
+        $data_posicion = $request->only([
+            'posicion_id',
             'toneladas_cierre'
         ]);
 
-        $orden = $this->service->cerrarSlip($orden, $data);
+        $orden = $this->service->cerrarSlip($orden, $data, $data_posicion);
 
         return new OrdenesResource($orden);
     }

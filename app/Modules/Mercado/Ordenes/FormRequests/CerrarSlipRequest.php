@@ -29,7 +29,9 @@ class CerrarSlipRequest extends FormRequest
            // 'volumen'              => 'required|integer',
             'posicion_id'          => 'required|integer|exists:mercado_posiciones,id',
             'precio_cierre_slip'   => ['required', new PrecioRule(), 'numeric','max:999999'],
-            'toneladas_cierre'     => 'required|integer',
+            'toneladas_cierre'     => 'required|numeric',
+            'comision_comprador_cierre' =>'required|numeric',
+            'comision_vendedor_cierre' =>'required|numeric',
         ];
 
         return $rules;

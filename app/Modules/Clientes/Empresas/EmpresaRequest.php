@@ -39,7 +39,7 @@ class EmpresaRequest extends FormRequest
             'direccion'            => 'nullable|string',
             'localidad'            => 'nullable|string',
             'provincia'            => 'nullable|string',
-            'comision'             => 'nullable|numeric'
+            'comision'             => 'required|numeric'
         ];      
 
         if ($this->getMethod() === 'POST') {

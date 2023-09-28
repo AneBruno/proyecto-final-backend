@@ -14,7 +14,7 @@ class CrearOrdenDto extends DataTransferObject
     public int $condicion_pago_id;
     public string $moneda;
     public float $precio;
-    public int $volumen;
+    public float $volumen;
     public ?int $estado_id;
     public ?string $observaciones = null;
 

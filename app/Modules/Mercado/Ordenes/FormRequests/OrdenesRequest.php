@@ -33,14 +33,14 @@ class OrdenesRequest extends FormRequest
             'id'                   => 'nullable', //Id que se manda cuando se copia una orden.
             'empresa_id'           => 'required|integer|exists:empresas,id',
             'producto_id'          => 'required|integer|exists:productos,id',
-            'puerto_id'            => 'required_if:opcion_destino,=,exportacion|integer|exists:puertos,id|nullable',
+            'puerto_id'            => 'required|integer|exists:puertos,id|nullable',
             'condicion_pago_id'    => 'required|integer|exists:condiciones_pago,id',
-            'moneda'               => 'nullable|string|in:USD,AR$',
-            'precio'               => ['nullable', new PrecioRule(), 'numeric', 'max:999999'],
-            'volumen'              => 'required|integer',
+            'moneda'               => 'required|string|in:USD,AR$',
+            'precio'               => ['required', new PrecioRule(), 'numeric', 'max:999999'],
+            'volumen'              => 'required|numeric|gt:0',
             'estado_id'            => 'nullable|integer|exists:mercado_ordenes_estados,id',
             'observaciones'        => 'nullable|string',
-            'toneladas_cierre'     => 'nullable|int'
+            'toneladas_cierre'     => 'nullable|numeric|gt:0'
 
         ];
 

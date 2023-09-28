@@ -43,7 +43,9 @@ class Orden extends ModelRepository
         'posicion_id',
         'precio_cierre_slip',
         'posicion_id',
-        'toneladas_cierre'
+        'toneladas_cierre',
+        'comision_comprador_cierre',
+        'comision_vendedor_cierre'
     ];
 
     public function actualizar(array $data): self {

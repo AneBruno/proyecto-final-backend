@@ -62,12 +62,12 @@ class PosicionesService
         int     $empresaId,
         string  $moneda,
         float   $precio,
-        int     $volumen,
+        float   $volumen,
         ?int    $condicionPagoId      = null,
         ?int    $cosecha_id           = null,
         ?int    $puertoId             = null,
         ?string $observaciones        = null,
-        ?int $idPosicionACopiar       = null
+        ?int    $idPosicionACopiar       = null
     ) {
 
         $row = new Posicion;
@@ -126,7 +126,7 @@ class PosicionesService
         int     $empresaId,
         ?string $moneda,
         ?float  $precio,
-        int     $volumen,
+        float     $volumen,
         ?int    $condicionPagoId      = null,
         ?int    $cosechaId            = null,
         ?int    $puertoId             = null,
@@ -149,6 +149,21 @@ class PosicionesService
         return $row;
     }
 
+    static public function actualizarToneladasCerradas(
+        int     $id,
+        int     $toneladas_cerradas
+    ): Posicion{
+        $row = Posicion::getById($id);
+        $row->toneladas_cerradas += $toneladas_cerradas;
+
+        if($row->toneladas_cerradas >= $row->getVolumen()){
+            $row = self::cambiarEstado($row, 'CERRADA');
+        }
+        $row->guardar();
+
+        return $row;
+    }
+
     /**
      * @param int $id
      * @throws RepositoryException
@@ -156,18 +171,6 @@ class PosicionesService
     static public function borrar(int $id): void
     {
         Posicion::getById($id)->borrar();
-    }
-
-    /**
-     * @param $valor
-     * @return bool
-     */
-    static private function getValorBool($valor) {
-        if ($valor == null) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     /**

@@ -28,10 +28,12 @@ class Posicion extends ModelRepository
 
     const ACTIVA = 'ACTIVA';
     const ELIMINADA = 'ELIMINADA';
+    const CERRADA = 'CERRADA';
 
     const ESTADOS = [
         self::ACTIVA,
         self::ELIMINADA,
+        self::CERRADA
     ];
 
     /**
@@ -167,7 +169,7 @@ class Posicion extends ModelRepository
 
             if ($columna === 'estado') {
                 if ($valor === 'todas') {
-                $query->whereIn('mercado_posiciones.estado', array(Posicion::ACTIVA/*, Posicion::DENUNCIADA*/));
+                $query->whereIn('mercado_posiciones.estado', array(Posicion::ACTIVA));
                 } else {
                     $valor = is_array($valor) ? $valor : array_filter([$valor]);
                     $query->whereIn('mercado_posiciones.estado', $valor);

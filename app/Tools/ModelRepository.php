@@ -205,4 +205,22 @@ class ModelRepository extends Model {
 
         return true;
     }
+
+    public static function getRawBoundSql(Builder $query) {
+        $sql = $query->toSql();
+        foreach ($query->getBindings() as $binding) {
+
+            if (is_bool($binding)) {
+                $val = $binding === true ? 'TRUE' : 'FALSE';
+            } else if (is_numeric($binding)) {
+                $val = $binding;
+            } else {
+                $val = "'$binding'";
+            }
+
+            $sql = preg_replace("#\?#", $val, $sql, 1);
+        }
+
+        return $sql;
+    }
 }

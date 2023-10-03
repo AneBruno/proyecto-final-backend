@@ -1,26 +1,13 @@
 <?php
 
-namespace App\Modules\Mercado\Ordenes;
+namespace App\Modules\Indicadores\Mercado;
 
-use App\Modules\Clientes\Empresas\Empresa;
-use App\Modules\Clientes\Establecimientos\Establecimiento;
-use App\Modules\Mercado\CondicionesPago\CondicionPago;
-use App\Modules\Mercado\Ordenes\Dtos\CrearOrdenDto;
-use App\Modules\Mercado\Ordenes\Estado\OrdenEstado;
-use App\Modules\Mercado\Posiciones\Posicion;
-use App\Modules\Productos\Calidades\Calidad;
-use App\Modules\Productos\Productos\Producto;
-use App\Modules\Puertos\Puerto;
-use App\Modules\Usuarios\Usuarios\User;
 use App\Tools\ModelRepository;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kodear\Laravel\Repository\Exceptions\RepositoryException;
 
-class Orden extends ModelRepository
+class OrdenIndicador extends ModelRepository
 {
     use SoftDeletes;
 
@@ -28,39 +15,26 @@ class Orden extends ModelRepository
 
     public $timestamps = true;
 
-    protected $fillable = [
-        'empresa_id',
-        'producto_id',
-        'puerto_id',
-        'condicion_pago_id',
-        'moneda',
-        'precio' ,
-        'volumen',
-        'fecha_vencimiento',
-        'usuario_carga_id',
-        'estado_id',
-        'observaciones',
-        'posicion_id',
-        'precio_cierre_slip',
-        'posicion_id',
-        'toneladas_cierre',
-        'comision_comprador_cierre',
-        'comision_vendedor_cierre'
-    ];
+    static public function generarConsulta(array $filtros = [], array $ordenes = [], array $opciones = []): Builder {
+        $query = parent::generarConsulta($filtros, $ordenes, $opciones);
 
-    public function actualizar(array $data): self {
-        $this->fill($data);
-        return $this->guardar();
-    }
+        $tipoPeriodo = $filtros['tipo_periodo'] ?? '%Y-%m';
 
-    public function crear(CrearOrdenDto $data): void {
-
+        $query->selectRaw("
+            DATE_FORMAT(created_at, '{$tipoPeriodo}') AS periodo,
+            COUNT(id) AS 'Total',
+            SUM(IF(estado_id = 1, 1, 0)) AS 'Activa',
+            SUM(IF(estado_id = 3, 1, 0)) AS 'Confirmada',
+            SUM(IF(estado_id = 5, 1, 0)) AS 'Eliminada'
+        ");
+        $query->groupByRaw("DATE_FORMAT(created_at, '{$tipoPeriodo}')");
+        $query->orderByRaw("DATE_FORMAT(created_at, '{$tipoPeriodo}') ASC");
+        return $query;
     }
 
 
     static public function aplicarFiltros(Builder $query, array $filtros) {
         parent::aplicarFiltros($query, $filtros);
-        $query->select('mercado_ordenes.*');
 
         foreach($filtros as $filtro => $valor) {
             if ($filtro === 'ids') {
@@ -145,16 +119,13 @@ class Orden extends ModelRepository
                 $query->whereIn('mercado_ordenes.producto_id', $valor);
             }
 
-            if ($filtro === 'comprador_empresa_id') {
-                $query->join('mercado_posiciones', 'mercado_posiciones.id', '=', 'mercado_ordenes.posicion_id');
-                $query->where('mercado_posiciones.empresa_id', $valor);
-            }
-
             /*if ($filtro == 'usuario_carga_id') {
                 $valor = is_array($valor) ? $valor : array_filter([$valor]);
                 $query->whereIn('mercado_ordenes.usuario_carga_id', $valor);
             }*/
         }
+
+        // echo static::getRawBoundSql($query); echo "\n\n";
     }
 
     static public function aplicarOrdenes(Builder $query, array $ordenes) {
@@ -167,102 +138,5 @@ class Orden extends ModelRepository
                 $query->orderBy($columna, $sentido);
             }
         }
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function empresa()
-    {
-        return $this->belongsTo(Empresa::class, 'empresa_id', 'id');
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function producto()
-    {
-        return $this->belongsTo(Producto::class, 'producto_id', 'id')->withTrashed();
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function puerto()
-    {
-        return $this->belongsTo(Puerto::class, 'puerto_id', 'id');
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function condicionPago()
-    {
-        return $this->belongsTo(CondicionPago::class, 'condicion_pago_id', 'id');
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function usuarioCarga()
-    {
-        return $this->belongsTo(User::class, 'usuario_carga_id', 'id');
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function estado()
-    {
-        return $this->belongsTo(OrdenEstado::class, 'estado_id', 'id');
-    }
-
-    /**
-     * @return HasOne
-     */
-    public function posicion()
-    {
-        return $this->hasOne(Posicion::class, 'id', 'posicion_id');
-    }
-
-    public function getPrecio()
-    {
-        return $this->getAttribute('precio');
-    }
-
-    public function getVolumen()
-    {
-        return $this->volumen;
-    }
-    
-   /* public function isFirme(): bool
-    {
-        return $this->estado_id === OrdenEstado::ORDEN_FIRME;
-    }*/
-
-    public function isActiva(): bool
-    {
-        return $this->estado_id === OrdenEstado::OFERTA_ACTIVA;
-    }
-
-    public function getObtenerPrecioCierreSlip()
-    {
-        return $this->precioCierreSlip;
-    }
-    
-    public function isConsumo(): bool
-    {
-        return is_null($this->puerto_id);
-    }
-    
-    public function obtenerAbreviacion(): string {
-        return implode(' - ', [
-            date('DD-MM-YYY', strtotime($this->fecha_vencimiento)),
-            $this->empresa()->obtenerAbreviacion(),
-           // $this->producto()->nombre,
-            "{$this->volumen}tn",
-            $this->moneda,
-            $this->precio
-        ]);
     }
 }

@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class AgregarAccesosHistorialPedidos extends Migration
+class AgregarAccesoHabilitarEmpresasRol3 extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +14,10 @@ class AgregarAccesosHistorialPedidos extends Migration
      */
     public function up()
     {
-        DB::table('accesos')->insert([
-            'nombre' => 'Historial de pedidos',
-            'grupo' => 'Mercado',
-            'uri' => 'mercado/historial',
-            'tipo' => 'menu',
-            'orden' => '4'
+        DB::table('accesos_roles')->insert([
+            'rol_id' => '3',
+            'acceso_id' => '19'
         ]);
-
-   
     }
 
     /**

@@ -67,6 +67,9 @@ Route::group([
 			$router->post('mercado/panel:cambiarEstados', [App\Modules\Mercado\Panel\HttpController       ::class, 'cambiarEstados']);
 			//$router->get('mercado/historial/consulta/{orden}', [App\Modules\Mercado\Ordenes\HttpController::class, 'cerrarSlip']);
 
+
+			$router->get('indicadores/mercado/ordenes',  [\App\Modules\Indicadores\Mercado\HttpController::class, 'index']);
+
 			$router->apiResources([
 				'usuarios' => '\\' . App\Modules\Usuarios\Usuarios\HttpController         ::class,
 				'roles' => '\\' . App\Modules\Usuarios\Roles\HttpController            ::class,

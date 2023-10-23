@@ -224,6 +224,44 @@ class OrdenesService
         return $orden->load('posicion');
     }
 
+    /**
+     * @param Orden $orden
+     * @param $data
+     * @return Orden
+     * @throws RepositoryException
+     * @throws Throwable
+     */
+    public function cancelarSlip(Orden $orden): Orden
+    {
+        try {
+            DB::beginTransaction();
+            $posicion_id = $orden->posicion_id;
+            $toneladas_cierre = $orden->toneladas_cierre;
+            //RESTO LAS TONELADAS Y VEO SI CAMBIAR ESTADO O NO
+            $this->posicionesService->restarToneladasCerradas($posicion_id, $toneladas_cierre);
+
+            $orden->posicion_id = null;
+            $orden->precio_cierre_slip = null;
+            $orden->comision_comprador_cierre = null;
+            $orden->comision_vendedor_cierre = null;
+            $orden->toneladas_cierre = null;
+
+            //VUELVO ESTADO ACTIVA orden
+            $this->cambiarEstado($orden, OrdenEstado::OFERTA_ACTIVA);   
+            
+            // Guarda los cambios en la orden de venta
+            $orden->save();
+
+            DB::commit();
+        } catch (Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        return $orden->load('posicion');
+    }
+
+
 	public function listarLocalidades() {
 		$query = Orden::generarConsulta();
 

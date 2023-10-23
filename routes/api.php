@@ -67,8 +67,12 @@ Route::group([
 			$router->post('mercado/panel:cambiarEstados', [App\Modules\Mercado\Panel\HttpController       ::class, 'cambiarEstados']);
 			//$router->get('mercado/historial/consulta/{orden}', [App\Modules\Mercado\Ordenes\HttpController::class, 'cerrarSlip']);
 
-
+			$router->put('mercado/historial/{orden}/cancelarSlip', [App\Modules\Mercado\Ordenes\HttpController     ::class, 'cancelarSlip']);
+			
 			$router->get('indicadores/mercado/ordenes',  [\App\Modules\Indicadores\Mercado\HttpController::class, 'index']);
+			$router->get('indicadores/mercado/posiciones',  [\App\Modules\Indicadores\Posiciones\HttpController::class, 'index']);
+			$router->get('indicadores/mercado/clientes',  [\App\Modules\Indicadores\Clientes\HttpController::class, 'index']);
+			$router->get('indicadores/mercado/vendedores',  [\App\Modules\Indicadores\Vendedores\HttpController::class, 'index']);
 
 			$router->apiResources([
 				'usuarios' => '\\' . App\Modules\Usuarios\Usuarios\HttpController         ::class,

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Modules\Indicadores\Mercado;
+namespace App\Modules\Indicadores\Vendedores;
 
 use App\Tools\ModelRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Kodear\Laravel\Repository\Exceptions\RepositoryException;
 
-class OrdenIndicador extends ModelRepository
+class VendedorIndicador extends ModelRepository
 {
     use SoftDeletes;
 
@@ -15,37 +15,39 @@ class OrdenIndicador extends ModelRepository
 
     public $timestamps = true;
 
-    static public function generarConsulta(array $filtros = [], array $ordenes = [], array $opciones = []): Builder {
+    public static function generarConsulta(array $filtros = [], array $ordenes = [], array $opciones = []): Builder
+    {
         $query = parent::generarConsulta($filtros, $ordenes, $opciones);
 
         $tipoPeriodo = $filtros['tipo_periodo'] ?? '%Y-%m';
         $producto_id = $filtros['producto_id'] ?? null ;
 
         $query->selectRaw("
-            DATE_FORMAT(created_at, '{$tipoPeriodo}') AS periodo,
-            COUNT(id) AS 'Total',
-            SUM(IF(estado_id = 1, 1, 0)) AS 'Activa',
-            SUM(IF(estado_id = 3, 1, 0)) AS 'Confirmada',
-            SUM(IF(estado_id = 5, 1, 0)) AS 'Eliminada',
-            SUM(IF(producto_id = 1, 1, 0)) AS 'Soja',
-            SUM(IF(producto_id = 2, 1, 0)) AS 'Maiz',
-            SUM(IF(producto_id = 3, 1, 0)) AS 'Trigo',
-            SUM(IF(producto_id = 4, 1, 0)) AS 'Cebada',
-            SUM(IF(producto_id = 5, 1, 0)) AS 'Girasol',
-            SUM(IF(producto_id = 6, 1, 0)) AS 'Sorgo',
-            SUM(IF(producto_id > 6, 1, 0)) AS 'Otro'
+        DATE_FORMAT(mercado_ordenes.created_at, '{$tipoPeriodo}') AS periodo,
+        e.razon_social,
+        COUNT(mercado_ordenes.id) as Total,
+        SUM(IF(mercado_ordenes.estado_id = 1, 1, 0)) AS 'Activa',
+        SUM(IF(mercado_ordenes.estado_id = 5, 1, 0)) AS 'Eliminada',
+        SUM(IF(mercado_ordenes.estado_id = 3, 1, 0)) AS 'Cerrada'
         ");
 
+        $query->join('empresas as e', 'e.id', '=', 'mercado_ordenes.empresa_id');
+        $query->join('productos as p', 'p.id', '=', 'mercado_ordenes.producto_id');
+        
         // Agregar la cláusula WHERE solo si $producto_id tiene un valor definido
         if ($producto_id !== null) {
-            $query->where('producto_id', '=', $producto_id);
+            $query->where('p.id', '=', $producto_id);
         }
+
+        $query->groupByRaw('mercado_ordenes.empresa_id');
+        $query->groupByRaw("DATE_FORMAT(mercado_ordenes.created_at, '{$tipoPeriodo}')");
         
-        $query->groupByRaw("DATE_FORMAT(created_at, '{$tipoPeriodo}')");
-        $query->orderByRaw("DATE_FORMAT(created_at, '{$tipoPeriodo}') ASC");
+        $query->orderByRaw("DATE_FORMAT(mercado_ordenes.created_at, '{$tipoPeriodo}') DESC");
+        $query->orderByRaw("Cerrada DESC");
+
+
         return $query;
     }
-
 
     static public function aplicarFiltros(Builder $query, array $filtros) {
         parent::aplicarFiltros($query, $filtros);
@@ -95,6 +97,14 @@ class OrdenIndicador extends ModelRepository
                 $query->whereDate('mercado_ordenes.created_at', '<=', $valor);
             }
 
+            if ($filtro === 'destino') {
+				if ($valor === 'exportacion') {
+					$query->whereNotNull('mercado_ordenes.puerto_id');
+				} else if ($valor === 'consumo') {
+					$query->whereNull('mercado_ordenes.puerto_id');
+				}
+			}
+
             if ($filtro === 'precioDesde') {
                 $query->where('mercado_ordenes.precio', '>=', $valor);
             }
@@ -134,5 +144,5 @@ class OrdenIndicador extends ModelRepository
         // echo static::getRawBoundSql($query); echo "\n\n";
     }
 
-  
+    
 }

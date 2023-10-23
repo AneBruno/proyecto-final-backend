@@ -177,8 +177,10 @@ class HttpController extends Controller
         ]);
     }
 
-    public function listarHistorial(){
-        //listar todas las ordenes donde 'posicion_id' is not null
-        //todos datos orden + razon social posicion
+    public function cancelarSlip(Orden $orden){
+    
+        $orden = $this->service->cancelarSlip($orden);
+
+        return new OrdenesResource($orden);
     }
 }

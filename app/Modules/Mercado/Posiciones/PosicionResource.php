@@ -42,7 +42,8 @@ class PosicionResource extends JsonResource
             'provincia_destino'     => $posicion->getAttribute('provincia_destino'),
             'created_at'            => $posicion->getAttributeValue('created_at'),
             'deleted_at'            => $posicion->getAttribute('deleted_at'),
-            'volumen'               => $posicion->volumen
+            'volumen'               => $posicion->volumen,
+            'toneladas_Cerradas'    => $posicion->toneladas_cerradas,
         ];
 
         return $data;

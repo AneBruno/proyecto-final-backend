@@ -3,10 +3,6 @@
 namespace App\Modules\Mercado\Posiciones;
 
 use App\Exceptions\EmailException;
-use App\Modules\Clientes\Establecimientos\Establecimiento;
-use App\Modules\Clientes\Establecimientos\EstablecimientoHelper;
-use App\Modules\Google\Places\PlacesService;
-use App\Modules\Mercado\Posiciones\Notifications\PosicionDenunciada;
 use App\Modules\Puertos\Puerto;
 use App\Modules\Puertos\PuertoHelper;
 use App\Modules\Usuarios\Usuarios\User;
@@ -163,6 +159,24 @@ class PosicionesService
 
         return $row;
     }
+
+    static public function restarToneladasCerradas(
+        int     $id,
+        int     $toneladas_cerradas
+    ): Posicion{
+        $row = Posicion::getById($id);
+        $row->toneladas_cerradas -= $toneladas_cerradas;
+
+        if($row->toneladas_cerradas < $row->getVolumen()){
+            $row = self::cambiarEstado($row, 'ACTIVA');
+        }else{
+            //no hago nada porque se debe mantener el estado 'cerrada'
+        }
+        $row->guardar();
+
+        return $row;
+    }
+
 
     /**
      * @param int $id

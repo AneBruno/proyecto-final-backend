@@ -18,16 +18,17 @@ class UserResource extends JsonResource
     {
 
         return [
-            'id'             => $this->id,
-            'email'          => $this->email,
-            'nombre'         => $this->resource->nombre,
-            'nombreCompleto' => $this->nombreCompleto,
-            'apellido'       => $this->apellido,
-            'telefono'       => $this->telefono,
-            'rol'            => new RolResource($this->rol),
-            'habilitado'     => (bool) $this->habilitado,
-            'accesos'        => AuthService::obtenerAccesos($this->resource),
-            'empresa_registro' =>$this->empresa_registro
+            'id'                => $this->id,
+            'email'             => $this->email,
+            'nombre'            => $this->resource->nombre,
+            'nombreCompleto'    => $this->nombreCompleto,
+            'apellido'          => $this->apellido,
+            'telefono'          => $this->telefono,
+            'rol'               => new RolResource($this->rol),
+            'habilitado'        => (bool) $this->habilitado,
+            'accesos'           => AuthService::obtenerAccesos($this->resource),
+            'empresa_registro'  => $this->empresa_registro,
+            'rol_id'            => $this->rol_id
         ];
     }
 

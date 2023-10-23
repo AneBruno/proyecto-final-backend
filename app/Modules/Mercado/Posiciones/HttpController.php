@@ -136,4 +136,22 @@ class HttpController extends Controller
 
         return new PosicionResource($posicion);
     }
+
+    /**
+     * @param CambiarEstadoPosicionRequest $request
+     * @param Posicion $posicion
+     * @return PosicionResource
+     * @throws AuthorizationException
+     * @throws RepositoryException
+     * @throws EmailException
+     */
+    public function cancelarNegocio(CambiarEstadoPosicionRequest $request, Posicion $posicion){
+        /** @var User $usuario */
+        $usuario = $request->user();
+        $estado = $request->get('estado');
+
+        $posicion = PosicionesService::cambiarEstado($posicion, $estado, $usuario);
+
+        return new PosicionResource($posicion);
+    }
 }

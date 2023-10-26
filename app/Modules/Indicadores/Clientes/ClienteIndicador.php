@@ -28,11 +28,14 @@ class ClienteIndicador extends ModelRepository
         COUNT(mercado_posiciones.id) as Total,
         SUM(IF(mercado_posiciones.estado = 'ACTIVA', 1, 0)) AS 'Activa',
         SUM(IF(mercado_posiciones.estado = 'ELIMINADA', 1, 0)) AS 'Eliminada',
-        SUM(IF(mercado_posiciones.estado = 'CERRADA', 1, 0)) AS 'Cerrada'
+        SUM(IF(mercado_posiciones.estado = 'CERRADA', 1, 0)) AS 'Cerrada',
+        SUM(IF(mercado_posiciones.estado = 'CERRADA' AND mercado_posiciones.moneda = 'USD', mo.precio_cierre_slip*mo.toneladas_cierre, 0)) AS 'Monto_USD',
+        SUM(IF(mercado_posiciones.estado = 'CERRADA' AND mercado_posiciones.moneda = 'AR$', mo.precio_cierre_slip*mo.toneladas_cierre, 0)) AS 'Monto_ARS'
         ");
 
         $query->join('empresas as e', 'e.id', '=', 'mercado_posiciones.empresa_id');
         $query->join('productos as p', 'p.id', '=', 'mercado_posiciones.producto_id');
+        $query->join('mercado_ordenes as mo', 'mo.posicion_id', '=', 'mercado_posiciones.id');
 
         // Agregar la cláusula WHERE solo si $producto_id tiene un valor definido
         if ($producto_id !== null) {

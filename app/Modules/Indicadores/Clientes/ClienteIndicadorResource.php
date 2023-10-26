@@ -19,14 +19,14 @@ class ClienteIndicadorResource extends JsonResource
         $cliente = $this->resource;
 
         return [
-            'id'                    => $cliente->id,
-            'cuit'                  => $cliente->cuit,
             'razon_social'          => $cliente->razon_social,
             'Total'                 => $cliente->Total,
             'Cerrada'               =>$cliente->Cerrada,
             'Eliminada'             =>$cliente->Eliminada,
             'Activa'                => $cliente->Activa,
-            'periodo'               =>$cliente->periodo
+            'periodo'               =>$cliente->periodo,
+            'Monto_ARS'             =>$cliente->Monto_ARS,
+            'Monto_USD'             =>$cliente->Monto_USD
             //'porcentaje_compras_cerradas' =>$cliente->porcentaje_compras_cerradas
         ];
     }

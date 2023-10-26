@@ -24,11 +24,14 @@ class VendedorIndicador extends ModelRepository
 
         $query->selectRaw("
         DATE_FORMAT(mercado_ordenes.created_at, '{$tipoPeriodo}') AS periodo,
+        e.cuit AS 'cuit',
         e.razon_social,
         COUNT(mercado_ordenes.id) as Total,
         SUM(IF(mercado_ordenes.estado_id = 1, 1, 0)) AS 'Activa',
         SUM(IF(mercado_ordenes.estado_id = 5, 1, 0)) AS 'Eliminada',
-        SUM(IF(mercado_ordenes.estado_id = 3, 1, 0)) AS 'Cerrada'
+        SUM(IF(mercado_ordenes.estado_id = 3, 1, 0)) AS 'Cerrada',
+        SUM(IF(mercado_ordenes.estado_id = 3 AND mercado_ordenes.moneda = 'USD', mercado_ordenes.precio_cierre_slip*mercado_ordenes.toneladas_cierre, 0)) AS 'Monto_USD',
+        SUM(IF(mercado_ordenes.estado_id = 3 AND mercado_ordenes.moneda = 'AR$', mercado_ordenes.precio_cierre_slip*mercado_ordenes.toneladas_cierre, 0)) AS 'Monto_ARS'
         ");
 
         $query->join('empresas as e', 'e.id', '=', 'mercado_ordenes.empresa_id');

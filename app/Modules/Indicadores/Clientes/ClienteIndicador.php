@@ -29,8 +29,11 @@ class ClienteIndicador extends ModelRepository
         SUM(IF(mercado_posiciones.estado = 'ACTIVA', 1, 0)) AS 'Activa',
         SUM(IF(mercado_posiciones.estado = 'ELIMINADA', 1, 0)) AS 'Eliminada',
         SUM(IF(mercado_posiciones.estado = 'CERRADA', 1, 0)) AS 'Cerrada',
-        SUM(IF(mercado_posiciones.estado = 'CERRADA' AND mercado_posiciones.moneda = 'USD', mo.precio_cierre_slip*mo.toneladas_cierre, 0)) AS 'Monto_USD',
-        SUM(IF(mercado_posiciones.estado = 'CERRADA' AND mercado_posiciones.moneda = 'AR$', mo.precio_cierre_slip*mo.toneladas_cierre, 0)) AS 'Monto_ARS'
+        SUM(IF(mo.posicion_id is not null, 1, 0)) AS 'Negocios_cerrados',
+        SUM(IF(mercado_posiciones.moneda = 'USD', mo.precio_cierre_slip*mo.toneladas_cierre, 0)) AS 'Monto_USD',
+        SUM(IF(mercado_posiciones.moneda = 'AR$', mo.precio_cierre_slip*mo.toneladas_cierre, 0)) AS 'Monto_ARS',
+        SUM(IF(mercado_posiciones.moneda = 'USD', (mo.precio_cierre_slip*mo.toneladas_cierre*mo.comision_comprador_cierre)/100, 0)) AS 'Monto_comis_USD',
+        SUM(IF(mercado_posiciones.moneda = 'AR$', (mo.precio_cierre_slip*mo.toneladas_cierre*mo.comision_comprador_cierre)/100, 0)) AS 'Monto_comis_ARS'
         ");
 
         $query->join('empresas as e', 'e.id', '=', 'mercado_posiciones.empresa_id');
@@ -46,7 +49,7 @@ class ClienteIndicador extends ModelRepository
         $query->groupByRaw("DATE_FORMAT(mercado_posiciones.created_at, '{$tipoPeriodo}')");
         
         $query->orderByRaw("DATE_FORMAT(mercado_posiciones.created_at, '{$tipoPeriodo}') DESC");
-        $query->orderByRaw("Cerrada DESC");
+        $query->orderByRaw("Monto_USD DESC");
 
 
         return $query;

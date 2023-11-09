@@ -152,6 +152,7 @@ class HttpController extends Controller
         return new OrdenesResource($orden);
     }
 
+   
     public function listarLocalidades() {
     	$localidades = $this->service->listarLocalidades();
 
@@ -183,4 +184,8 @@ class HttpController extends Controller
 
         return new OrdenesResource($orden);
     }
+
+    
+
 }
+

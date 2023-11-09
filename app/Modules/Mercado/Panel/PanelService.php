@@ -2,22 +2,10 @@
 
 namespace App\Modules\Mercado\Panel;
 
-use App\Exceptions\EmailException;
-use App\Helpers\DateHelper;
-use App\Modules\Mercado\Ordenes\Orden;
 use App\Modules\Mercado\Ordenes\OrdenesService;
 use App\Modules\Mercado\Posiciones\Posicion;
-use App\Modules\Mercado\Posiciones\PosicionesService;
-use App\Modules\Usuarios\Usuarios\User;
-use App\Tools\ModelRepository;
 use Exception;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Kodear\Laravel\Repository\Exceptions\RepositoryException;
-use Kodear\Laravel\Repository\Repository;
 
 
 class PanelService {
@@ -82,10 +70,10 @@ class PanelService {
      */
     public function getByClave($clave) {
             $filtros = self::obtenerFiltros($clave);
-            $posiciones = $this->listar( $filtros);
+            $posiciones = $this->listar($filtros);
 
             return $posiciones ? $posiciones[0] : [];
-
+            
     }
 
     /**

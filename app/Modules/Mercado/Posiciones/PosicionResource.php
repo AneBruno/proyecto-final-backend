@@ -3,9 +3,13 @@
 namespace App\Modules\Mercado\Posiciones;
 
 use App\Modules\Clientes\Empresas\EmpresaResource;
+use App\Modules\Mercado\CondicionesPago\CondicionPago;
 use App\Modules\Mercado\Cosechas\CosechaResource;
 use App\Modules\Usuarios\Usuarios\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Modules\Mercado\CondicionesPago\CondicionesPagoResource;
+use App\Modules\Puertos\PuertosResource;
+use App\Modules\Productos\Productos\ProductoResource;
 
 class PosicionResource extends JsonResource
 {
@@ -24,17 +28,17 @@ class PosicionResource extends JsonResource
             'id'                    => $posicion->getKey(),
             'estado'                => $posicion->getAttribute('estado'),
             'producto_id'           => $posicion->getAttribute('producto_id'),
-            'producto'              => $posicion->producto,
+            'producto'              => new ProductoResource($this->whenLoaded('producto')),
             'empresa_id'            => $posicion->getAttribute('empresa_id'),
             'empresa'               => new EmpresaResource($this->whenLoaded('empresa')),
             'usuario_carga_id'      => $posicion->getAttribute('usuario_carga_id'),
             'usuario_carga'         => new UserResource($this->whenLoaded('usuarioCarga')),
             'puerto_id'             => $posicion->getAttribute('puerto_id'),
-            'puerto'                => $posicion->puerto,
+            'puerto'                => new PuertosResource($this->whenLoaded('puerto')),
             'moneda'                => $posicion->getAttribute('moneda'),
             'precio'                => $posicion->getAttribute('precio'),
             'condicion_pago_id'     => $posicion->getAttribute('condicion_pago_id'),
-            'condicion_pago'        => $posicion->condicionPago,
+            'condicion_pago'        => new CondicionesPagoResource($this->whenLoaded('condicionPago')),
             'cosecha_id'            => $posicion->getAttribute('cosecha_id'),
             'cosecha'               => new CosechaResource($this->whenLoaded('cosecha')),
             'observaciones'         => $posicion->getAttribute('observaciones'),

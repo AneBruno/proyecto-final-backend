@@ -36,14 +36,15 @@ class HttpController extends Controller {
         $empresa = EmpresasService::crear(
             $request->input('cuit'                 ),
             $request->input('razon_social'         ),
+            $request->input('perfil'               ),
+            $request->input('comision'            ),
             $request->input('telefono'             ),
             $request->input('email'                ),
-            $request->input('perfil'               ),
             $request->input('usuario_comercial_id' ),
             $request->input('direccion'            ),
             $request->input('localidad'            ),
             $request->input('provincia'            ),
-            $request->input('comision'            )
+            
         );
 
         return $this->json($empresa);
@@ -56,14 +57,15 @@ class HttpController extends Controller {
             $empresa->getKey(),
             $request->input('cuit'                 ),
             $request->input('razon_social'         ),
+            $request->input('perfil'               ),
+            $request->input('comision'             ),
             $request->input('telefono'             ),
             $request->input('email'                ),
-            $request->input('perfil'               ),
             $request->input('usuario_comercial_id' ),
             $request->input('direccion'            ),
             $request->input('localidad'            ),
-            $request->input('provincia'            ),
-            $request->input('comision'             )
+            $request->input('provincia'            )
+            
         );
 
         return $this->json($empresa);

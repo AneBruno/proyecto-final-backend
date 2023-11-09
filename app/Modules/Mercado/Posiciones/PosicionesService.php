@@ -206,4 +206,39 @@ class PosicionesService
         }
     }
 
+
+     /**
+     * @param $clave
+     * @return mixed
+     */
+    public function getByClave($clave) {
+        $filtros = self::obtenerFiltros($clave);
+        $posiciones = $this->listar($filtros);
+
+        return $posiciones ? $posiciones[0] : [];
+    }
+
+    /**
+     * @param $clave
+     * @return mixed
+     */
+    static private function obtenerFiltros($clave)
+    {
+        $filtros = [];
+
+        if (is_numeric($clave)) {
+            $filtros = ['id' => $clave];
+        } else {
+            $valores = explode('_', $clave);
+
+            $filtros = self::addFiltro($filtros, 'moneda', $valores[0]);
+            $filtros = self::addFiltro($filtros, 'producto_id', $valores[1]);
+            $filtros = self::addFiltroUbicacion($filtros, $valores[2]);
+            $filtros = self::addFiltro($filtros, 'condicion_pago_id', $valores[3]);
+            $filtros = self::addFiltro($filtros, 'cosecha_id', $valores[4]);
+
+            $filtros = self::addFiltro($filtros, 'estado', 'todas');
+        }
+        return $filtros;
+    }
 }

@@ -11,7 +11,7 @@
 <p> Forma de pago: {{$forma_pago}}</p>
 <p> Precio por tonelada: {{$moneda}} {{$precio_cierre}}</p>
 <p> Toneladas: {{$toneladas_cierre}}</p>
-<p><b> Precio total: {{$moneda}} {{$precio_total}} + Comisión ({{$comision_porcentaje}}%): {{$moneda}} {{$comision}}</b></p>
-
+<p><b> Total a cobrar: {{$moneda}} {{$precio_total}}</b></p>
+<p><b> Total a pagar: Comisión ({{$comision_porcentaje}}%) = {{$moneda}} {{$comision}}</b></p>
 
 @endcomponent

@@ -5,7 +5,6 @@ namespace App\Modules\Clientes\Empresas;
 use App\Modules\Usuarios\Usuarios\User;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Modules\Afip\CuitRule;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EmpresaRequest extends FormRequest
@@ -35,7 +34,7 @@ class EmpresaRequest extends FormRequest
             'telefono'             => 'nullable|integer',
             'email'                => 'nullable|email',
             'perfil'               => 'required|string|in:COMPRADOR,VENDEDOR,COMPRADOR_VENDEDOR',
-            'usuario_comercial_id' => 'required|integer',
+            'usuario_comercial_id' => 'nullable|integer',
             'direccion'            => 'nullable|string',
             'localidad'            => 'nullable|string',
             'provincia'            => 'nullable|string',

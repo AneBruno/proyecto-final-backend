@@ -3,22 +3,18 @@
 namespace App\Modules\Mercado\Ordenes;
 
 use App\Modules\Clientes\Empresas\Empresa;
-use App\Modules\Clientes\Establecimientos\Establecimiento;
 use App\Modules\Mercado\CondicionesPago\CondicionPago;
 use App\Modules\Mercado\Ordenes\Dtos\CrearOrdenDto;
 use App\Modules\Mercado\Ordenes\Estado\OrdenEstado;
 use App\Modules\Mercado\Posiciones\Posicion;
-use App\Modules\Productos\Calidades\Calidad;
 use App\Modules\Productos\Productos\Producto;
 use App\Modules\Puertos\Puerto;
 use App\Modules\Usuarios\Usuarios\User;
 use App\Tools\ModelRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Kodear\Laravel\Repository\Exceptions\RepositoryException;
 
 class Orden extends ModelRepository
 {
@@ -71,6 +67,11 @@ class Orden extends ModelRepository
             if ($filtro === 'id_not_in') {
                 $query->whereNotIn('mercado_ordenes.id', $valor);
             }
+
+            if ($filtro == 'producto_id') {
+                $valor = is_array($valor) ? $valor : [$valor];
+                $query->whereIn('mercado_ordenes.producto_id', $valor);
+            }
             
             if ($filtro === 'empresas.usuario_comercial_id') {
                 $query->joinRelation('empresa');
@@ -107,14 +108,14 @@ class Orden extends ModelRepository
                 $query->whereDate('mercado_ordenes.created_at', '<=', $valor);
             }
 
-            if ($filtro === 'destino') {
+            /*if ($filtro === 'destino') {
 				if ($valor === 'exportacion') {
 					$query->whereNotNull('mercado_ordenes.puerto_id');
 				} else if ($valor === 'consumo') {
 					$query->whereNull('mercado_ordenes.puerto_id');
 				}
-			}
-
+			}*/
+            
             if ($filtro === 'precioDesde') {
                 $query->where('mercado_ordenes.precio', '>=', $valor);
             }
@@ -122,7 +123,8 @@ class Orden extends ModelRepository
                 $query->where('mercado_ordenes.precio', '<=', $valor);
             }
 
-            if ($filtro === 'puertos') {
+            if ($filtro === 'puerto_id') {
+                $valor = is_array($valor) ? $valor : [$valor];
                 $query->whereIn('mercado_ordenes.puerto_id', $valor);
             }
 
@@ -131,18 +133,8 @@ class Orden extends ModelRepository
             }
 
             if ($filtro == 'puerto_id') {
-                // Este filtro debería estar junto con los de arriba.
-                if ($valor === 'null') {
-                    $query->whereNull('mercado_ordenes.puerto_id');
-                } else {
-                    $valor = is_array($valor) ? $valor : array_filter([$valor]);
-                    $query->whereIn('mercado_ordenes.puerto_id', $valor);
-                }
-            }
-
-            if ($filtro == 'producto_id') {
-                $valor = is_array($valor) ? $valor : array_filter([$valor]);
-                $query->whereIn('mercado_ordenes.producto_id', $valor);
+                $query->whereIn('mercado_ordenes.puerto_id', $valor);
+                
             }
 
             if ($filtro === 'comprador_empresa_id') {

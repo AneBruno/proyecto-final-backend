@@ -162,60 +162,65 @@ class OrdenesService
     {
         try {
             DB::beginTransaction();
-            $orden->actualizar($data);
-            $posicion = Posicion::getById((int) $data['posicion_id']);
+            if($data['toneladas_cierre'] <= ($orden->volumen)){
+                $orden->actualizar($data);
+                $posicion = Posicion::getById((int) $data['posicion_id']);
+                
+                $this->posicionesService->actualizarToneladasCerradas(
+                    (int) $data_posicion['posicion_id'],
+                    (int) $data_posicion['toneladas_cierre']
+                );
+                
+                $this->cambiarEstado($orden, OrdenEstado::CONFIRMADA);
+                
+
+                $toneladas_cierre       = $orden->toneladas_cierre;
+                $comprador              = $posicion->empresa;
+                $vendedor               = $orden->empresa;
+                $producto               = $orden->producto->nombre;
+                $forma_pago             = $orden->condicionPago->descripcion;
+                $puerto                 = $orden->puerto->nombre;
+                $fecha_cierre           = $orden->updated_at->format('d/m');
+                $moneda                 = $orden->moneda;
+                $precio_cierre          = $orden->precio_cierre_slip;
+                $precio_total           = $precio_cierre * $toneladas_cierre;
+                //porcentajes de comisiones
+                $comision_comprador_porcentaje     = $posicion->empresa->comision;
+                $comision_vendedor_porcentaje      = $orden->empresa->comision;
+                //monto de las comisiones
+                $comision_comprador     = ($comision_comprador_porcentaje /100) * $precio_total;
+                $comision_vendedor      = ($comision_vendedor_porcentaje /100) * $precio_total;  
+                //usuarios vinculados a las empresas compradoras y vendedoras
+                $usuario_comprador_id   = $comprador->usuario_comercial_id;
+                $usuario_comprador      = User::find($usuario_comprador_id);
+                $usuario_vendedor_id    = $vendedor->usuario_comercial_id;      
+                $usuario_vendedor       = User::find($usuario_vendedor_id);
+
+                if (!empty($comprador->email)) {
+                    Mail::to($comprador->email)->send(new NegocioCerradoMail(
+                        $fecha_cierre , $comprador,$vendedor, $producto,$forma_pago, $puerto,$moneda, $precio_cierre, $toneladas_cierre, $precio_total, $comision_comprador_porcentaje,$comision_comprador));  
+                }
+                if(!empty($usuario_comprador)){
+                    Mail::to($usuario_comprador->email)->send(new NegocioCerradoMail(
+                        $fecha_cierre , $comprador,$vendedor, $producto,$forma_pago, $puerto,$moneda, $precio_cierre, $toneladas_cierre, $precio_total, $comision_comprador_porcentaje,$comision_comprador)); 
+                }
+
+                if (!empty($vendedor->email)) {
+                    Mail::to($vendedor->email)->send(new NegocioCerradoVendedor(
+                        $fecha_cierre , $comprador,$vendedor, $producto,$forma_pago, $puerto,$moneda, $precio_cierre, $toneladas_cierre, $precio_total, $comision_vendedor_porcentaje,$comision_vendedor
+                    ));  
+                }
+                if(!empty($usuario_vendedor)){
+                    Mail::to($usuario_vendedor->email)->send(new NegocioCerradoVendedor(
+                        $fecha_cierre , $comprador,$vendedor, $producto,$forma_pago, $puerto,$moneda, $precio_cierre, $toneladas_cierre, $precio_total, $comision_vendedor_porcentaje,$comision_vendedor
+                    ));  
+                }
+
+                DB::commit();
+            }else{
+                throw new Exception("Las toneladas ingresadas exceden las toneladas de la orden de venta.");
+            }
             
-            $this->posicionesService->actualizarToneladasCerradas(
-                (int) $data_posicion['posicion_id'],
-                (int) $data_posicion['toneladas_cierre']
-            );
-            
-            $this->cambiarEstado($orden, OrdenEstado::CONFIRMADA);
-            
-
-            $toneladas_cierre       = $orden->toneladas_cierre;
-            $comprador              = $posicion->empresa;
-            $vendedor               = $orden->empresa;
-            $producto               = $orden->producto->nombre;
-            $forma_pago             = $orden->condicionPago->descripcion;
-            $puerto                 = $orden->puerto->nombre;
-            $fecha_cierre           = $orden->updated_at->format('d/m');
-            $moneda                 = $orden->moneda;
-            $precio_cierre          = $orden->precio_cierre_slip;
-            $precio_total           = $precio_cierre * $toneladas_cierre;
-            //porcentajes de comisiones
-            $comision_comprador_porcentaje     = $posicion->empresa->comision;
-            $comision_vendedor_porcentaje      = $orden->empresa->comision;
-            //monto de las comisiones
-            $comision_comprador     = ($comision_comprador_porcentaje /100) * $precio_total;
-            $comision_vendedor      = ($comision_vendedor_porcentaje /100) * $precio_total;  
-            //usuarios vinculados a las empresas compradoras y vendedoras
-            $usuario_comprador_id   = $comprador->usuario_comercial_id;
-            $usuario_comprador      = User::find($usuario_comprador_id);
-            $usuario_vendedor_id    = $vendedor->usuario_comercial_id;      
-            $usuario_vendedor       = User::find($usuario_vendedor_id);
-
-            if (!empty($comprador->email)) {
-                Mail::to($comprador->email)->send(new NegocioCerradoMail(
-                    $fecha_cierre , $comprador,$vendedor, $producto,$forma_pago, $puerto,$moneda, $precio_cierre, $toneladas_cierre, $precio_total, $comision_comprador_porcentaje,$comision_comprador));  
-            }
-            if(!empty($usuario_comprador)){
-                Mail::to($usuario_comprador->email)->send(new NegocioCerradoMail(
-                    $fecha_cierre , $comprador,$vendedor, $producto,$forma_pago, $puerto,$moneda, $precio_cierre, $toneladas_cierre, $precio_total, $comision_comprador_porcentaje,$comision_comprador)); 
-            }
-
-            if (!empty($vendedor->email)) {
-                Mail::to($vendedor->email)->send(new NegocioCerradoVendedor(
-                    $fecha_cierre , $comprador,$vendedor, $producto,$forma_pago, $puerto,$moneda, $precio_cierre, $toneladas_cierre, $precio_total, $comision_vendedor_porcentaje,$comision_vendedor
-                ));  
-            }
-            if(!empty($usuario_vendedor)){
-                Mail::to($usuario_vendedor->email)->send(new NegocioCerradoVendedor(
-                    $fecha_cierre , $comprador,$vendedor, $producto,$forma_pago, $puerto,$moneda, $precio_cierre, $toneladas_cierre, $precio_total, $comision_vendedor_porcentaje,$comision_vendedor
-                ));  
-            }
-
-            DB::commit();
         } catch (Throwable $e) {
             DB::rollBack();
             throw $e;

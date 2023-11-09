@@ -20,28 +20,29 @@ class Empresa extends ModeloConLocalizacion
     /**
      * @param int $cuit
      * @param string $razon_social
-     * @param int $telefono
-     * @param string $email
+     * @param int|null $telefono
+     * @param string|null $email
      * @param string $perfil
-     * @param int $usuario_comercial_id
+     * @param int|null $usuario_comercial_id
      * @param string|null $direccion
      * @param string|null $localidad
      * @param string|null $provincia
-     * * @param float|null $comision
+     * * @param float $comision
      * @return static
      * @throws RepositoryException
      */
     static public function crear(
-        int    $cuit,
-        string $razon_social,
+        int     $cuit,
+        string  $razon_social,
+        string  $perfil,
+        float   $comision,
         ?int    $telefono,
         ?string $email,
-        ?string $perfil,
-        int   $usuario_comercial_id,
+        ?int    $usuario_comercial_id,
         ?string $direccion,
         ?string $localidad,
-        ?string $provincia,
-        ?float $comision
+        ?string $provincia
+        
     ): self {
 
         $row = new static;
@@ -63,20 +64,20 @@ class Empresa extends ModeloConLocalizacion
     /**
      *
      * @param string $nombre
-     * @param int|null $perfil
-     * @return CategoriaCliente
+     * @param int $perfil
      */
     public function actualizar(
-        int    $cuit,
-        string $razon_social,
+        int     $cuit,
+        string  $razon_social,
+        string  $perfil,
+        float   $comision,
         ?int    $telefono,
         ?string $email,
-        ?string $perfil,
-        int   $usuario_comercial_id,
+        ?int    $usuario_comercial_id,
         ?string $direccion,
         ?string $localidad,
-        ?string $provincia,
-        ?float $comision
+        ?string $provincia
+        
     ): self {
 
         $this->cuit                 = $cuit;

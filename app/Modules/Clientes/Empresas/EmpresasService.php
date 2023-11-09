@@ -19,16 +19,17 @@ class EmpresasService {
     }
 
     static public function crear(
-        int    $cuit,
-        string $razonSocial,
+        int     $cuit,
+        string  $razonSocial,
+        string  $perfil,
+        float   $comision ,
         ?int    $telefono,
         ?string $email,
-        ?string $perfil,
-        int   $usuarioComercial,
+        ?int   $usuarioComercial,
         ?string $direccion,
         ?string $localidad,
-        ?string $provincia,
-        ?float $comision 
+        ?string $provincia
+        
     ): Empresa {
 
         DB::beginTransaction();
@@ -37,14 +38,15 @@ class EmpresasService {
         $empresa = Empresa::crear(
             $cuit,
             $razonSocial,
+            $perfil,
+            $comision, 
             $telefono,
             $email,
-            $perfil,
             $usuarioComercial,
             $direccion,
             $localidad,
             $provincia,
-            $comision    
+               
         );
 
         DB::commit();
@@ -55,17 +57,18 @@ class EmpresasService {
     }
 
     static public function actualizar(
-        int     $id,
-        int     $cuit,
-        string  $razonSocial,
+        int      $id,
+        int      $cuit,
+        string   $razonSocial,
+        string  $perfil,
+        float   $comision,
         ?int     $telefono,
         ?string  $email,
-        ?string  $perfil,
-        int    $usuarioComercial,
-        ?string $direccion,
-        ?string $localidad,
-        ?string $provincia,
-        ?float $comision
+        ?int      $usuarioComercial,
+        ?string  $direccion,
+        ?string  $localidad,
+        ?string  $provincia
+        
     ): Empresa {
 
         DB::beginTransaction();
@@ -74,14 +77,15 @@ class EmpresasService {
         $empresa->actualizar(
             $cuit,
             $razonSocial,
-            $telefono,
-            $email,
             $perfil,
+            $comision,
+            $telefono,
+            $email,            
             $usuarioComercial,
             $direccion,
             $localidad,
-            $provincia,
-            $comision
+            $provincia
+           
         );
 
         DB::commit();

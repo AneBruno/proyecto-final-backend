@@ -26,7 +26,9 @@ class VendedorIndicadorResource extends JsonResource
             'Activa'                =>$cliente->Activa,
             'periodo'               =>$cliente->periodo,
             'Monto_ARS'             =>$cliente->Monto_ARS,
-            'Monto_USD'             =>$cliente->Monto_USD
+            'Monto_USD'             =>$cliente->Monto_USD,
+            'Monto_comis_USD'       =>$cliente->Monto_comis_USD,
+            'Monto_comis_ARS'       =>$cliente->Monto_comis_ARS,
         ];
     }
 }

@@ -19,7 +19,7 @@ class ClienteIndicador extends ModelRepository
     {
         $query = parent::generarConsulta($filtros, $ordenes, $opciones);
 
-        $tipoPeriodo = $filtros['tipo_periodo'] ?? '%Y-%m';
+        $tipoPeriodo = $filtros['tipo_periodo'] ?? '%Y';
         $producto_id = $filtros['producto_id'] ?? null ;
 
         $query->selectRaw("

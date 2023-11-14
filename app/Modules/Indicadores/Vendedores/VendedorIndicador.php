@@ -19,7 +19,7 @@ class VendedorIndicador extends ModelRepository
     {
         $query = parent::generarConsulta($filtros, $ordenes, $opciones);
 
-        $tipoPeriodo = $filtros['tipo_periodo'] ?? '%Y-%m';
+        $tipoPeriodo = $filtros['tipo_periodo'] ?? '%Y';
         $producto_id = $filtros['producto_id'] ?? null ;
 
         $query->selectRaw("
@@ -31,7 +31,9 @@ class VendedorIndicador extends ModelRepository
         SUM(IF(mercado_ordenes.estado_id = 5, 1, 0)) AS 'Eliminada',
         SUM(IF(mercado_ordenes.estado_id = 3, 1, 0)) AS 'Cerrada',
         SUM(IF(mercado_ordenes.estado_id = 3 AND mercado_ordenes.moneda = 'USD', mercado_ordenes.precio_cierre_slip*mercado_ordenes.toneladas_cierre, 0)) AS 'Monto_USD',
-        SUM(IF(mercado_ordenes.estado_id = 3 AND mercado_ordenes.moneda = 'AR$', mercado_ordenes.precio_cierre_slip*mercado_ordenes.toneladas_cierre, 0)) AS 'Monto_ARS'
+        SUM(IF(mercado_ordenes.estado_id = 3 AND mercado_ordenes.moneda = 'AR$', mercado_ordenes.precio_cierre_slip*mercado_ordenes.toneladas_cierre, 0)) AS 'Monto_ARS',
+        SUM(IF(mercado_ordenes.estado_id = 3 AND mercado_ordenes.moneda = 'USD', (mercado_ordenes.precio_cierre_slip*mercado_ordenes.toneladas_cierre*mercado_ordenes.comision_vendedor_cierre)/100, 0)) AS 'Monto_comis_USD',
+        SUM(IF(mercado_ordenes.estado_id = 3 AND mercado_ordenes.moneda = 'AR$', (mercado_ordenes.precio_cierre_slip*mercado_ordenes.toneladas_cierre*mercado_ordenes.comision_vendedor_cierre)/100, 0)) AS 'Monto_comis_ARS'
         ");
 
         $query->join('empresas as e', 'e.id', '=', 'mercado_ordenes.empresa_id');

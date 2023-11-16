@@ -53,7 +53,9 @@ class OrdenesResource extends JsonResource
             'updated_at'               => $orden->updated_at,
             'toneladas_cierre'         => $orden->toneladas_cierre,
             'comision_comprador_cierre'=>$orden->comision_comprador_cierre,
-            'comision_vendedor_cierre' =>$orden->comision_vendedor_cierre
+            'comision_vendedor_cierre' =>$orden->comision_vendedor_cierre,
+            'cosecha'                  => new CosechaResource($this->whenLoaded('cosecha')),
+            'cosecha_id'               => $orden->cosecha_id
         ];
     }
 }

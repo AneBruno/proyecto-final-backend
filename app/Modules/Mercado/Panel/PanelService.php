@@ -44,6 +44,7 @@ class PanelService {
          */
         $filtros['producto_id'] = $posicion->producto->id;
         $filtros['condicion_pago_id'] = $posicion->condicionPago->id;
+        $filtros['cosecha_id'] = $posicion->cosecha->id;
 
         //Filtro para el destino.
         $filtros['puerto_id'] = $posicion->puerto->id;

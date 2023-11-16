@@ -10,6 +10,7 @@ class CrearOrdenDto extends DataTransferObject
     public ?string $id = null;
     public int $empresa_id;
     public int $producto_id;
+    public int $cosecha_id;
     public int $puerto_id;
     public int $condicion_pago_id;
     public string $moneda;
@@ -17,6 +18,7 @@ class CrearOrdenDto extends DataTransferObject
     public float $volumen;
     public ?int $estado_id;
     public ?string $observaciones = null;
+    
 
     public static function fromRequest(OrdenesRequest $request) {
         return new self($request->validated());

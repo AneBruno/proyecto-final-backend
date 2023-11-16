@@ -9,6 +9,7 @@ use App\Modules\Mercado\Ordenes\Estado\OrdenEstado;
 use App\Modules\Mercado\Posiciones\Posicion;
 use App\Modules\Productos\Productos\Producto;
 use App\Modules\Puertos\Puerto;
+use App\Modules\Mercado\Cosechas\Cosecha;
 use App\Modules\Usuarios\Usuarios\User;
 use App\Tools\ModelRepository;
 use Illuminate\Database\Eloquent\Builder;
@@ -41,7 +42,8 @@ class Orden extends ModelRepository
         'posicion_id',
         'toneladas_cierre',
         'comision_comprador_cierre',
-        'comision_vendedor_cierre'
+        'comision_vendedor_cierre',
+        'cosecha_id'
     ];
 
     public function actualizar(array $data): self {
@@ -77,7 +79,10 @@ class Orden extends ModelRepository
                 $query->joinRelation('empresa');
                 $query->where('empresas.usuario_comercial_id', $valor);
             }
-
+            if ($filtro == 'cosecha_id') {
+                $valor = is_array($valor) ? $valor : [$valor];
+                $query->whereIn('mercado_ordenes.cosecha_id', $valor);
+            }
             if (in_array($filtro, [
             	'empresa_id',
 				'condicion_pago_id',
@@ -191,6 +196,14 @@ class Orden extends ModelRepository
     public function condicionPago()
     {
         return $this->belongsTo(CondicionPago::class, 'condicion_pago_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function cosecha()
+    {
+        return $this->belongsTo(Cosecha::class, 'cosecha_id', 'id');
     }
 
     /**

@@ -88,6 +88,7 @@ class OrdenesService
 
         $orden->empresa_id = $crearOrdenDto->empresa_id;
         $orden->producto_id = $crearOrdenDto->producto_id;
+        $orden->cosecha_id = $crearOrdenDto->cosecha_id;
         $orden->condicion_pago_id = $crearOrdenDto->condicion_pago_id;
         $orden->moneda = $crearOrdenDto->moneda;
         $orden->precio = $crearOrdenDto->precio;

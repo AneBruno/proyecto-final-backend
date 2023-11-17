@@ -48,7 +48,7 @@ class VendedorIndicador extends ModelRepository
         $query->groupByRaw("DATE_FORMAT(mercado_ordenes.created_at, '{$tipoPeriodo}')");
         
         $query->orderByRaw("DATE_FORMAT(mercado_ordenes.created_at, '{$tipoPeriodo}') DESC");
-        $query->orderByRaw("Cerrada DESC");
+        $query->orderByRaw("Monto_USD desc");
 
 
         return $query;

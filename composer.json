@@ -10,6 +10,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "bref/bref": "^1.7",
+        "bref/extra-php-extensions": "^0.12.3",
+        "bref/laravel-bridge": "^1.2",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -21,8 +24,7 @@
         "laravel/socialite": "^v5.0",
         "laravel/tinker": "^2.0",
         "sentry/sentry-laravel": "^2.0",
-        "skagarwal/google-places-api": "^1.7",
-      "ext-mysql_xdevapi": "*"
+        "skagarwal/google-places-api": "^1.7"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
@@ -34,13 +36,12 @@
     },
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://packagist.kodear.net",
-            "options": {
-                "ssl": {
-                    "local_cert": "$HOME/.ssl/composer.pem"
-                }
-            }
+            "type": "git",
+            "url": "git@bitbucket.org:kodear/laravel-model-storage.git"
+        },
+        {
+            "type": "git",
+            "url": "git@bitbucket.org:kodear/laravel-users.git"
         }
     ],
     "config": {

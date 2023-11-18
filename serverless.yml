@@ -1,0 +1,104 @@
+service: proyecto-final-backend
+
+provider:
+    name: aws
+    # The AWS region in which to deploy (us-east-1 is the default)
+    region: us-east-1
+    # The stage of the application, e.g. dev, production, staging… ('dev' is the default)
+    stage: ${opt:stage, 'dev'}
+    runtime: provided.al2
+    lambdaHashingVersion: 20201221
+
+    # Para poder obtener contenido de archivos binarios / imagenes, etc., caso
+    # contrario, se produce un error en apiGateway.
+    apiGateway:
+        binaryMediaTypes:
+            - '*/*'
+        # usagePlan:
+        #  throttle:
+        #    burstLimit: 200
+        #    rateLimit: 100
+    environment:
+        FILESYSTEM_DISK: s3
+        BREF_BINARY_RESPONSES: '1'
+        AWS_BUCKET: !Ref Storage
+        ODBCSYSINI: '/opt/microsoft/conf/'
+    iam:
+        role:
+            statements:
+                # Allow Lambda to read and write files in the S3 buckets
+                -   Effect: Allow
+                    Action: s3:*
+                    Resource:
+                        - !Sub '${Storage.Arn}' # the storage bucket
+                        - !Sub '${Storage.Arn}/*' # and everything inside
+
+plugins:
+    # We need to include the Bref plugin
+    - ./vendor/bref/bref
+    - ./vendor/bref/extra-php-extensions
+    - serverless-lift
+    
+resources:
+    Resources:
+        Storage:
+            Type: AWS::S3::Bucket
+
+package:
+    # Directories to exclude from deployment
+    patterns:
+        - '!node_modules/**'
+        - '!public/storage'
+        - '!resources/assets/**'
+        - '!storage/**'
+        - 'storage/oauth-private.key'
+        - 'storage/oauth-public.key'
+        - '!tests/**'
+
+functions:
+    # This function runs the Laravel website/API
+    api:
+        handler: public/index.php
+        timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
+        layers:
+            - ${bref:layer.php-74-fpm}
+        events:
+            - httpApi: '*'
+            
+            # Este es el 'calentador' que mantiene el container de lambda vivo
+            # para evitar el cold start que toma tiempo.
+            # Queda comentado para evitar consumos en desarrollo
+            
+            # - schedule:
+            #     rate: rate(5 minutes)
+            #     input:
+            #         warmer: true
+    # This function lets us run artisan commands in Lambda
+    artisan:
+        handler: artisan
+        timeout: 600 # in seconds
+        layers:
+            - ${bref:layer.php-74} # PHP
+            - ${bref:layer.console} # The "console" layer
+    
+    # Si se necesita cron, descomentar las líneas siguientes:
+        
+    # cron:
+    #     handler: artisan
+    #     layers:
+    #         - ${bref:layer.php-74} # PHP
+    #         - ${bref:layer.console} # The "console" layer
+    #     events:
+    #         - schedule:
+    #             rate: rate(1 hour)
+    #             input: '"schedule:run"'
+    
+constructs:
+    website:
+        type: server-side-website
+        assets:
+            '/js/*': public/js
+            '/css/*': public/css
+            '/images/*': public/images
+            '/favicon.ico': public/favicon.ico
+            '/robots.txt': public/robots.txt
